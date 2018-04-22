@@ -9,11 +9,11 @@ app.prepare()
 .then(() => {
   const server = express()
 
-	server.get('/questions/:id', (req, res) => {
-		const actualPage = '/questions'
-		const queryParams = { title: req.params.id } 
-	app.render(req, res, actualPage, queryParams)
-	})
+  server.get('/questions/:id', (req, res) => {
+    const actualPage = '/questions'
+    const queryParams = { title: req.params.id } 
+    app.render(req, res, actualPage, queryParams)
+  })
 
   server.get('*', (req, res) => {
     return handle(req, res)

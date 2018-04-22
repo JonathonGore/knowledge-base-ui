@@ -14,7 +14,7 @@ class DismissableAlert extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    this.setStaate({
+    this.setState({
       alertVisible: true,
       type: props.type,
       title: props.title,

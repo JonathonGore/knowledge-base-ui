@@ -3,7 +3,7 @@ import DismissableAlert from '../components/alerts/DismissableAlert.js';
 import "../styles.scss";
 import { Form, FormGroup, FormControl, Button, ControlLabel, Col, Checkbox } from 'react-bootstrap';
 import Config from '../config.json';
-import $ from "jquery";
+import $ from 'jquer';
 
 class Signup extends React.Component {
 
@@ -15,6 +15,10 @@ class Signup extends React.Component {
 		this.validUserPass = this.validUserPass.bind(this);
 		this.confirmPasswordMatch = this.confirmPasswordMatch.bind(this);
 		this.buildError = this.buildError.bind(this);
+		this.username = "";
+		this.password = "";
+		this.email = "";
+		this.confirmPassword = "";
 		this.state = { error: ""};
 	}
 
@@ -24,12 +28,12 @@ class Signup extends React.Component {
 		);
 	}
 
-	// Converts the array data from serializeArray() into usable JSON
-	prepareData(formArray) {
+	prepareData() {
 		var map = {};
-		for (var i = 0; i < formArray.length; i++) {
-		  map[formArray[i]['name']] = formArray[i]['value'];
-		}
+		map['email'] = this.email.value;
+		map['username'] = this.username.value;
+		map['password'] = this.password.value;
+		map['confirmPassword'] = this.confirmPassword.value;
 
 		return map;
 	}
@@ -48,18 +52,16 @@ class Signup extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-
 		var self = this;
-		var valueMap = $('#signupForm').serializeArray();
-		var preparedData = self.prepareData(valueMap);
+		var preparedData = self.prepareData();
 
 		if (!self.validUserPass(preparedData)) {
-			self.state.addError(self.buildError("please enter both a username and password to signup"));
+			self.addError(self.buildError("please enter both a username and password to signup"));
 			return
 		}
 
 		if(!self.confirmPasswordMatch(preparedData)) {
-			self.state.addError(self.buildError("passwords do not match"));
+			self.addError(self.buildError("passwords do not match"));
 			return
 		}
 
@@ -106,13 +108,13 @@ class Signup extends React.Component {
 				<div className="error-container">
 					{this.state.error}
 				</div>
-				<Form id="signupForm" onSubmit={this.handleSubmit} method="post">
+				<Form onSubmit={this.handleSubmit} method="post">
 					<FormGroup controlId="email">
 						<Col componentClass={ControlLabel} sm={2}>
 							Email
 						</Col>
 						<Col sm={10}>
-							<FormControl type="email" placeholder="Email" />
+							<FormControl type="email" placeholder="Email" inputRef={ref => { this.email = ref; }}/>
 						</Col>
 					</FormGroup>
 
@@ -121,7 +123,7 @@ class Signup extends React.Component {
 							Username
 						</Col>
 						<Col sm={10}>
-							<FormControl type="text" placeholder="Username" />
+							<FormControl type="text" placeholder="Username" inputRef={ref => { this.username = ref; }}/>
 						</Col>
 					</FormGroup>
 
@@ -130,7 +132,7 @@ class Signup extends React.Component {
 							Password
 						</Col>
 						<Col sm={10}>
-							<FormControl type="password" placeholder="Password" />
+							<FormControl type="password" placeholder="Password" inputRef={ref => { this.password = ref; }} />
 						</Col>
 					</FormGroup>
 
@@ -139,7 +141,7 @@ class Signup extends React.Component {
 							Confirm Password
 						</Col>
 						<Col sm={10}>
-							<FormControl type="password" placeholder="Confirm Password" />
+							<FormControl type="password" placeholder="Confirm Password" inputRef={ref => { this.confirmPassword = ref; }}/>
 						</Col>
 					</FormGroup>
 

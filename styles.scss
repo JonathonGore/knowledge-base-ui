@@ -1,3 +1,40 @@
-.signup-form {
-  /*width: 80%;*/
+/* Signup Form */
+
+.signup-form-container {
+  width: 45%;
+  margin: auto;
 }
+
+.signup-form-row {
+  margin-bottom: 8px;
+}
+
+.signup-submit {
+  width: 100%;
+}
+
+.signup-page {
+  background-color: #3ea9f5;
+}
+
+.signup-header {
+  color: white;
+  margin: 26px 40px 0px;
+  font-size: 40px;
+}
+
+.signup-text {
+  color: white;
+  font-size: 16px;
+  font-weight: 100;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.signup-text-header {
+  color: white;
+  font-size: 38px;
+  margin: 65px 0px 10px;
+}
+
+/* End Signup Form */

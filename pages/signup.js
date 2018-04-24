@@ -3,7 +3,7 @@ import DismissableAlert from '../components/alerts/DismissableAlert.js';
 import "../styles.scss";
 import { Form, FormGroup, FormControl, Button, ControlLabel, Col, Checkbox } from 'react-bootstrap';
 import Config from '../config.json';
-import $ from 'jquer';
+import $ from 'jquery';
 
 class Signup extends React.Component {
 

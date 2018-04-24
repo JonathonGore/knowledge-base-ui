@@ -59,7 +59,7 @@ class Signup extends React.Component {
 			url: Config.serverURL + "/login",
 			data: JSON.stringify(preparedData),
 			xhrFields: {
-				withCredentials: false
+				withCredentials: true
 			},
 			success: function(json) {
 					// TODO: Add a redirect here

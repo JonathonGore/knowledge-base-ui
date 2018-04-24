@@ -6,15 +6,26 @@
 }
 
 .signup-form-row {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .signup-submit {
   width: 100%;
+  background: #D1A8ED;
+  color: white;
 }
 
 .signup-page {
   background-color: #3ea9f5;
+}
+
+.signup-input {
+  height: 50px;
+  padding-left: 20px !important;
+}
+
+.signup-input:focus {
+  box-shadow: none !important;
 }
 
 .signup-header {

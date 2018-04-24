@@ -105,25 +105,25 @@ class SignupForm extends React.Component {
 
         <Row className="signup-form-row">
           <Col sm={6} md={6} lg={6}>
-            <FormControl type="email" placeholder="Email" inputRef={ref => { this.email = ref; }}/>
+            <FormControl className="signup-input" type="email" placeholder="Email" inputRef={ref => { this.email = ref; }}/>
           </Col>
           <Col sm={6} md={6} lg={6}>
-            <FormControl type="text" placeholder="Username" inputRef={ref => { this.username = ref; }}/>
+            <FormControl className="signup-input" type="text" placeholder="Username" inputRef={ref => { this.username = ref; }}/>
           </Col>
         </Row>
 
         <Row className="signup-form-row">
           <Col sm={6} md={6} lg={6}>
-            <FormControl type="password" placeholder="Password" inputRef={ref => { this.password = ref; }} />
+            <FormControl className="signup-input" type="password" placeholder="Password" inputRef={ref => { this.password = ref; }} />
           </Col>
           <Col sm={6} md={6} lg={6}>
-            <FormControl type="password" placeholder="Confirm Password" inputRef={ref => { this.confirmPassword = ref; }}/>
+            <FormControl className="signup-input" type="password" placeholder="Confirm Password" inputRef={ref => { this.confirmPassword = ref; }}/>
           </Col>
         </Row>
 
         <Row>
           <Col sm={12} md={12} lg={12}>
-            <Button className="signup-submit" type="submit">Sign up</Button>
+            <Button className="signup-submit" type="submit">Create account</Button>
           </Col>
         </Row>
       </Form>

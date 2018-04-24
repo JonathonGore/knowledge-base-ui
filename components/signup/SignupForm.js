@@ -44,6 +44,7 @@ class SignupForm extends React.Component {
     map['email'] = this.email.value;
     map['username'] = this.username.value;
     map['password'] = this.password.value;
+    map['confirmPassword'] = this.confirmPassword.value;
 
     return map;
   }
@@ -83,6 +84,7 @@ class SignupForm extends React.Component {
             // Cause a rerender of our global components
             //self.props.updateLoginStatus(true);
             //self.setState({signupRedirect: true});
+            // TODO: Redirect to a relevant page here
             console.log("Successfully logged in");
           },
           error: function (xhr) {

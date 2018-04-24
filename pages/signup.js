@@ -41,10 +41,10 @@ class Signup extends React.Component {
 						</Link>
 						</span>
 					</div>
-					<div className="error-container">
-						{this.state.error}
-					</div>
 					<div className="signup-form-container">
+						<div className="error-container">
+							{this.state.error}
+						</div>
 						<div className="signup-text-header">
 							{this.aboutHeader}
 						</div>

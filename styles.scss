@@ -83,4 +83,45 @@
   margin-bottom: 4px;
 }
 
-/* End login page */
+/* Menu Panel */
+
+.menu-panel {
+  background-color: black;
+  color: white;
+  min-width: 200px;
+}
+
+.menu-header-icon {
+  float: right;
+}
+
+.menu-header {
+  padding: 8px;
+  width: 100%;
+  font-size: 24px;
+}
+
+/* Main Question Page */
+
+.post-container {
+  width: 100%;
+}
+
+.preview-stats {
+  display: flex;
+}
+
+.stat-container {
+  margin-right: 8px;
+  text-align: center;
+  width: 60px;
+}
+
+.post-preview {
+  border-bottom: 1px solid #e4e6e8;
+  padding: 8px;
+}
+
+.main-container {
+  display: flex;
+}

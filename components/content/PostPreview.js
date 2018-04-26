@@ -7,44 +7,47 @@ class PostPreview extends React.Component {
     super(props);
 
     this.state = {
-      key: this.getValue(props.key),
-      title: this.getValue(props.title),
-      author: this.getValue(props.author),
-      submittedOn: this.getValue(props.submittedOn),
-      upvotes: this.getValue(props.upvotes),
-      view: this.getValue(props.views),
-      answers: this.getValue(props.answers)
+      title: this.getString(props.title),
+      username: this.getString(props.username),
+      submittedOn: this.getString(props.submittedOn),
+      upvotes: this.getInt(props.upvotes),
+      views: this.getInt(props.views),
+      answers: this.getInt(props.answers)
     }
   }
 
-  getValue(obj) {
-    if (obj === undefined) {
-      return "";
-    }
-    return obj;
+  getInt(obj) {
+    return (obj === undefined) ? 0 : obj;
+  }
+
+  getString(obj) {
+    return (obj === undefined) ? "" : obj;
   }
 
   render() {
     return (
         <div className="post-preview">
           <Row>
-            <Col sm={1} md={1} lg={1}>
-              <div className="upvotes">{this.state.upvotes}</div>
+            <Col className="preview-stats" sm={2} md={2} lg={2}>
+              <span className="stat-container">
+                {this.state.upvotes}
+                <div className="preview-subtext">votes</div>
+              </span>
+              <span className="stat-container">
+                {this.state.answers}
+                <div className="preview-subtext">answers</div>
+              </span>
+              <span className="stat-container">
+                {this.state.views}
+                <div className="preview-subtext">views</div>
+              </span>
             </Col>
-            <Col sm={1} md={1} lg={1}>
-              <div className="answers">{this.state.answers}</div>
-            </Col>
-            <Col sm={1} md={1} lg={1}>
-              <div className="views">{this.state.views}</div>
-            </Col>
-            <Col sm={9} md={9} lg={9}>
-              <div className="post-preview-info-container">
-                  <div className="post-preview-title">{this.state.title}</div>
-                  <div className="post-preview-stats">
-                    <span className="post-preview-author">{this.state.author}</span>
-                    <span className="post-preview-time">{this.state.submittedOn}</span>
-                  </div>
-              </div>
+            <Col sm={10} md={10} lg={10}>
+                <div className="post-preview-title">{this.state.title}</div>
+                <div className="post-preview-stats">
+                  <span className="post-preview-author">{this.state.username}</span>
+                  <span className="post-preview-time">{this.state.submittedOn}</span>
+                </div>
             </Col>
           </Row>
         </div>

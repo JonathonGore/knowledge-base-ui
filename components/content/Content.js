@@ -11,6 +11,10 @@ class Content extends React.Component {
     this.state = { posts: []};
   }
 
+  componentWillReceiveProps(props) {
+    this.setState({...props});
+  }
+
   render() {
     var listItems;
 
@@ -25,9 +29,9 @@ class Content extends React.Component {
     );
 
     return (
-        <div className="post-contianer">
+        <span className="post-container">
           {listItems}
-        </div>
+        </span>
     );
 	}
 }

@@ -7,6 +7,8 @@ import Logo from './misc/Logo.js';
 class MenuPanel extends React.Component {
   constructor(props) {
     super(props);
+
+    this.size = 24;
   }
 
   render() {
@@ -16,7 +18,12 @@ class MenuPanel extends React.Component {
             <FontAwesome name='bars' className="menu-header-icon"/>
           </div>
           <div className="menu-panel-content">
-            <Logo />
+            <Logo size={this.size}/>
+            <div className="menu-items">
+                <div className="menu-item"><FontAwesome name='home' /> Home</div>
+                <div className="menu-item"><FontAwesome name='user' /> Profile</div>
+                <div className="menu-item"><FontAwesome name='info-circle' /> About</div>
+            </div>
           </div>
         </span>
     );

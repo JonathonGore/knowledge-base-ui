@@ -7,15 +7,15 @@ class Logo extends React.Component {
     this.buildStyle = this.buildStyle.bind(this);
 
     this.state = {
-      color: "white",
-      size: 16
+      color: props.color ? props.color : "white",
+      size: props.size ? props.size : 16
     }
   }
 
   buildStyle(color, size) {
     var style =  {
-      color: color,
-      size: size + "px"
+      'color': color,
+      'font-size': size + "px"
     };
 
     return style;

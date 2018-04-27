@@ -3,6 +3,7 @@ $charcoal: #222;
 $light_purple: #D1A8ED;
 $light_blue: #3EA9F5;
 $light_gray: #E4E6E8;
+$collapsed_menu_width: 40px;
 
 /* Signup Form */
 
@@ -114,7 +115,7 @@ $light_gray: #E4E6E8;
 .menu-panel-collapsed {
   background-color: white;
   color: $charcoal;
-  width: 40px;
+  width: $collapsed_menu_width;
   border: none;
 }
 
@@ -142,6 +143,10 @@ $light_gray: #E4E6E8;
   margin-bottom: 8px;
 }
 
+.menu-collapse-btn {
+  font-size: 24px;
+}
+
 .menu-collapse-btn:hover {
   cursor: pointer;
 }
@@ -158,7 +163,7 @@ $light_gray: #E4E6E8;
 }
 
 .post-container-collapsed {
-  margin-left: 40px;
+  margin-left: $collapsed_menu_width;
 }
 
 .preview-stats {

@@ -25,9 +25,11 @@ class MenuPanel extends React.Component {
 
   buildCollapsedMenu() {
     return (
-      <span className="collapsed-menu-panel menu-panel">
-        <div onClick={this.toggleMenu} className="menu-collapse-btn">
-          <FontAwesome name='bars' className="menu-header-icon"/>
+      <span className="menu-panel-collapsed menu-panel">
+        <div className="menu-header">
+          <div onClick={this.toggleMenu} className="menu-collapse-btn">
+            <FontAwesome name='bars' className="menu-header-icon"/>
+          </div>
         </div>
       </span>
     );

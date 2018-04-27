@@ -43,11 +43,13 @@ class PostPreview extends React.Component {
               </span>
             </Col>
             <Col sm={10} md={10} lg={10}>
-                <div className="post-preview-title">{this.state.title}</div>
-                <div className="post-preview-stats">
-                  <span className="post-preview-author">{this.state.username}</span>
-                  <span className="post-preview-time">{this.state.submittedOn}</span>
-                </div>
+                  <div className="pp-stat-container">
+                    <div className="post-preview-title">{this.state.title}</div>
+                    <div className="post-preview-stats">
+                      <span className="post-preview-author">{this.state.username}</span>
+                      <span className="post-preview-time">{this.state.submittedOn}</span>
+                    </div>
+                  </div>
             </Col>
           </Row>
         </div>

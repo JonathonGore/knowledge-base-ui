@@ -12,9 +12,24 @@ class Index extends React.Component {
 	constructor (props){
 		super(props);
     this.requestPosts = this.requestPosts.bind(this);
+    this.toggleClass = this.toggleClass.bind(this);
 
-    this.state = {posts: []}
+    this.displayedClass = "post-container-displayed";
+    this.collapsedClass = "post-container-collapsed";
+
+    this.state = {
+      posts: [],
+      contentClass: this.displayedClass
+    };
 	}
+
+  toggleClass() {
+    if (this.state.contentClass === this.displayedClass) {
+      this.setState({contentClass: this.collapsedClass});
+    } else {
+      this.setState({contentClass: this.displayedClass});
+    }
+  }
 
   requestPosts() {
     var self = this;
@@ -45,8 +60,8 @@ class Index extends React.Component {
 		return (
 			<BasicLayout>
         <div className="main-container">
-          <MenuPanel />
-          <Content posts={this.state.posts}/>
+          <MenuPanel onToggle={this.toggleClass} />
+          <Content className={this.state.contentClass} posts={this.state.posts}/>
         </div>
 			</BasicLayout>
 		);

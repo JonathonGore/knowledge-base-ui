@@ -1,3 +1,9 @@
+/* Variables */
+$charcoal: #222;
+$light_purple: #D1A8ED;
+$light_blue: #3EA9F5;
+$light_gray: #E4E6E8;
+
 /* Signup Form */
 
 .signup-form-container {
@@ -12,12 +18,12 @@
 
 .signup-submit {
   width: 100%;
-  background: #D1A8ED;
+  background: $light_purple;
   color: white;
 }
 
 .signup-page {
-  background-color: #3ea9f5;
+  background-color: $light_blue;
 }
 
 .sp-login-link {
@@ -92,13 +98,24 @@
 /* Menu Panel */
 
 .menu-panel {
-  background-color: black;
-  color: white;
-  width: 300px;
   position: fixed;
   left: 0;
   overflow: hidden;
   height: 100%;
+}
+
+.menu-panel-displayed {
+  background-color: $charcoal;
+  color: white;
+  width: 300px;
+  border: 1px solid black;
+}
+
+.menu-panel-collapsed {
+  background-color: white;
+  color: $charcoal;
+  width: 40px;
+  border: none;
 }
 
 .menu-header-icon {
@@ -112,24 +129,36 @@
 }
 
 .menu-panel-content {
-  margin-top: 80px;
+  margin-top: 120px;
 }
 
 .menu-items {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 60px;
   font-size: 18px;
 }
 
 .menu-item {
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+.menu-collapse-btn:hover {
+  cursor: pointer;
 }
 
 /* Main Question Page */
 
 .post-container {
+  padding: 8px;
   width: 100%;
+}
+
+.post-container-displayed {
   margin-left: 300px;
+}
+
+.post-container-collapsed {
+  margin-left: 40px;
 }
 
 .preview-stats {
@@ -143,8 +172,19 @@
 }
 
 .post-preview {
-  border-bottom: 1px solid #e4e6e8;
+  border-top: 1px solid $light_gray;
   padding: 8px;
+}
+
+.pp-stat-container {
+  margin-left: 16px;
+  height: 100%;
+}
+
+.post-preview-stats {
+  font-size: 12px;
+  position: absolute;
+  bottom: 2px;
 }
 
 .main-container {

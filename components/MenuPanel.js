@@ -7,18 +7,46 @@ import Logo from './misc/Logo.js';
 class MenuPanel extends React.Component {
   constructor(props) {
     super(props);
+    this.toggleMenu = this.toggleMenu.bind(this);
 
-    this.size = 24;
+    this.state = {
+      size: 24,
+      collapsed: false,
+      onToggle: props.onToggle
+    }
+  }
+
+  toggleMenu(e) {
+      this.setState({ collapsed: !this.state.collapsed })
+      if (this.state.onToggle) {
+        this.state.onToggle();
+      }
+  }
+
+  buildCollapsedMenu() {
+    return (
+      <span className="collapsed-menu-panel menu-panel">
+        <div onClick={this.toggleMenu} className="menu-collapse-btn">
+          <FontAwesome name='bars' className="menu-header-icon"/>
+        </div>
+      </span>
+    );
   }
 
   render() {
+    if (this.state.collapsed) {
+      return this.buildCollapsedMenu();
+    }
+
     return (
-        <span className="menu-panel">
+        <span className="menu-panel-displayed menu-panel" >
           <div className="menu-header">
-            <FontAwesome name='bars' className="menu-header-icon"/>
+              <div onClick={this.toggleMenu} className="menu-collapse-btn">
+                <FontAwesome name='bars' className="menu-header-icon"/>
+              </div>
           </div>
           <div className="menu-panel-content">
-            <Logo size={this.size}/>
+            <Logo size={this.state.size}/>
             <div className="menu-items">
                 <div className="menu-item"><FontAwesome name='home' /> Home</div>
                 <div className="menu-item"><FontAwesome name='user' /> Profile</div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
 import Config from '../../config.json';
 
 class PostPreview extends React.Component {
@@ -27,31 +26,27 @@ class PostPreview extends React.Component {
   render() {
     return (
         <div className="post-preview">
-          <Row>
-            <Col className="preview-stats" sm={2} md={2} lg={2}>
-              <span className="stat-container">
-                {this.state.upvotes}
-                <div className="preview-subtext">votes</div>
-              </span>
-              <span className="stat-container">
-                {this.state.answers}
-                <div className="preview-subtext">answers</div>
-              </span>
-              <span className="stat-container">
-                {this.state.views}
-                <div className="preview-subtext">views</div>
-              </span>
-            </Col>
-            <Col sm={10} md={10} lg={10}>
-                  <div className="pp-stat-container">
-                    <div className="post-preview-title">{this.state.title}</div>
-                    <div className="post-preview-stats">
-                      <span className="post-preview-author">{this.state.username}</span>
-                      <span className="post-preview-time">{this.state.submittedOn}</span>
-                    </div>
-                  </div>
-            </Col>
-          </Row>
+          <span className="stat-group">
+            <span className="stat-container">
+              {this.state.upvotes}
+              <div className="preview-subtext">votes</div>
+            </span>
+            <span className="stat-container">
+              {this.state.answers}
+              <div className="preview-subtext">answers</div>
+            </span>
+            <span className="stat-container">
+              {this.state.views}
+              <div className="preview-subtext">views</div>
+            </span>
+          </span>
+          <span className="pp-stat-container">
+            <div className="post-preview-title">{this.state.title}</div>
+            <div className="post-preview-stats">
+              <span className="post-preview-author">{this.state.username}</span>
+              <span className="post-preview-time">{this.state.submittedOn}</span>
+            </div>
+          </span>
         </div>
     );
 	}

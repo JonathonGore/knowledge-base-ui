@@ -171,9 +171,14 @@ $light_gray: #E4E6E8;
   width: 60px;
 }
 
+.stat-group {
+  display: flex;
+}
+
 .post-preview {
   border-top: 1px solid $light_gray;
   padding: 8px;
+  display: flex;
 }
 
 .pp-stat-container {
@@ -183,8 +188,7 @@ $light_gray: #E4E6E8;
 
 .post-preview-stats {
   font-size: 12px;
-  position: absolute;
-  bottom: 2px;
+  margin-top: 4px;
 }
 
 .main-container {

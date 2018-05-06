@@ -108,6 +108,17 @@ $collapsed_menu_width: 40px;
   text-align: center;
 }
 
+.logo-link {
+  color: white;
+  text-decoration: none;
+}
+
+.logo-link:hover {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+
 /* Menu Panel */
 
 .menu-panel {

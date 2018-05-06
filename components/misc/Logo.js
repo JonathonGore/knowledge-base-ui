@@ -1,5 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import Link from 'next/link';
 
 class Logo extends React.Component {
   constructor(props) {
@@ -37,8 +38,12 @@ class Logo extends React.Component {
   render() {
     return (
       <div className={this.buildClassName()} style={this.buildStyle(this.state.color, this.state.size)}>
-        <FontAwesome name='database' />
-        <span className="logo-text"> Knowledge-Base</span>
+        <Link href="/">
+          <a className="sp-login-link">
+            <FontAwesome name='database' />
+            <span className="logo-text"> Knowledge-Base</span>
+          </a>
+        </Link>
       </div>
     );
 	}

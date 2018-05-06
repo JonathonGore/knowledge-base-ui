@@ -17,13 +17,13 @@ class PageLayout extends React.Component {
     };
 	}
 
-  toggleClass() {
-    if (this.state.marginClass === this.displayedClass) {
-      this.setState({marginClass: this.collapsedClass});
-    } else {
-      this.setState({marginClass: this.displayedClass});
-    }
-  }
+	toggleClass() {
+	  if (this.state.marginClass === this.displayedClass) {
+	    this.setState({marginClass: this.collapsedClass});
+	  } else {
+	    this.setState({marginClass: this.displayedClass});
+	  }
+	}
 
 	render() {
 		return (

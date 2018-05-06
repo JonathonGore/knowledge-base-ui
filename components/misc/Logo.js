@@ -5,17 +5,30 @@ class Logo extends React.Component {
   constructor(props) {
     super(props);
     this.buildStyle = this.buildStyle.bind(this);
+    this.buildClassName = this.buildClassName.bind(this);
+
 
     this.state = {
       color: props.color ? props.color : "white",
-      size: props.size ? props.size : 16
+      size: props.size ? props.size : 16,
+      inline: props.inline ? props.inline : false
     }
+  }
+
+  buildClassName() {
+    var cname = "logo-container";
+
+    if (this.props.inline) {
+      cname = cname + " inline";
+    }
+
+    return cname;
   }
 
   buildStyle(color, size) {
     var style =  {
       'color': color,
-      'font-size': size + "px"
+      'fontSize': size + "px"
     };
 
     return style;
@@ -23,7 +36,7 @@ class Logo extends React.Component {
 
   render() {
     return (
-      <div className="logo-container" style={this.buildStyle(this.state.color, this.state.size)}>
+      <div className={this.buildClassName()} style={this.buildStyle(this.state.color, this.state.size)}>
         <FontAwesome name='database' />
         <span className="logo-text"> Knowledge-Base</span>
       </div>

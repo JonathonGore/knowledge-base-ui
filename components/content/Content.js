@@ -7,20 +7,14 @@ import FontAwesome from 'react-fontawesome';
 class Content extends React.Component {
   constructor(props) {
     super(props);
-    this.getClassName = this.getClassName.bind(this);
 
     this.state = {
-      posts: [],
-      className: props.className ? props.className : ""
+      posts: []
     };
   }
 
   componentWillReceiveProps(props) {
     this.setState({...props});
-  }
-
-  getClassName() {
-    return this.state.className + " post-container";
   }
 
   render() {
@@ -37,9 +31,9 @@ class Content extends React.Component {
     );
 
     return (
-        <span className={this.getClassName()}>
+        <div className="post-container">
           {listItems}
-        </span>
+        </div>
     );
 	}
 }

@@ -1,7 +1,8 @@
 import BasicLayout from '../components/BasicLayout.js';
 import SignupForm from '../components/signup/SignupForm.js';
+import Logo from '../components/misc/Logo.js';
 import FontAwesome from 'react-fontawesome';
-import Link from 'next/link'
+import Link from 'next/link';
 import "../styles.scss";
 
 class Signup extends React.Component {
@@ -27,18 +28,15 @@ class Signup extends React.Component {
 	}
 
 	render() {
-		//document.body.style.backgroundColor = "green";
-
 		return (
 			<BasicLayout>
 				<div className="signup-page">
 					<div className="signup-header">
-						<FontAwesome name='database' />
-						<span className="signup-header-text"> Knowledge-Base</span>
+						<Logo size={40} inline />
 						<span className="sp-login-button">
-						<Link href="/login">
-							<a className="sp-login-link">Login</a>
-						</Link>
+							<Link href="/login">
+								<a className="sp-login-link">Login</a>
+							</Link>
 						</span>
 					</div>
 					<div className="signup-form-container">

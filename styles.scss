@@ -2,8 +2,20 @@
 $charcoal: #222;
 $light_purple: #D1A8ED;
 $light_blue: #3EA9F5;
+$darker_blue: #3E95F5;
 $light_gray: #E4E6E8;
+$dark_gray: #6A737C;
 $collapsed_menu_width: 40px;
+
+/* Misc */
+
+.inline {
+  display: inline;
+}
+
+.full-width {
+  width: 100%;
+}
 
 /* Signup Form */
 
@@ -158,11 +170,11 @@ $collapsed_menu_width: 40px;
   width: 100%;
 }
 
-.post-container-displayed {
+.displayed {
   margin-left: 300px;
 }
 
-.post-container-collapsed {
+.collapsed {
   margin-left: $collapsed_menu_width;
 }
 
@@ -171,6 +183,7 @@ $collapsed_menu_width: 40px;
 }
 
 .stat-container {
+  color: $dark_gray;
   margin-right: 8px;
   text-align: center;
   width: 60px;
@@ -186,6 +199,15 @@ $collapsed_menu_width: 40px;
   display: flex;
 }
 
+.post-preview-title {
+  color: $darker_blue;
+}
+
+.post-preview-link:hover {
+  text-decoration: none;
+  color: $light_blue;
+}
+
 .pp-stat-container {
   margin-left: 16px;
   height: 100%;
@@ -194,6 +216,7 @@ $collapsed_menu_width: 40px;
 .post-preview-stats {
   font-size: 12px;
   margin-top: 4px;
+  color: $dark_gray;
 }
 
 .main-container {

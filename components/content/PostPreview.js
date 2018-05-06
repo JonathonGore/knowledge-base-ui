@@ -1,11 +1,13 @@
 import React from 'react';
 import Config from '../../config.json';
+import Link from 'next/link';
 
 class PostPreview extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      id: this.getString(props.id),
       title: this.getString(props.title),
       username: this.getString(props.username),
       submittedOn: this.getString(props.submittedOn),
@@ -21,6 +23,10 @@ class PostPreview extends React.Component {
 
   getString(obj) {
     return (obj === undefined) ? "" : obj;
+  }
+
+  buildLink() {
+    return "/questions/" + this.state.id;
   }
 
   render() {
@@ -41,7 +47,11 @@ class PostPreview extends React.Component {
             </span>
           </span>
           <span className="pp-stat-container">
-            <div className="post-preview-title">{this.state.title}</div>
+            <div className="post-preview-title">
+              <Link href={this.buildLink()}>
+                <a className="post-preview-link">{this.state.title}</a>
+              </Link>
+            </div>
             <div className="post-preview-stats">
               <span className="post-preview-author">{this.state.username}</span>
               <span className="post-preview-time">{this.state.submittedOn}</span>

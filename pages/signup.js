@@ -3,7 +3,7 @@ import SignupForm from '../components/signup/SignupForm.js';
 import Logo from '../components/misc/Logo.js';
 import FontAwesome from 'react-fontawesome';
 import Link from 'next/link';
-import "../styles.scss";
+import '../styles.scss';
 
 class Signup extends React.Component {
 	constructor (props){

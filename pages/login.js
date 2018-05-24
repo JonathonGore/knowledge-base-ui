@@ -2,8 +2,10 @@ import BasicLayout from '../components/BasicLayout.js'
 import { Row, Form, FormGroup, FormControl, Button, ControlLabel, Col, Checkbox } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import DismissableAlert from '../components/alerts/DismissableAlert.js';
+import Logo from '../components/misc/Logo.js';
 import Config from '../config.json';
 import $ from 'jquery';
+import '../styles.scss';
 
 class Signup extends React.Component {
 
@@ -76,14 +78,11 @@ class Signup extends React.Component {
 			<BasicLayout>
 				<div className="login-page">
 					<div className="login-form-container">
-						<div className="login-logo">
-							<FontAwesome name='database' />
-							<span className="login-logo-text"> Knowledge-Base</span>
-						</div>
 						<div className="login-error-container">
 							{this.state.error}
 						</div>
-						<Form onSubmit={this.handleSubmit}>
+						<Logo color={'black'} size={44} inline />
+						<Form className='login-form' onSubmit={this.handleSubmit}>
 					        <Row className="signup-form-row">
 					          <Col sm={12} md={12} lg={12}>
 					            <FormControl className="signup-input" type="text" placeholder="Username" inputRef={ref => { this.username = ref; }}/>

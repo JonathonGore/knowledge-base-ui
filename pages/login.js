@@ -38,7 +38,7 @@ class Signup extends React.Component {
 	}
 
 	validUserPass(obj) {
-		return !(obj['username'] === "" || obj['password'] === "");
+		return !(obj['username'] === '' || obj['password'] === '');
 	}
 
 	handleSubmit(e) {
@@ -51,7 +51,7 @@ class Signup extends React.Component {
 			return
 		}
 
-		// Post to backend
+		// Post loging request to backend
 		$.ajax({
 			type: "POST",
 			url: Config.serverURL + "/login",
@@ -79,6 +79,9 @@ class Signup extends React.Component {
 						<div className="login-logo">
 							<FontAwesome name='database' />
 							<span className="login-logo-text"> Knowledge-Base</span>
+						</div>
+						<div className="login-error-container">
+							{this.state.error}
 						</div>
 						<Form onSubmit={this.handleSubmit}>
 					        <Row className="signup-form-row">

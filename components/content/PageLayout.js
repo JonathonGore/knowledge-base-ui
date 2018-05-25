@@ -13,7 +13,7 @@ class PageLayout extends React.Component {
 
     this.state = {
       content: props.content ? props.content : "",
-      marginClass: this.displayedClass
+      marginClass: this.collapsedClass
     };
 	}
 
@@ -29,8 +29,7 @@ class PageLayout extends React.Component {
 		return (
 			<BasicLayout>
         <div className='main-container'>
-          <MenuPanel onToggle={this.toggleClass} />
-          <div className={this.state.marginClass + " full-width"} >
+          <div className={'full-width'} >
 						<Navbar text={'Top Questions'}/>
             <div className='main-container-content'>
 							{this.props.content}

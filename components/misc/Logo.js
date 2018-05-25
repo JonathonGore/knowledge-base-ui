@@ -10,14 +10,16 @@ class Logo extends React.Component {
 
 
     this.state = {
-      color: props.color ? props.color : "white",
-      size: props.size ? props.size : 16,
-      inline: props.inline ? props.inline : false
+      className: props.className || '',
+      hoverColor: props.hoverColor || 'white',
+      color:  props.color || 'white',
+      size: props.size || 16,
+      inline: props.inline || false
     }
   }
 
   buildClassName() {
-    var cname = "logo-container";
+    var cname = "logo-container " + this.state.className;
 
     if (this.props.inline) {
       cname = cname + " inline";
@@ -26,10 +28,10 @@ class Logo extends React.Component {
     return cname;
   }
 
-  buildStyle(color, size) {
+  buildStyle(hoverColor, color, size) {
     var style =  {
       'color': color,
-      'fontSize': size + "px"
+      'fontSize': (size === 'inherit') ? size : size + "px"
     };
 
     return style;
@@ -37,7 +39,7 @@ class Logo extends React.Component {
 
   render() {
     return (
-      <div className={this.buildClassName()} style={this.buildStyle(this.state.color, this.state.size)}>
+      <div className={this.buildClassName()} style={this.buildStyle(this.state.hoverColor, this.state.color, this.state.size)}>
         <Link href="/">
           <a className="sp-login-link">
             <FontAwesome name='database' />

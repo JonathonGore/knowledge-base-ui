@@ -23,7 +23,7 @@ class Signup extends React.Component {
 
 	buildError(message) {
 		return (
-			<DismissableAlert type='danger' title='Unable to signup' message={message} />
+			<DismissableAlert type='danger' title='Unable to login' message={message} />
 		);
 	}
 
@@ -67,7 +67,7 @@ class Signup extends React.Component {
 			},
 			error: function (xhr) {
 				var data = JSON.parse(xhr.responseText);
-				self.addError(self.buildError(data['error']));
+				self.addError(self.buildError(data['message']));
 			}
 		});
 	}
@@ -78,10 +78,10 @@ class Signup extends React.Component {
 			<BasicLayout>
 				<div className="login-page">
 					<div className="login-form-container">
+						<Logo color={'black'} size={44} inline />
 						<div className="login-error-container">
 							{this.state.error}
 						</div>
-						<Logo color={'black'} size={44} inline />
 						<Form className='login-form' onSubmit={this.handleSubmit}>
 					        <Row className="signup-form-row">
 					          <Col sm={12} md={12} lg={12}>

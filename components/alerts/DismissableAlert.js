@@ -29,7 +29,7 @@ class DismissableAlert extends React.Component {
   render() {
     if (this.state.alertVisible) {
       return (
-        <Alert bsStyle={this.state.type} onDismiss={this.handleAlertDismiss}>
+        <Alert className={'alert-container'} bsStyle={this.state.type} onDismiss={this.handleAlertDismiss}>
           <h4>{this.state.title}</h4>
           <p>{this.state.message}</p>
         </Alert>

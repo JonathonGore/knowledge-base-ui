@@ -1,6 +1,7 @@
 import BasicLayout from '../components/BasicLayout.js'
 import { Row, Form, FormGroup, FormControl, Button, ControlLabel, Col, Checkbox } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
+import Router from 'next/router';
 import DismissableAlert from '../components/alerts/DismissableAlert.js';
 import Logo from '../components/misc/Logo.js';
 import Config from '../config.json';
@@ -62,8 +63,7 @@ class Signup extends React.Component {
 				withCredentials: true
 			},
 			success: function(json) {
-					// TODO: Add a redirect here
-					console.log("Successfully logged in")
+					Router.push('/');
 			},
 			error: function (xhr) {
 				var data = JSON.parse(xhr.responseText);

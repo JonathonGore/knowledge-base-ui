@@ -1,6 +1,6 @@
 import BasicLayout from '../BasicLayout.js';
-import Link from 'next/link';
 import MenuPanel from '../MenuPanel.js';
+import Navbar from '../navbar/Navbar.js';
 import "../../styles.scss";
 
 class PageLayout extends React.Component {
@@ -28,10 +28,13 @@ class PageLayout extends React.Component {
 	render() {
 		return (
 			<BasicLayout>
-        <div className="main-container">
+        <div className='main-container'>
           <MenuPanel onToggle={this.toggleClass} />
           <div className={this.state.marginClass + " full-width"} >
-            {this.props.content}
+						<Navbar text={'Top Questions'}/>
+            <div className='main-container-content'>
+							{this.props.content}
+						</div>
           </div>
         </div>
 			</BasicLayout>

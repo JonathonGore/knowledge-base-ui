@@ -146,6 +146,7 @@ $collapsed_menu_width: 40px;
 }
 
 .menu-header {
+  margin-top: 6px;
   padding: 8px;
   width: 100%;
   font-size: 24px;
@@ -233,7 +234,37 @@ $collapsed_menu_width: 40px;
   display: flex;
 }
 
+.main-container-content {
+  margin-top: 40px;
+}
+
 /* DismissableAlert */
+
 .alert-container {
   padding: 12px !important;
+}
+
+/* Navbar */
+
+.kb-navbar-text {
+  margin-right: 20px;
+  padding-top: 4px;
+}
+
+.kb-navbar {
+  width: 100%;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: .5rem 1rem;
+  position: fixed;
+}
+
+/* Search-bar */
+.search-container {
+}
+
+.search-input {
+  padding: 2px 4px;
 }

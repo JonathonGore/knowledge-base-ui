@@ -1,7 +1,10 @@
-import BasicLayout from '../BasicLayout.js';
+import BasicLayoutLegacy from '../BasicLayoutLegacy.js';
 import MenuPanel from '../MenuPanel.js';
-import Navbar from '../navbar/Navbar.js';
+import KBNavbar from '../navbar/Navbar.js';
+import { getCookie } from '../../util/util.js';
 import "../../styles.scss";
+
+const COOKIE_NAME = 'kb-public';
 
 class PageLayout extends React.Component {
 	constructor (props){
@@ -13,8 +16,19 @@ class PageLayout extends React.Component {
 
     this.state = {
       content: props.content ? props.content : "",
-      marginClass: this.collapsedClass
+      marginClass: this.collapsedClass,
+			username: '',
+			isLoggedIn: false
     };
+	}
+
+	componentDidMount() {
+		const uname = getCookie(COOKIE_NAME);
+
+		this.setState({
+			username: uname,
+			isLoggedIn: uname !== ''
+		});
 	}
 
 	toggleClass() {
@@ -27,16 +41,16 @@ class PageLayout extends React.Component {
 
 	render() {
 		return (
-			<BasicLayout>
+			<BasicLayoutLegacy>
         <div className='main-container'>
           <div className={'full-width'} >
-						<Navbar text={'Top Questions'}/>
+						<KBNavbar username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>
             <div className='main-container-content'>
 							{this.props.content}
 						</div>
           </div>
         </div>
-			</BasicLayout>
+			</BasicLayoutLegacy>
 		);
 	}
 }

@@ -1,5 +1,6 @@
 import PageLayout from '../components/content/PageLayout.js';
 import Router from 'next/router';
+import { withRouter } from 'next/router';
 import Index from './index.js';
 import $ from 'jquery';
 import Config from '../config.json';
@@ -11,7 +12,7 @@ class Questions extends React.Component {
     this.requestQuestion = this.requestQuestion.bind(this);
 
     this.state = {
-      id: props.url.query["id"] ? props.url.query["id"] : "",
+      id: props.router.query['id'] ? props.router.query['id'] : '',
       question: {}
     }
   }
@@ -37,14 +38,16 @@ class Questions extends React.Component {
   }
 
   componentDidMount() {
-    this.requestQuestion(this.state.id);
+    if (this.state.id) {
+      this.requestQuestion(this.state.id);
+    }
   }
 
   buildContent() {
     return (
       //<QuestionDisplay posts={this.state.posts}/>
       <div>
-        Test 
+        Test
       </div>
     );
   }
@@ -60,4 +63,4 @@ class Questions extends React.Component {
 	}
 }
 
-export default Questions;
+export default withRouter(Questions);

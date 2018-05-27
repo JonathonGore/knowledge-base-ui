@@ -41,7 +41,7 @@ class Signup extends React.Component {
         content: this.body.value
       };
 
-      const onSuccess = (json) => { Router.push('/question/' + json['id'])};
+      const onSuccess = (str) => { Router.push('/questions/' + JSON.parse(str)['id']); };
       const onFailure = (xhr) => { console.log('unable to create question')};
 
       postData(url, data, onSuccess, onFailure);

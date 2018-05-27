@@ -18,7 +18,7 @@ function FieldGroup({ id, label, help, kbOnChange, formKey, ...props }) {
 }
 
 
-class Signup extends React.Component {
+class Ask extends React.Component {
 	constructor (props){
 		super(props);
     this.submitQuestion = this.submitQuestion.bind(this);
@@ -68,4 +68,4 @@ class Signup extends React.Component {
 	}
 }
 
-export default Signup;
+export default Ask;

@@ -21,8 +21,8 @@ class Questions extends React.Component {
     var self = this;
 
     $.ajax({
-      type: "GET",
-      url: Config.serverURL + "/question/" + id,
+      type: 'GET',
+      url: Config.serverURL + 'questions/' + id,
       xhrFields: {
         withCredentials: true
       },
@@ -32,7 +32,7 @@ class Questions extends React.Component {
       },
       error: function (xhr) {
         // TODO: Error handle
-        console.log("Unable to retrieve question");
+        console.log('Unable to retrieve question');
       }
     });
   }
@@ -53,7 +53,7 @@ class Questions extends React.Component {
   }
 
   render() {
-    if (this.state.id === "") {
+    if (this.state.id === '') {
       return (<Index />);
     }
 

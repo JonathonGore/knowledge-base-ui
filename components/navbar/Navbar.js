@@ -93,6 +93,7 @@ class KBNavbar extends React.Component {
         </Nav>
         <Nav pullRight>
           {this.buildUserSection()}
+          <NavItem eventKey={4} href='/ask'>Ask Question</NavItem>
         </Nav>
       </Navbar>
     );

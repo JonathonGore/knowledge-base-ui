@@ -4,6 +4,8 @@ import { withRouter } from 'next/router';
 import { getData } from '../../util/util.js';
 import '../../styles.scss';
 
+const noAnswerText = 'This question has no answer yet.';
+
 class QuestionDisplay extends React.Component {
   constructor(props) {
     super(props);
@@ -32,6 +34,16 @@ class QuestionDisplay extends React.Component {
     this.setState({ ...data });
   }
 
+  buildAnswerSection() {
+    if (this.state.answers === 0) {
+      return (
+        <div className='question-no-answer'>{noAnswerText}</div>
+      );
+    }
+
+    return <div></div>
+  }
+
   failed() {
     console.log(`Failed to get data for id ${this.state.id}`);
   }
@@ -49,6 +61,14 @@ class QuestionDisplay extends React.Component {
             <span className='question-info-margin question-author'>
               Authored by: {this.state.username}
             </span>
+          </div>
+          <div className='answers-section'>
+            <div className='question-answers-header'>
+              Answers
+            </div>
+            <div className='question-answers'>
+              {this.buildAnswerSection()}
+            </div>
           </div>
         </div>
       </div>

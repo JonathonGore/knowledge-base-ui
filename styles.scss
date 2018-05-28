@@ -290,7 +290,7 @@ $collapsed_menu_width: 40px;
   margin-top: 50px;
 }
 
-#askBody {
+textarea {
     resize: none;
 }
 
@@ -339,4 +339,18 @@ $collapsed_menu_width: 40px;
 .question-answers {
     margin-top: 20px;
     font-size: 16px;
+}
+
+.user-answer-section {
+  margin-top: 20px;
+}
+
+.user-answer-label {
+  margin-bottom: 4px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.btn-submit-answer {
+  margin-top: 8px;
 }

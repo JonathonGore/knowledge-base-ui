@@ -1,16 +1,20 @@
 import Router from 'next/router';
 import Config from '../../config.json';
+import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 import { withRouter } from 'next/router';
 import { getData } from '../../util/util.js';
 import '../../styles.scss';
 
 const noAnswerText = 'This question has no answer yet.';
+const TEXT_AREA_ROWS = 10;
 
 class QuestionDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.updateState = this.updateState.bind(this);
     this.failed = this.failed.bind(this);
+    this.updateKey = this.updateKey.bind(this);
+    this.submitAnswer = this.submitAnswer.bind(this);
 
     this.state = {
       id: props.router.query['id'],
@@ -20,7 +24,8 @@ class QuestionDisplay extends React.Component {
       views: 0,
       answers: 0,
       content: '',
-      'submitted-on': ''
+      'submitted-on': '',
+      answerContent: ''
     }
   }
 
@@ -34,6 +39,11 @@ class QuestionDisplay extends React.Component {
     this.setState({ ...data });
   }
 
+  submitAnswer(e) {
+    e.preventDefault();
+    console.log('submitting');
+  }
+
   buildAnswerSection() {
     if (this.state.answers === 0) {
       return (
@@ -42,6 +52,10 @@ class QuestionDisplay extends React.Component {
     }
 
     return <div></div>
+  }
+
+  updateKey(ref, key) {
+    this[key] = ref;
   }
 
   failed() {
@@ -69,6 +83,14 @@ class QuestionDisplay extends React.Component {
             <div className='question-answers'>
               {this.buildAnswerSection()}
             </div>
+          </div>
+          <div className='user-answer-section'>
+            <form onSubmit={this.submitAnswer}>
+              <div className='user-answer-label'>Your answer...</div>
+              <FormControl rows={TEXT_AREA_ROWS} componentClass='textarea' placeholder='Enter answer...'
+                inputRef={ref => { this.updateKey(ref, 'answerContent'); }} />
+              <Button className='btn-submit-answer' bsStyle='primary' type='submit'>Submit Answer</Button>
+            </form>
           </div>
         </div>
       </div>

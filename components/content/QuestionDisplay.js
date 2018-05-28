@@ -1,39 +1,59 @@
-import PageLayout from '../components/content/PageLayout.js';
 import Router from 'next/router';
-import Index from './index.js';
-import "../styles.scss";
+import Config from '../../config.json';
+import { withRouter } from 'next/router';
+import { getData } from '../../util/util.js';
+import '../../styles.scss';
 
 class QuestionDisplay extends React.Component {
   constructor(props) {
     super(props);
+    this.updateState = this.updateState.bind(this);
+    this.failed = this.failed.bind(this);
 
     this.state = {
-      id: this.getString(props.id),
-      title: this.getString(props.title),
-      username: this.getString(props.username),
-      submittedOn: this.getString(props.submittedOn),
-      upvotes: this.getInt(props.upvotes),
-      views: this.getInt(props.views),
-      answers: this.getInt(props.answers),
-      content: this.getString(props.content)
+      id: props.router.query['id'],
+      title: '',
+      username: '',
+      upvotes: 0,
+      views: 0,
+      answers: 0,
+      content: '',
+      'submitted-on': ''
     }
   }
 
-  getInt(obj) {
-    return (obj === undefined) ? 0 : obj;
+  componentDidMount() {
+    const url = Config.serverURL + '/questions/' + this.state.id;
+    getData(url, this.updateState, this.failed);
   }
 
-  getString(obj) {
-    return (obj === undefined) ? "" : obj;
+  updateState(json) {
+    const data = JSON.parse(json);
+    this.setState({ ...data });
+  }
+
+  failed() {
+    console.log(`Failed to get data for id ${this.state.id}`);
   }
 
   render() {
     return (
-      <div className="question-container">
-        <div className="question-title">{this.state.title}</div>
+      <div className='question-container'>
+        <div className='question-content'>
+          <div className='question-title'>{this.state.title}</div>
+          <div className='question-body'>{this.state.content}</div>
+          <div className='question-info'>
+            <span className='question-info-margin question-views'>
+              Views: {this.state.views}
+            </span>
+            <span className='question-info-margin question-author'>
+              Authored by: {this.state.username}
+            </span>
+          </div>
+        </div>
       </div>
     );
 	}
 }
 
-export default QuestionDisplay;
+export default withRouter(QuestionDisplay);

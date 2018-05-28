@@ -17,7 +17,6 @@ function FieldGroup({ id, label, help, kbOnChange, formKey, ...props }) {
   );
 }
 
-
 class Ask extends React.Component {
 	constructor (props){
 		super(props);

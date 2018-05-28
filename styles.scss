@@ -5,6 +5,7 @@ $light_blue: #3EA9F5;
 $darker_blue: #3E95F5;
 $light_gray: #E4E6E8;
 $dark_gray: #6A737C;
+$almost_black: #242729;
 $collapsed_menu_width: 40px;
 
 /* Misc */
@@ -291,4 +292,38 @@ $collapsed_menu_width: 40px;
 
 #askBody {
     resize: none;
+}
+
+/* Question Container */
+.question-container {
+  display: flex;
+  margin-top: 60px;
+}
+
+.question-content {
+  padding: 20px;
+  width: 60%;
+  margin: auto;
+}
+
+.question-title {
+  padding: 20px 0;
+  font-size: 24px;
+  font-weight: 400;
+  color: $almost_black;
+  border-bottom: 1px solid $light_gray;
+}
+
+.question-body {
+  padding: 20px 0;
+  font-size: 16px;
+  min-height: 100px;
+}
+
+.question-info {
+  float: right;
+}
+
+.question-info-margin {
+  margin-left: 10px;
 }

@@ -10,8 +10,27 @@ export const getCookie = (name) => {
   return '';
 }
 
+export const getData = (url, onSuccess, onFailure, withCredentials=true) => {
+  $.ajax({
+    type: 'GET',
+    url: url, 
+    xhrFields: {
+      withCredentials: withCredentials
+    },
+    success: function(json) {
+      if (onSuccess) {
+        onSuccess(json);
+      }
+    },
+    error: function (xhr) {
+      if (onFailure) {
+        onFailure(xhr);
+      }
+    }
+  });
+}
+
 export const postData = (url, data, onSuccess, onFailure, withCredentials=true) => {
-  // Post loging request to backend
   $.ajax({
     type: 'POST',
     url: url,

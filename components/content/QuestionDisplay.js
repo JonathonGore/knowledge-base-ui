@@ -8,12 +8,30 @@ import '../../styles.scss';
 const noAnswerText = 'This question has no answer yet.';
 const TEXT_AREA_ROWS = 10;
 
+const Answers = ({answers}) => (
+  <div className='answers-container'>
+    {answers.map(answer => (
+      <div className='answer-container' key={answer.id}>
+        <div className='answer-content'>
+          {answer.content}
+        </div>
+        <div className='answer-info'>
+          <span className='answer-author'>
+            Authored by: {answer.username}
+          </span>
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
 class QuestionDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.updateState = this.updateState.bind(this);
     this.failed = this.failed.bind(this);
     this.updateKey = this.updateKey.bind(this);
+    this.updateAnswers = this.updateAnswers.bind(this);
     this.submitAnswer = this.submitAnswer.bind(this);
     this.answerOnSuccess = this.answerOnSuccess.bind(this);
 
@@ -23,7 +41,8 @@ class QuestionDisplay extends React.Component {
       username: '',
       upvotes: 0,
       views: 0,
-      answers: 0,
+      answerCount: 0,
+      answers: [],
       content: '',
       'submitted-on': '',
       answerContent: {}
@@ -33,6 +52,19 @@ class QuestionDisplay extends React.Component {
   componentDidMount() {
     const url = Config.serverURL + '/questions/' + this.state.id;
     getData(url, this.updateState, this.failed);
+
+    const answersURL = url + '/answers';
+    getData(answersURL, this.updateAnswers, this.failed);
+  }
+
+  updateAnswers(json) {
+    const data = JSON.parse(json);
+    const len = data.length;
+
+    this.setState({
+      answerCount: len,
+      answers: data
+    });
   }
 
   updateState(json) {
@@ -58,13 +90,13 @@ class QuestionDisplay extends React.Component {
   }
 
   buildAnswerSection() {
-    if (this.state.answers === 0) {
+    if (this.state.answerCount === 0) {
       return (
         <div className='question-no-answer'>{noAnswerText}</div>
       );
     }
 
-    return <div></div>
+    return (<Answers answers={this.state.answers} />);
   }
 
   updateKey(ref, key) {

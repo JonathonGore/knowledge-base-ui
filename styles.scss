@@ -354,3 +354,18 @@ textarea {
 .btn-submit-answer {
   margin-top: 8px;
 }
+
+.answer-container {
+  border-bottom: 1px solid $light_gray;
+  min-height: 100px;
+  position: relative;
+  font-size: 16px;
+}
+
+.answer-info {
+  float: right;
+  right: 2%;
+  bottom: 4%;
+  position: absolute;
+  font-size: 14px;
+}

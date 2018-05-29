@@ -2,7 +2,7 @@ import Router from 'next/router';
 import Config from '../../config.json';
 import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 import { withRouter } from 'next/router';
-import { getData } from '../../util/util.js';
+import { getData, postData } from '../../util/util.js';
 import '../../styles.scss';
 
 const noAnswerText = 'This question has no answer yet.';
@@ -15,6 +15,7 @@ class QuestionDisplay extends React.Component {
     this.failed = this.failed.bind(this);
     this.updateKey = this.updateKey.bind(this);
     this.submitAnswer = this.submitAnswer.bind(this);
+    this.answerOnSuccess = this.answerOnSuccess.bind(this);
 
     this.state = {
       id: props.router.query['id'],
@@ -25,7 +26,7 @@ class QuestionDisplay extends React.Component {
       answers: 0,
       content: '',
       'submitted-on': '',
-      answerContent: ''
+      answerContent: {}
     }
   }
 
@@ -39,8 +40,20 @@ class QuestionDisplay extends React.Component {
     this.setState({ ...data });
   }
 
+  answerOnSuccess() {
+    const url = '/questions/' + this.state.id;
+    Router.push(url);
+  }
+
+  answerOnFail() {
+    console.log('Unable to submit answer');
+  }
+
   submitAnswer(e) {
     e.preventDefault();
+
+    const url = Config.serverURL + '/questions/' + this.state.id + '/answers';
+    postData(url, {content: this.answerContent.value}, this.answerOnSuccess, this.answerOnFail)
     console.log('submitting');
   }
 

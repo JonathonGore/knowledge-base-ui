@@ -1,29 +1,14 @@
 import Router from 'next/router';
-import Config from '../../config.json';
+import Config from '../../../config.json';
+import SubmitText from '../../misc/SubmitText.js';
+import { Answers } from './Answer.js'
 import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 import { withRouter } from 'next/router';
-import { getData, postData } from '../../util/util.js';
-import '../../styles.scss';
+import { getData, postData } from '../../../util/util.js';
+import '../../../styles.scss';
 
 const noAnswerText = 'This question has no answer yet.';
 const TEXT_AREA_ROWS = 10;
-
-const Answers = ({answers}) => (
-  <div className='answers-container'>
-    {answers.map(answer => (
-      <div className='answer-container' key={answer.id}>
-        <div className='answer-content'>
-          {answer.content}
-        </div>
-        <div className='answer-info'>
-          <span className='answer-author'>
-            Authored by: {answer.username}
-          </span>
-        </div>
-      </div>
-    ))}
-  </div>
-);
 
 class QuestionDisplay extends React.Component {
   constructor(props) {
@@ -81,11 +66,9 @@ class QuestionDisplay extends React.Component {
     console.log('Unable to submit answer');
   }
 
-  submitAnswer(e) {
-    e.preventDefault();
-
+  submitAnswer(content) {
     const url = Config.serverURL + '/questions/' + this.state.id + '/answers';
-    postData(url, {content: this.answerContent.value}, this.answerOnSuccess, this.answerOnFail)
+    postData(url, {content: content}, this.answerOnSuccess, this.answerOnFail)
     console.log('submitting');
   }
 
@@ -130,12 +113,7 @@ class QuestionDisplay extends React.Component {
             </div>
           </div>
           <div className='user-answer-section'>
-            <form onSubmit={this.submitAnswer}>
-              <div className='user-answer-label'>Your answer...</div>
-              <FormControl rows={TEXT_AREA_ROWS} componentClass='textarea' placeholder='Enter answer...'
-                inputRef={ref => { this.updateKey(ref, 'answerContent'); }} />
-              <Button className='btn-submit-answer' bsStyle='primary' type='submit'>Submit Answer</Button>
-            </form>
+            <SubmitText onSubmit={this.submitAnswer}/>
           </div>
         </div>
       </div>

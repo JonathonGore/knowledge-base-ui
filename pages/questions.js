@@ -1,6 +1,6 @@
 import PageLayout from '../components/content/PageLayout.js';
 import Router from 'next/router';
-import QuestionDisplay from '../components/content/QuestionDisplay';
+import QuestionDisplay from '../components/content/questions/QuestionDisplay';
 import { withRouter } from 'next/router';
 import Index from './index.js';
 import $ from 'jquery';

@@ -345,16 +345,6 @@ textarea {
   margin-top: 20px;
 }
 
-.user-answer-label {
-  margin-bottom: 4px;
-  font-size: 20px;
-  font-weight: 400;
-}
-
-.btn-submit-answer {
-  margin-top: 8px;
-}
-
 .answer-container {
   border-bottom: 1px solid $light_gray;
   min-height: 100px;
@@ -368,4 +358,16 @@ textarea {
   bottom: 4%;
   position: absolute;
   font-size: 14px;
+}
+
+/* Submit Text Component */
+
+.submit-text-container {
+  margin-bottom: 4px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.btn-submit-text {
+  margin-top: 8px;
 }

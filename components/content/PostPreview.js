@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Config from '../../config.json';
 import Link from 'next/link';
@@ -7,59 +8,67 @@ class PostPreview extends React.Component {
     super(props);
 
     this.state = {
-      id: this.getString(props.id),
-      title: this.getString(props.title),
-      username: this.getString(props.username),
-      submittedOn: this.getString(props.submittedOn),
-      upvotes: this.getInt(props.upvotes),
-      views: this.getInt(props.views),
-      answers: this.getInt(props.answers)
+      id: props.id,
+      title: props.title,
+      username: props.username,
+      submittedOn: props.submittedOn,
+      upvotes: props.upvotes,
+      views: props.views,
+      answers: props.answers
     }
-  }
-
-  getInt(obj) {
-    return (obj === undefined) ? 0 : obj;
-  }
-
-  getString(obj) {
-    return (obj === undefined) ? "" : obj;
-  }
-
-  buildLink() {
-    return "/questions/" + this.state.id;
   }
 
   render() {
     return (
-        <div className="post-preview">
-          <span className="stat-group">
-            <span className="stat-container">
+        <div className='post-preview'>
+          <span className='stat-group'>
+            <span className='stat-container'>
               {this.state.upvotes}
-              <div className="preview-subtext">votes</div>
+              <div className='preview-subtext'>votes</div>
             </span>
-            <span className="stat-container">
+            <span className='stat-container'>
               {this.state.answers}
-              <div className="preview-subtext">answers</div>
+              <div className='preview-subtext'>answers</div>
             </span>
-            <span className="stat-container">
+            <span className='stat-container'>
               {this.state.views}
-              <div className="preview-subtext">views</div>
+              <div className='preview-subtext'>views</div>
             </span>
           </span>
-          <span className="pp-stat-container">
-            <div className="post-preview-title">
-              <Link href={this.buildLink()}>
-                <a className="post-preview-link">{this.state.title}</a>
+          <span className='pp-stat-container'>
+            <div className='post-preview-title'>
+              <Link href={'/questions/' + this.state.id}>
+                <a className='post-preview-link'>{this.state.title}</a>
               </Link>
             </div>
-            <div className="post-preview-stats">
-              <span className="post-preview-author">{this.state.username}</span>
-              <span className="post-preview-time">{this.state.submittedOn}</span>
+            <div className='post-preview-stats'>
+              <span className='post-preview-author'>{this.state.username}</span>
+              <span className='post-preview-time'>{this.state.submittedOn}</span>
             </div>
           </span>
         </div>
     );
 	}
 }
+
+PostPreview.propTypes = {
+  id: PropTypes.number,
+  title: PropTypes.string,
+  username: PropTypes.string,
+  submittedOn: PropTypes.string,
+  upvotes: PropTypes.number,
+  views: PropTypes.number,
+  answers: PropTypes.number
+};
+
+PostPreview.defaultProps = {
+  id: 0,
+  title: '',
+  username: '',
+  submittedOn: '',
+  upvotes: 0,
+  views: 0,
+  answers: 0
+};
 
 export default PostPreview;

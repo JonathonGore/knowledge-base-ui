@@ -1,4 +1,4 @@
-import  PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { FormControl, Button } from 'react-bootstrap';
 
 class SubmitText extends React.Component {
@@ -42,6 +42,5 @@ SubmitText.defaultProps = {
   rows: 10,
   onSubmit: () => { console.log('Submitting') }
 };
-
 
 export default SubmitText;

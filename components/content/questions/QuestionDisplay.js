@@ -39,6 +39,8 @@ class QuestionDisplay extends React.Component {
 
     const answersURL = url + '/answers';
     getData(answersURL, this.updateAnswers, this.failed);
+
+    postData(url + '/view', {}); // View the question
   }
 
   updateAnswers(json) {
@@ -101,7 +103,8 @@ class QuestionDisplay extends React.Component {
             <div className='question-answers'>{this.buildAnswerSection()}</div>
           </div>
           <div className='user-answer-section'>
-            <SubmitText onSubmit={this.submitAnswer}/>
+            <SubmitText buttonText='Submit Answer' placeholder='Enter answer...'
+              label='Enter answer' onSubmit={this.submitAnswer}/>
           </div>
         </div>
       </div>

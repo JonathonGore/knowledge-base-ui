@@ -1,6 +1,7 @@
 import Router from 'next/router';
 import Config from '../../../config.json';
 import SubmitText from '../../misc/SubmitText.js';
+import { QuestionInfo } from './QuestionInfo.js';
 import { Answers } from './Answer.js'
 import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 import { withRouter } from 'next/router';
@@ -90,14 +91,7 @@ class QuestionDisplay extends React.Component {
         <div className='question-content'>
           <div className='question-title'>{this.state.title}</div>
           <div className='question-body'>{this.state.content}</div>
-          <div className='question-info'>
-            <span className='question-info-margin question-views'>
-              Views: {this.state.views}
-            </span>
-            <span className='question-info-margin question-author'>
-              Authored by: {this.state.username}
-            </span>
-          </div>
+          <QuestionInfo views={this.state.views} username={this.state.username} />
           <div className='answers-section'>
             <div className='question-answers-header'>Answers</div>
             <div className='question-answers'>{this.buildAnswerSection()}</div>

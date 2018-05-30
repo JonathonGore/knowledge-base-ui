@@ -15,7 +15,6 @@ class QuestionDisplay extends React.Component {
     super(props);
     this.updateState = this.updateState.bind(this);
     this.failed = this.failed.bind(this);
-    this.updateKey = this.updateKey.bind(this);
     this.updateAnswers = this.updateAnswers.bind(this);
     this.submitAnswer = this.submitAnswer.bind(this);
     this.answerOnSuccess = this.answerOnSuccess.bind(this);
@@ -62,14 +61,11 @@ class QuestionDisplay extends React.Component {
     Router.push(url);
   }
 
-  answerOnFail() {
-    console.log('Unable to submit answer');
-  }
-
   submitAnswer(content) {
     const url = Config.serverURL + '/questions/' + this.state.id + '/answers';
-    postData(url, {content: content}, this.answerOnSuccess, this.answerOnFail)
-    console.log('submitting');
+    const onFail = () => { console.error('Unable to submit answer')};
+
+    postData(url, {content: content}, this.answerOnSuccess, onFail)
   }
 
   buildAnswerSection() {
@@ -80,10 +76,6 @@ class QuestionDisplay extends React.Component {
     }
 
     return (<Answers answers={this.state.answers} />);
-  }
-
-  updateKey(ref, key) {
-    this[key] = ref;
   }
 
   failed() {
@@ -105,12 +97,8 @@ class QuestionDisplay extends React.Component {
             </span>
           </div>
           <div className='answers-section'>
-            <div className='question-answers-header'>
-              Answers
-            </div>
-            <div className='question-answers'>
-              {this.buildAnswerSection()}
-            </div>
+            <div className='question-answers-header'>Answers</div>
+            <div className='question-answers'>{this.buildAnswerSection()}</div>
           </div>
           <div className='user-answer-section'>
             <SubmitText onSubmit={this.submitAnswer}/>

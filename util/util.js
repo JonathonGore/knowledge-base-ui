@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import Config from '../config.json';
+import Config from '../config.js';
 
 export const getCookie = (name) => {
   var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
@@ -13,7 +13,7 @@ export const getCookie = (name) => {
 export const getData = (url, onSuccess, onFailure, withCredentials=true) => {
   $.ajax({
     type: 'GET',
-    url: url, 
+    url: url,
     xhrFields: {
       withCredentials: withCredentials
     },

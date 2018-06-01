@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Config from '../../config.json';
+import Config from '../../config.js';
 import Link from 'next/link';
 
 class PostPreview extends React.Component {

@@ -3,7 +3,7 @@ import FontAwesome from 'react-fontawesome';
 import Link from 'next/link';
 import Search from './Search.js';
 import Logo from '../misc/Logo.js';
-import Config from '../../config.json';
+import Config from '../../config.js';
 import $ from 'jquery';
 import { Navbar, NavItem, MenuItem, Nav, NavDropdown } from 'react-bootstrap';
 

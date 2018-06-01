@@ -3,7 +3,7 @@ import Router from 'next/router';
 import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 import { postData } from '../util/util.js';
 import '../styles.scss';
-import Config from '../config.json';
+import Config from '../config.js';
 
 const TEXT_AREA_ROWS = 10;
 

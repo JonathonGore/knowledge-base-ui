@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, FormGroup, FormControl, Button, ControlLabel, Col, Row, Checkbox } from 'react-bootstrap';
-import Config from '../../config.json';
+import Config from '../../config.js';
 import DismissableAlert from '../alerts/DismissableAlert';
 import $ from 'jquery';
 

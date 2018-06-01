@@ -1,5 +1,5 @@
 import Content from '../components/content/Content.js';
-import Config from '../config.json';
+import Config from '../config.js';
 import PageLayout from '../components/content/PageLayout.js';
 import $ from 'jquery';
 import "../styles.scss";

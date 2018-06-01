@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-import Config from '../config.json';
+import Config from '../config.js';
 import FontAwesome from 'react-fontawesome';
 import Logo from './misc/Logo.js';
 

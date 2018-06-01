@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 import PostPreview from './PostPreview.js';
-import Config from '../../config.json';
+import Config from '../../config.js';
 import FontAwesome from 'react-fontawesome';
 
 class Content extends React.Component {

@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import Router from 'next/router';
 import DismissableAlert from '../components/alerts/DismissableAlert.js';
 import Logo from '../components/misc/Logo.js';
-import Config from '../config.json';
+import Config from '../config.js';
 import $ from 'jquery';
 import '../styles.scss';
 

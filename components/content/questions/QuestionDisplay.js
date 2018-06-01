@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import Config from '../../../config.json';
+import Config from '../../../config.js';
 import SubmitText from '../../misc/SubmitText.js';
 import { QuestionInfo } from './QuestionInfo.js';
 import { Answers } from './Answer.js'

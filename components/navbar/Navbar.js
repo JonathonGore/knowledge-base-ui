@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Search from './Search.js';
 import Logo from '../misc/Logo.js';
 import Config from '../../config.js';
-import $ from 'jquery';
+import { postData } from '../../util/util.js';
 import { Navbar, NavItem, MenuItem, Nav, NavDropdown } from 'react-bootstrap';
 
 class KBNavbar extends React.Component {
@@ -32,24 +32,17 @@ class KBNavbar extends React.Component {
   }
 
   logout() {
-    const self = this;
+    const url = Config.serverURL + '/logout';
 
-    // Post loging request to backend
-    $.ajax({
-      type: 'POST',
-      url: Config.serverURL + '/logout',
-      xhrFields: {
-        withCredentials: true
-      },
-      success: function(json) {
-        self.setState({isLoggedIn: false});
-      },
-      error: function (xhr) {
-        //var data = JSON.parse(xhr.responseText);
-        //self.addError(self.buildError(data['message']));
-        console.log('unable to logout');
-      }
-    });
+    const success = () => {
+      this.setState({isLoggedIn: false});
+    };
+
+    const failure = () => {
+      console.log('unable to logout');
+    };
+
+    postData(url, {}, success, failure);
   }
 
   buildUserSection() {

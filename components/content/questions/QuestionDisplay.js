@@ -26,8 +26,8 @@ class QuestionDisplay extends React.Component {
       username: '',
       upvotes: 0,
       views: 0,
-      answerCount: 0,
-      answers: [],
+      answers: 0,
+      ans: [],
       content: '',
       'submitted-on': '',
       answerContent: {}
@@ -46,17 +46,17 @@ class QuestionDisplay extends React.Component {
 
   updateAnswers(json) {
     const data = JSON.parse(json);
-    const len = data.length;
 
     this.setState({
-      answerCount: len,
-      answers: data
+      ans: data
     });
   }
 
   updateState(json) {
     const data = JSON.parse(json);
-    this.setState({ ...data });
+    this.setState({
+      ...data
+    });
   }
 
   answerOnSuccess() {
@@ -72,13 +72,13 @@ class QuestionDisplay extends React.Component {
   }
 
   buildAnswerSection() {
-    if (this.state.answerCount === 0) {
+    if (this.state.ans.length === 0) {
       return (
         <div className='question-no-answer'>{noAnswerText}</div>
       );
     }
 
-    return (<Answers answers={this.state.answers} />);
+    return (<Answers answers={this.state.ans} />);
   }
 
   failed() {

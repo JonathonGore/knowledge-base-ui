@@ -3,8 +3,6 @@ import Router from 'next/router';
 import QuestionDisplay from '../components/content/questions/QuestionDisplay';
 import { withRouter } from 'next/router';
 import Index from './index.js';
-import $ from 'jquery';
-import Config from '../config.js';
 import "../styles.scss";
 
 class Questions extends React.Component {

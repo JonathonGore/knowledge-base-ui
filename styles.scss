@@ -372,3 +372,26 @@ textarea {
 .btn-submit-text {
   margin-top: 8px;
 }
+
+/* Organizations Page */
+.org-container {
+  margin: auto;
+  margin-top: 60px;
+  width: 80%;
+}
+
+.org-tab {
+  padding: 8px;
+  border: 1px solid black;
+  border-bottom: none;
+}
+
+.org-display {
+  display: flex;
+  margin-top: 20px;
+  padding: 4px;
+}
+
+.org-panel {
+  width: 50%;
+}

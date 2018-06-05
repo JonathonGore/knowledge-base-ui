@@ -73,7 +73,8 @@ class KBNavbar extends React.Component {
         </Navbar.Header>
         <Nav>
           <NavItem eventKey={1} href='/questions'>Questions</NavItem>
-          <NavItem eventKey={2} href='/about'>About</NavItem>
+          <NavItem eventKey={2} href='/organizations'>Organizations</NavItem>
+          <NavItem eventKey={3} href='/about'>About</NavItem>
         </Nav>
         <Nav pullRight>
           <NavItem eventKey={4} href='/ask'>Ask Question</NavItem>

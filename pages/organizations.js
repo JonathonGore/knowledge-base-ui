@@ -3,10 +3,12 @@ import Config from '../config.js';
 import CreateOrg from '../components/organizations/CreateOrg.js';
 import Button from '../components/misc/button.js';
 import Router from 'next/router';
+import moment from 'moment';
 import { withRouter } from 'next/router';
 import { getData } from '../util/util.js';
 import '../styles.scss';
 
+// Computes either the first or second half of the array
 const half = (arr, first=true) => {
   let i = 0;
   let end = Math.ceil(arr.length / 2);
@@ -25,19 +27,21 @@ const half = (arr, first=true) => {
 
 const OrgHeader = (props) => (
   <div className='org-header'>
-    <span className='org-tab'>Organizations</span>
+    <div className='org-tab'>Organizations</div>
     <span className='org-btn-container'>
       <Button text='Create Organization' onClick={props.onClick}/>
     </span>
   </div>
 );
 
+const DATE_FORMAT = 'MMM Do YYYY';
+
 const OrgPreview = (props) => (
   <div className='org-preview'>
     <div className='org-preview-name'>{props.name}</div>
     <div className='org-preview-stats'>
       <span className='org-preview-members'>Members: {props.members}</span>
-      <span className='org-preview-dob'>Created On: {props['created-on']}</span>
+      <span className='org-preview-dob'>Created On: {moment(props['created-on']).format(DATE_FORMAT)}</span>
     </div>
   </div>
 );

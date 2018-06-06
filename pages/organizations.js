@@ -1,9 +1,27 @@
 import PageLayout from '../components/content/PageLayout.js';
 import Config from '../config.js';
+import CreateOrg from '../components/organizations/CreateOrg.js';
 import Button from '../components/misc/button.js';
 import Router from 'next/router';
+import { withRouter } from 'next/router';
 import { getData } from '../util/util.js';
 import '../styles.scss';
+
+const half = (arr, first=true) => {
+  let i = 0;
+  let end = Math.ceil(arr.length / 2);
+  if (!first) {
+    i = end;
+    end = arr.length;
+  }
+
+  const result = [];
+  for (; i < end; i++) {
+    result.push(arr[i]);
+  }
+
+  return result;
+}
 
 const OrgHeader = (props) => (
   <div className='org-header'>
@@ -36,21 +54,33 @@ const OrgPanel = (props) => (
 
 const OrgDisplay = (props) => (
   <div className='org-display'>
-    <OrgPanel orgs={props.orgs.splice(0, Math.ceil(props.orgs.length / 2))}/>
-    <OrgPanel orgs={props.orgs.splice(Math.ceil(props.orgs.length / 2), props.orgs.length)}/>
+    <OrgPanel orgs={half(props.orgs)}/>
+    <OrgPanel orgs={half(props.orgs, false)}/>
   </div>
 );
 
 class Organizations extends React.Component {
   constructor(props) {
     super(props);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.fetchData = this.fetchData.bind(this);
 
     this.state = {
       orgs: [],
+      create: props.router.query['create'] || false,
     };
   }
 
-  componentDidMount() {
+  onSubmit() {
+    this.setState({
+      create: false,
+    });
+
+    this.fetchData();
+    Router.push('/organizations');
+  }
+
+  fetchData() {
     const url = Config.serverURL + '/organizations';
     const success = (json) => {
       const data = JSON.parse(json);
@@ -62,7 +92,15 @@ class Organizations extends React.Component {
     getData(url, success);
   }
 
+  componentDidMount() {
+    this.fetchData();
+  }
+
   buildContent() {
+    if (this.state.create) {
+        return <CreateOrg onSubmit={this.onSubmit}/>;
+    }
+
     return (
       <div className='org-container'>
         <OrgHeader onClick={() => { Router.push('/organizations/create') }}/>
@@ -78,4 +116,4 @@ class Organizations extends React.Component {
 	}
 }
 
-export default Organizations;
+export default withRouter(Organizations);

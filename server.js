@@ -13,14 +13,18 @@ app.prepare()
       app.render(req, res, '/questions', { id: req.params.id });
     });
 
+    server.get('/organizations/create', (req, res) => {
+      app.render(req, res, '/organizations', { create: true });
+    });
+
     server.get('*', (req, res) => {
       return handle(req, res);
-    })
+    });
 
     server.listen(3000, (err) => {
-      if (err) throw err
-      console.log('> Ready on http://localhost:3000')
-    })
+      if (err) throw err;
+      console.log('> Ready on http://localhost:3000');
+    });
   })
   .catch((ex) => {
     console.error(ex.stack)

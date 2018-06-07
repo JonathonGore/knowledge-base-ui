@@ -1,7 +1,18 @@
-import Layout from '../components/Layout.js'
+import PageLayout from '../components/content/PageLayout.js';
+import '../styles.scss';
 
-export default () => (
-  <Layout>
-    <p>This is the about page</p>
-  </Layout>
-)
+
+
+const About = (props) => (
+  <div className='about-page-container'>
+    Knowledge-Base
+  </div>
+);
+
+
+const AboutPage = (props) => (
+  <PageLayout content={<About />} />
+);
+
+
+export default AboutPage;

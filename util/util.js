@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import Config from '../config.js';
 
 // Computes either the first or second half of the array
 export const half = (arr, first=true) => {
@@ -16,7 +15,7 @@ export const half = (arr, first=true) => {
   }
 
   return result;
-}
+};
 
 export const getCookie = (name) => {
   var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
@@ -25,7 +24,7 @@ export const getCookie = (name) => {
   }
 
   return '';
-}
+};
 
 export const getData = (url, onSuccess, onFailure, withCredentials=true) => {
   $.ajax({
@@ -45,7 +44,7 @@ export const getData = (url, onSuccess, onFailure, withCredentials=true) => {
       }
     }
   });
-}
+};
 
 export const postData = (url, data, onSuccess, onFailure, withCredentials=true) => {
   $.ajax({
@@ -66,4 +65,4 @@ export const postData = (url, data, onSuccess, onFailure, withCredentials=true) 
       }
     }
   });
-}
+};

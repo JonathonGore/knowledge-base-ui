@@ -37,6 +37,6 @@ app.prepare()
     });
   })
   .catch((ex) => {
-    console.error(ex.stack)
-    process.exit(1)
-  })
+    console.error(ex.stack);
+    process.exit(1);
+  });

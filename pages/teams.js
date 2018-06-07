@@ -1,21 +1,23 @@
 import PageLayout from '../components/content/PageLayout.js';
 import Config from '../config.js';
 import CreateObj from '../components/general/create.js';
+import OrgDisplay from '../components/organizations/OrgDisplay';
 import Router from 'next/router';
 import { Header, TwoPaneSplit } from '../components/general/display.js';
 import { withRouter } from 'next/router';
 import { getData, half } from '../util/util.js';
 import '../styles.scss';
 
-class Organizations extends React.Component {
+class Teams extends React.Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
     this.fetchData = this.fetchData.bind(this);
 
     this.state = {
-      orgs: [],
+      teams: [],
       create: props.router.query['create'] || false,
+      org: props.router.query['org'],
     };
   }
 
@@ -25,15 +27,19 @@ class Organizations extends React.Component {
     });
 
     this.fetchData();
-    Router.push('/organizations');
+    Router.push('/organizations/' + this.state.org);
   }
 
   fetchData() {
-    const url = Config.serverURL + '/organizations';
+    if (!this.state.org) {
+      return;
+    }
+
+    const url = Config.serverURL + '/organizations/' + this.state.org + '/teams';
     const success = (json) => {
       const data = JSON.parse(json);
       this.setState({
-        orgs: data
+        teams: data
       });
     };
 
@@ -46,14 +52,14 @@ class Organizations extends React.Component {
 
   buildContent() {
     if (this.state.create) {
-        return <CreateObj type='organizations' buttonText='Create Organization' placeholder='Create organization...' onSubmit={this.onSubmit}/>;
+        return (<CreateObj type={`organizations/${this.state.org}/teams`}
+          buttonText='Create Team' placeholder='Create team...' onSubmit={this.onSubmit}/>);
     }
 
     return (
       <div className='org-container'>
-        <Header onClick={() => { Router.push('/organizations/create') }}
-          title='Organizations' buttonText='Create Organization'/>
-        <TwoPaneSplit type='organizations' left={half(this.state.orgs)} right={half(this.state.orgs, false)} />
+        <OrgDisplay name={this.state.org}/>
+        <TwoPaneSplit type='teams' left={half(this.state.teams)} right={half(this.state.teams, false)} />
       </div>
     );
   }
@@ -65,4 +71,4 @@ class Organizations extends React.Component {
 	}
 }
 
-export default withRouter(Organizations);
+export default withRouter(Teams);

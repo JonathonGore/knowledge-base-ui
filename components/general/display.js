@@ -50,7 +50,7 @@ export const Preview = (props) => (
       <a className='display-preview-name'>{props.name}</a>
     </Link>
     <div className='display-preview-stats'>
-      <span className='display-preview-members'>Members: {props.members}</span>
+      <span className='display-preview-members'>Members: {props['member-count']}</span>
       <span className='display-preview-dob'>Created On: {moment(props['created-on']).format(DATE_FORMAT)}</span>
     </div>
   </div>

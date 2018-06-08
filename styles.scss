@@ -250,6 +250,10 @@ $collapsed_menu_width: 40px;
   padding: 12px !important;
 }
 
+.alert-container .close {
+  right: 0 !important; /* Once we get rid of boostrap remove*/
+}
+
 /* Navbar */
 
 .kb-navbar-padding {
@@ -387,6 +391,11 @@ textarea {
 
 /* Team-Display */
 .team-display {
+  margin-top: 60px;
+}
+
+/* Profile */
+.profile-container {
   margin-top: 60px;
 }
 

@@ -79,7 +79,7 @@ class Signup extends React.Component {
 				<div className="login-page">
 					<div className="login-form-container">
 						<Logo color={'black'} size={44} inline />
-						<div className="login-error-container">
+						<div className='login-error-container'>
 							{this.state.error}
 						</div>
 						<Form className='login-form' onSubmit={this.handleSubmit}>

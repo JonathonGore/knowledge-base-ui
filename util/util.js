@@ -61,7 +61,7 @@ export const postData = (url, data, onSuccess, onFailure, withCredentials=true) 
     },
     error: function (xhr) {
       if (onFailure) {
-        onFailure(xhr);
+        onFailure(xhr.responseText);
       }
     }
   });

@@ -1,5 +1,6 @@
 import PageLayout from '../components/content/PageLayout.js';
 import Router from 'next/router';
+import DismissableAlert from '../components/alerts/DismissableAlert.js';
 import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 import { postData } from '../util/util.js';
 import '../styles.scss';
@@ -22,13 +23,26 @@ class Ask extends React.Component {
 		super(props);
     this.submitQuestion = this.submitQuestion.bind(this);
     this.updateKey = this.updateKey.bind(this);
+    this.buildError = this.buildError.bind(this);
 
     this.title = {};
     this.body = {};
+
+    this.state = {
+      error: '',
+    };
 	}
 
   updateKey(ref, key) {
     this[key] = ref;
+  }
+
+  buildError(message) {
+    this.setState({
+      error: (
+        <DismissableAlert type='danger' title='Unable to create question' message={message} />
+      )
+    });
   }
 
   submitQuestion(e) {
@@ -41,7 +55,7 @@ class Ask extends React.Component {
       };
 
       const onSuccess = (str) => { Router.push('/questions/' + JSON.parse(str)['id']); };
-      const onFailure = (xhr) => { console.log('unable to create question')};
+      const onFailure = (data) => { this.buildError(JSON.parse(data).message)};
 
       postData(url, data, onSuccess, onFailure);
   }
@@ -49,6 +63,9 @@ class Ask extends React.Component {
   buildContent() {
     return (
       <div className='ask-container'>
+        <div className='login-error-container'>
+          {this.state.error}
+        </div>
         <form onSubmit={this.submitQuestion}>
           <FieldGroup kbOnChange={this.updateKey} formKey='title' id='askTitle'
             type='text' label='Title' placeholder='Enter title'/>

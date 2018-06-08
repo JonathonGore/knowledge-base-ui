@@ -8,9 +8,13 @@ export const Header = (props) => (
   <div className='display-header'>
     <div className='display-tab'>{props.title}</div>
     <div className='display-stats'>{props.stats}</div>
-    <span className='display-btn-container'>
-      <Button text={props.buttonText} onClick={props.onClick}/>
-    </span>
+    { !props.noButton ?
+      (
+      <span className='display-btn-container'>
+        <Button text={props.buttonText} onClick={props.onClick}/>
+      </span>
+    ) : ''
+    }
   </div>
 );
 

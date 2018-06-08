@@ -25,6 +25,10 @@ app.prepare()
       app.render(req, res, '/teams', { org: req.params.org, create: true });
     });
 
+    server.get('/organizations/:org/:team', (req, res) => {
+      app.render(req, res, '/teams', { team: req.params.team, org: req.params.org, create: false });
+    });
+
     // TODO make going to /teams go to 404 page
 
     server.get('*', (req, res) => {

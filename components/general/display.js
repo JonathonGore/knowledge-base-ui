@@ -7,6 +7,7 @@ import { DATE_FORMAT } from '../../constants/constants.js';
 export const Header = (props) => (
   <div className='display-header'>
     <div className='display-tab'>{props.title}</div>
+    <div className='display-stats'>{props.stats}</div>
     <span className='display-btn-container'>
       <Button text={props.buttonText} onClick={props.onClick}/>
     </span>
@@ -50,8 +51,8 @@ export const Preview = (props) => (
       <a className='display-preview-name'>{props.name}</a>
     </Link>
     <div className='display-preview-stats'>
-      <span className='display-preview-members'>Members: {props['member-count']}</span>
-      <span className='display-preview-dob'>Created On: {moment(props['created-on']).format(DATE_FORMAT)}</span>
+      <div className='display-preview-members'>Members: {props['member-count']}</div>
+      <div className='display-preview-dob'>Created On: {moment(props['created-on']).format(DATE_FORMAT)}</div>
     </div>
   </div>
 );

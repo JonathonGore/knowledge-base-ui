@@ -8,16 +8,16 @@ import '../../styles.scss';
 
 const DATE_FORMAT = 'MMM Do YYYY';
 
+const Stats = (props) => (
+  <div className='org-display-stats'>
+    <div className='org-display-members'>Members: {props.members}</div>
+    <div className='org-display-dob'>Created On: {moment(props.createdOn).format(DATE_FORMAT)}</div>
+  </div>
+);
 
 class OrgDisplay extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      name: props.name,
-      members: 0,
-      'created-on': '',
-    }
   }
 
   onClick(e) {
@@ -27,7 +27,7 @@ class OrgDisplay extends React.Component {
   }
 
   componentDidMount() {
-    const url = Config.serverURL + '/organizations/' + this.state.name;
+    const url = Config.serverURL + '/organizations/' + this.props.name;
     const updateState = (json) => {
       const data = JSON.parse(json);
       this.setState({
@@ -41,12 +41,9 @@ class OrgDisplay extends React.Component {
   render() {
     return (
       <div className='org-display'>
-        <Header onClick={() => { Router.push('/organizations/' + this.state.name + '/create') }}
-          title={this.state.name} buttonText={'Create Team'}/>
-        <div className='org-display-stats'>
-          <span className='org-display-members'>Members: {this.state.members}</span>
-          <span className='org-display-dob'>Created On: {moment(this.state['created-on']).format(DATE_FORMAT)}</span>
-        </div>
+        <Header onClick={() => { Router.push('/organizations/' + this.props.name + '/create') }}
+          stats={<Stats createdOn={this.props.createdOn} members={this.props.members}/>}
+          title={this.props.name} buttonText={'Create Team'}/>
       </div>
     );
 	}

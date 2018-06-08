@@ -16,8 +16,9 @@ class Teams extends React.Component {
 
     this.state = {
       teams: [],
+      org: {},
       create: props.router.query['create'] || false,
-      org: props.router.query['org'],
+      orgName: props.router.query['org'],
     };
   }
 
@@ -27,7 +28,7 @@ class Teams extends React.Component {
     });
 
     this.fetchData();
-    Router.push('/organizations/' + this.state.org);
+    Router.push('/organizations/' + this.state.orgName);
   }
 
   fetchData() {
@@ -35,7 +36,17 @@ class Teams extends React.Component {
       return;
     }
 
-    const url = Config.serverURL + '/organizations/' + this.state.org + '/teams';
+    const url = Config.serverURL + '/organizations/' + this.state.orgName;
+    const orgSuccess = (json) => {
+      const data = JSON.parse(json);
+      this.setState({
+        org: data
+      });
+    };
+
+    getData(url, orgSuccess);
+
+    const teamsURL = url + '/teams';
     const success = (json) => {
       const data = JSON.parse(json);
       this.setState({
@@ -43,7 +54,7 @@ class Teams extends React.Component {
       });
     };
 
-    getData(url, success);
+    getData(teamsURL, success);
   }
 
   componentDidMount() {
@@ -52,13 +63,13 @@ class Teams extends React.Component {
 
   buildContent() {
     if (this.state.create) {
-        return (<CreateObj type={`organizations/${this.state.org}/teams`}
+        return (<CreateObj type={`organizations/${this.state.orgName}/teams`}
           buttonText='Create Team' placeholder='Create team...' onSubmit={this.onSubmit}/>);
     }
 
     return (
       <div className='org-container'>
-        <OrgDisplay name={this.state.org}/>
+        <OrgDisplay createdOn={this.state.org['created-on']} members={this.state.org['member-count']} name={this.state.orgName}/>
         <TwoPaneSplit type='teams' left={half(this.state.teams)} right={half(this.state.teams, false)} />
       </div>
     );

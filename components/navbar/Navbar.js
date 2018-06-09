@@ -1,9 +1,8 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
-import Link from 'next/link';
-import Search from './Search.js';
+import { connect } from 'react-redux';
 import Logo from '../misc/Logo.js';
 import Config from '../../config.js';
+import { chooseOrg } from '../../store.js';
 import { UsersDropdown, OrgsDropdown } from './Dropdowns.js';
 import { postData } from '../../util/util.js';
 import { Navbar, NavItem, MenuItem, Nav } from 'react-bootstrap';
@@ -13,6 +12,10 @@ const DEFAULT_ORG = {name: 'Public', link: '/questions'};
 class KBNavbar extends React.Component {
   constructor(props) {
     super(props);
+
+    console.log('nav bar props:')
+    console.log(props);
+
     this.buildUserSection = this.buildUserSection.bind(this);
     this.logout = this.logout.bind(this);
     this.onOrgSelect = this.onOrgSelect.bind(this);
@@ -23,7 +26,7 @@ class KBNavbar extends React.Component {
       username: props.username || '',
       text: props.text || '',
       orgs: props.orgs || [DEFAULT_ORG],
-      org: 'Public',
+      org: props.org,
     };
   }
 
@@ -76,9 +79,10 @@ class KBNavbar extends React.Component {
   }
 
   onOrgSelect(org) {
-    this.setState({
-      org: org
-    });
+    this.props.dispatch(chooseOrg(org));
+
+    // Pretty sure we need to still set state - since it will only use redux state on mount
+    this.setState({org: org});
   }
 
   render() {
@@ -104,4 +108,10 @@ class KBNavbar extends React.Component {
   }
 }
 
-export default KBNavbar;
+// This function is for mapping Redux state -> props for kbnav component
+const mapStateToProps = (state) => {
+  const { org } = state;
+  return { org };
+}
+
+export default connect(mapStateToProps)(KBNavbar);

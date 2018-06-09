@@ -1,3 +1,5 @@
+import React from 'react';
+import { connect } from 'react-redux';
 import Content from '../components/content/Content.js';
 import PageLayout from '../components/content/PageLayout.js';
 import '../styles.scss';
@@ -8,8 +10,15 @@ const buildContent = (inner) => (
   </div>
 );
 
-const Index = (props) => (
-  <PageLayout content={buildContent(<Content />)} />
-);
+class Index extends React.Component {
+  render() {
+    console.log('Index props');
+    console.log(this.props);
 
-export default Index;
+    return (
+      <PageLayout content={buildContent(<Content />)} />
+    );
+  }
+}
+
+export default connect(({org}) => ({org}))(Index);

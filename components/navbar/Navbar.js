@@ -9,6 +9,7 @@ import { postData } from '../../util/util.js';
 import { Navbar, NavItem, MenuItem, Nav } from 'react-bootstrap';
 
 const DEFAULT_ORG = {name: 'Public', link: '/questions'};
+const KB_ORG_SELECTION = 'kb-org-selection';
 
 class KBNavbar extends React.Component {
   constructor(props) {
@@ -37,6 +38,12 @@ class KBNavbar extends React.Component {
       username: nextProps.username,
       isLoggedIn: nextProps.isLoggedIn,
       orgs: nextProps.orgs,
+    });
+  }
+
+  componentDidMount() {
+    this.setState({
+      org: localStorage.getItem(KB_ORG_SELECTION)
     });
   }
 
@@ -76,6 +83,10 @@ class KBNavbar extends React.Component {
   }
 
   onOrgSelect(org) {
+    if (localStorage) {
+      localStorage.setItem(KB_ORG_SELECTION, org);
+    }
+
     this.setState({
       org: org
     });

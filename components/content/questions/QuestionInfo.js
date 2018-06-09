@@ -15,9 +15,9 @@ export const QuestionInfo = (props) => (
 QuestionInfo.propTypes = {
   views: PropTypes.number,
   username: PropTypes.string
-}
+};
 
 QuestionInfo.defaultProps = {
   views: 0,
   username: ''
-}
+};

@@ -28,17 +28,17 @@ const PreviewStats = (props) => (
 );
 
 const PostPreview = (props) =>  (
-    <div className='post-preview'>
-      <PreviewStatGroup upvotes={props.upvotes} answers={props.answers} views={props.views} />
-      <span className='pp-stat-container'>
-        <div className='post-preview-title'>
-          <Link href={'/questions/' + props.id}>
-            <a className='post-preview-link'>{props.title}</a>
-          </Link>
-        </div>
-        <PreviewStats username={props.username} submittedOn={props.submittedOn} />
-      </span>
-    </div>
+  <div className='post-preview'>
+    <PreviewStatGroup upvotes={props.upvotes} answers={props.answers} views={props.views} />
+    <span className='pp-stat-container'>
+      <div className='post-preview-title'>
+        <Link href={'/questions/' + props.id}>
+          <a className='post-preview-link'>{props.title}</a>
+        </Link>
+      </div>
+      <PreviewStats username={props.username} submittedOn={props.submittedOn} />
+    </span>
+  </div>
 );
 
 PostPreview.propTypes = {

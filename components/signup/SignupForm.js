@@ -13,10 +13,10 @@ class SignupForm extends React.Component {
     this.confirmPasswordMatch = this.confirmPasswordMatch.bind(this);
     this.buildError = this.buildError.bind(this);
 
-    this.username = "";
-    this.password = "";
-    this.email = "";
-    this.confirmPassword = "";
+    this.username = '';
+    this.password = '';
+    this.email = '';
+    this.confirmPassword = '';
 
     this.state = { addError: props.addError  };
   }
@@ -26,7 +26,7 @@ class SignupForm extends React.Component {
   }
 
   validUserPass(obj) {
-    return !(obj['username'] === "" || obj['password'] === "");
+    return !(obj['username'] === '' || obj['password'] === '');
   }
 
   confirmPasswordMatch(obj) {
@@ -55,27 +55,27 @@ class SignupForm extends React.Component {
     var preparedData = self.prepareData();
 
     if (!self.validUserPass(preparedData)) {
-      self.state.addError(self.buildError("please enter both a username and password to signup"));
-      return
+      self.state.addError(self.buildError('please enter both a username and password to signup'));
+      return;
     }
 
     if(!self.confirmPasswordMatch(preparedData)) {
-      self.state.addError(self.buildError("passwords do not match"));
-      return
+      self.state.addError(self.buildError('passwords do not match'));
+      return;
     }
 
     // Post to backend
     $.ajax({
-      type: "POST",
-      url: Config.serverURL + "/users",
+      type: 'POST',
+      url: Config.serverURL + '/users',
       data: JSON.stringify(preparedData),
       xhrFields: {
         withCredentials: false
       },
       success: function(json) {
         $.ajax({
-          type: "POST",
-          url: Config.serverURL + "/login",
+          type: 'POST',
+          url: Config.serverURL + '/login',
           data: JSON.stringify(preparedData),
           xhrFields: {
             withCredentials: true
@@ -85,7 +85,7 @@ class SignupForm extends React.Component {
             //self.props.updateLoginStatus(true);
             //self.setState({signupRedirect: true});
             // TODO: Redirect to a relevant page here
-            console.log("Successfully logged in");
+            console.log('Successfully logged in');
           },
           error: function (xhr) {
             //TODO: ensure responseText is JSON;
@@ -130,7 +130,7 @@ class SignupForm extends React.Component {
         </Row>
       </Form>
     );
-	}
+  }
 }
 
 export default SignupForm;

@@ -2,7 +2,7 @@ import Router from 'next/router';
 import Config from '../../../config.js';
 import SubmitText from '../../misc/SubmitText.js';
 import { QuestionInfo } from './QuestionInfo.js';
-import { Answers } from './Answer.js'
+import { Answers } from './Answer.js';
 import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 import { withRouter } from 'next/router';
 import { getData, postData } from '../../../util/util.js';
@@ -31,7 +31,7 @@ class QuestionDisplay extends React.Component {
       content: '',
       'submitted-on': '',
       answerContent: {}
-    }
+    };
   }
 
   componentDidMount() {
@@ -66,9 +66,9 @@ class QuestionDisplay extends React.Component {
 
   submitAnswer(content) {
     const url = Config.serverURL + '/questions/' + this.state.id + '/answers';
-    const onFail = () => { console.error('Unable to submit answer')};
+    const onFail = () => { console.error('Unable to submit answer');};
 
-    postData(url, {content: content}, this.answerOnSuccess, onFail)
+    postData(url, {content: content}, this.answerOnSuccess, onFail);
   }
 
   buildAnswerSection() {
@@ -103,7 +103,7 @@ class QuestionDisplay extends React.Component {
         </div>
       </div>
     );
-	}
+  }
 }
 
 export default withRouter(QuestionDisplay);

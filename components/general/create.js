@@ -23,7 +23,7 @@ class CreateObj extends React.Component {
     return (
       <div className='create-type'>
         <div className='create-type-form'>
-          <form onSubmit={(e) => {this.onSubmit(e) }}>
+          <form onSubmit={(e) => {this.onSubmit(e); }}>
             <div className='submit-text-container'>Name</div>
             <FormControl type='text' placeholder={this.props.placeholder}
               inputRef={ref => { this.content = ref; }} />
@@ -32,7 +32,7 @@ class CreateObj extends React.Component {
         </div>
       </div>
     );
-	}
+  }
 }
 
 export default CreateObj;

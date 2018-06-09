@@ -40,7 +40,7 @@ SubmitText.defaultProps = {
   placeholder: 'Enter text...',
   buttonText: 'Submit',
   rows: 10,
-  onSubmit: () => { console.log('Submitting') }
+  onSubmit: () => { console.log('Submitting'); }
 };
 
 export default SubmitText;

@@ -35,7 +35,7 @@ class TeamDisplay extends React.Component {
       this.setState({
         ...data
       });
-    }
+    };
 
     getData(url, updateState);
   }
@@ -47,7 +47,7 @@ class TeamDisplay extends React.Component {
           title={this.props.teamName} noButton/>
       </div>
     );
-	}
+  }
 }
 
 export default TeamDisplay;

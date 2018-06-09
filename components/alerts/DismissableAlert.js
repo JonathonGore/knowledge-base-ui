@@ -4,13 +4,13 @@ import { Alert }  from 'react-bootstrap';
 class DismissableAlert extends React.Component {
   constructor(props) {
     super(props);
-		this.handleAlertDismiss = this.handleAlertDismiss.bind(this);
+    this.handleAlertDismiss = this.handleAlertDismiss.bind(this);
     this.state = {
-			alertVisible: true,
-			type: props.type,
-			title: props.title,
-			message: props.message
-		};
+      alertVisible: true,
+      type: props.type,
+      title: props.title,
+      message: props.message
+    };
   }
 
   componentWillReceiveProps(props) {
@@ -34,10 +34,10 @@ class DismissableAlert extends React.Component {
           <p>{this.state.message}</p>
         </Alert>
       );
-		}
-		// Have to return something
-		return (<div></div>);
-	}
+    }
+    // Have to return something
+    return (<div></div>);
+  }
 }
 
 export default DismissableAlert;

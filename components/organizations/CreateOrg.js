@@ -23,7 +23,7 @@ class CreateOrg extends React.Component {
     return (
       <div className='create-org'>
         <div className='create-org-form'>
-          <form onSubmit={(e) => {this.onSubmit(e) }}>
+          <form onSubmit={(e) => {this.onSubmit(e); }}>
             <div className='submit-text-container'>Name</div>
             <FormControl type='text' placeholder='Organization name...'
               inputRef={ref => { this.content = ref; }} />
@@ -32,7 +32,7 @@ class CreateOrg extends React.Component {
         </div>
       </div>
     );
-	}
+  }
 }
 
 export default CreateOrg;

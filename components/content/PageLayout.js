@@ -3,59 +3,59 @@ import MenuPanel from '../MenuPanel.js';
 import KBNavbar from '../navbar/Navbar.js';
 import Config from '../../config.js';
 import { getCookie, getData } from '../../util/util.js';
-import "../../styles.scss";
+import '../../styles.scss';
 
 const COOKIE_NAME = 'kb-public';
 
 class PageLayout extends React.Component {
-	constructor (props){
-		super(props);
+  constructor (props){
+    super(props);
 
     this.state = {
-			username: '',
-			isLoggedIn: false,
-			orgs: [],
+      username: '',
+      isLoggedIn: false,
+      orgs: [],
     };
-	}
+  }
 
-	componentDidMount() {
-		const uname = getCookie(COOKIE_NAME);
+  componentDidMount() {
+    const uname = getCookie(COOKIE_NAME);
 
-		this.setState({
-			username: uname,
-			isLoggedIn: uname !== '',
-		});
+    this.setState({
+      username: uname,
+      isLoggedIn: uname !== '',
+    });
 
-		if (uname) {
-			const url = Config.serverURL + '/profile';
-			const onSuccess = (json) => {
-				console.log(json);
-				this.setState({
-					orgs: JSON.parse(json).organizations.map(org => (
-							{link: `/organizations/${org}`, name: org}
-					))
-				});
-			}
+    if (uname) {
+      const url = Config.serverURL + '/profile';
+      const onSuccess = (json) => {
+        console.log(json);
+        this.setState({
+          orgs: JSON.parse(json).organizations.map(org => (
+            {link: `/organizations/${org}`, name: org}
+          ))
+        });
+      };
 
-			getData(url, onSuccess);
-		}
-	}
+      getData(url, onSuccess);
+    }
+  }
 
-	render() {
-		return (
-			<BasicLayoutLegacy>
+  render() {
+    return (
+      <BasicLayoutLegacy>
         <div className='main-container'>
           <div className={'full-width'} >
-						<KBNavbar orgs={this.state.orgs} username={this.state.username}
-							isLoggedIn={this.state.isLoggedIn}/>
+            <KBNavbar orgs={this.state.orgs} username={this.state.username}
+              isLoggedIn={this.state.isLoggedIn}/>
             <div className='main-container-content'>
-							{this.props.content}
-						</div>
+              {this.props.content}
+            </div>
           </div>
         </div>
-			</BasicLayoutLegacy>
-		);
-	}
+      </BasicLayoutLegacy>
+    );
+  }
 }
 
 export default PageLayout;

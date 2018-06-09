@@ -23,7 +23,7 @@ class CreateTeam extends React.Component {
     return (
       <div className='create-team'>
         <div className='create-team-form'>
-          <form onSubmit={(e) => {this.onSubmit(e) }}>
+          <form onSubmit={(e) => {this.onSubmit(e); }}>
             <div className='submit-text-container'>Name</div>
             <FormControl type='text' placeholder='Team name...'
               inputRef={ref => { this.content = ref; }} />
@@ -32,7 +32,7 @@ class CreateTeam extends React.Component {
         </div>
       </div>
     );
-	}
+  }
 }
 
 export default CreateTeam;

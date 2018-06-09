@@ -33,7 +33,7 @@ class OrgDisplay extends React.Component {
       this.setState({
         ...data
       });
-    }
+    };
 
     getData(url, updateState);
   }
@@ -41,12 +41,12 @@ class OrgDisplay extends React.Component {
   render() {
     return (
       <div className='org-display'>
-        <Header onClick={() => { Router.push('/organizations/' + this.props.name + '/create') }}
+        <Header onClick={() => { Router.push('/organizations/' + this.props.name + '/create'); }}
           stats={<Stats createdOn={this.props.createdOn} members={this.props.members}/>}
           title={this.props.name} buttonText={'Create Team'}/>
       </div>
     );
-	}
+  }
 }
 
 export default OrgDisplay;

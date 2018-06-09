@@ -15,9 +15,9 @@ class Search extends React.Component {
     return (
       <span className='search-container'>
         <input className='search-input' type={'text'} placeholder={this.state.text}/>
-       </span>
+      </span>
     );
-	}
+  }
 }
 
 export default Search;

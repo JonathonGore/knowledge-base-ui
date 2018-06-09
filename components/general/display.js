@@ -10,10 +10,10 @@ export const Header = (props) => (
     <div className='display-stats'>{props.stats}</div>
     { !props.noButton ?
       (
-      <span className='display-btn-container'>
-        <Button text={props.buttonText} onClick={props.onClick}/>
-      </span>
-    ) : ''
+        <span className='display-btn-container'>
+          <Button text={props.buttonText} onClick={props.onClick}/>
+        </span>
+      ) : ''
     }
   </div>
 );
@@ -36,7 +36,7 @@ export const TwoPaneSplit = (props) => {
       <Panel items={props.left} {...props} />
       <Panel items={props.right} {...props} />
     </div>
-  )
+  );
 };
 
 TwoPaneSplit.propTypes = {

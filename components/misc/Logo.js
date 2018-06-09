@@ -15,14 +15,14 @@ class Logo extends React.Component {
       color:  props.color || 'white',
       size: props.size || 16,
       inline: props.inline || false
-    }
+    };
   }
 
   buildClassName() {
-    var cname = "logo-container " + this.state.className;
+    var cname = 'logo-container ' + this.state.className;
 
     if (this.props.inline) {
-      cname = cname + " inline";
+      cname = cname + ' inline';
     }
 
     return cname;
@@ -31,7 +31,7 @@ class Logo extends React.Component {
   buildStyle(hoverColor, color, size) {
     var style =  {
       'color': color,
-      'fontSize': (size === 'inherit') ? size : size + "px"
+      'fontSize': (size === 'inherit') ? size : size + 'px'
     };
 
     return style;
@@ -48,7 +48,7 @@ class Logo extends React.Component {
         </Link>
       </div>
     );
-	}
+  }
 }
 
 export default Logo;

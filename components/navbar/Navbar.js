@@ -47,7 +47,7 @@ class KBNavbar extends React.Component {
       // TODO: need to push to a new page - probably the homepage
     };
 
-    const failure = () => { console.log('unable to logout') };
+    const failure = () => { console.log('unable to logout'); };
 
     postData(url, {}, success, failure);
   }
@@ -101,7 +101,7 @@ class KBNavbar extends React.Component {
         </Nav>
       </Navbar>
     );
-	}
+  }
 }
 
 export default KBNavbar;

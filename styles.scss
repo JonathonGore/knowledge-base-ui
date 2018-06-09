@@ -1,4 +1,6 @@
 /* Variables */
+
+/* Colours */
 $charcoal: #222;
 $light_purple: #D1A8ED;
 $light_blue: #3EA9F5;
@@ -7,6 +9,10 @@ $light_gray: #E4E6E8;
 $dark_gray: #6A737C;
 $almost_black: #242729;
 $collapsed_menu_width: 40px;
+
+/* Sizes */
+$std_top_margin: 60px;
+$std_width: 60%;
 
 /* Misc */
 
@@ -182,9 +188,8 @@ $collapsed_menu_width: 40px;
 /* Main Question Page */
 
 .post-container {
-  padding: 8px;
   margin: auto;
-  width: 95%;
+  width: 100%;
 }
 
 .displayed {
@@ -396,7 +401,23 @@ textarea {
 
 /* Profile */
 .profile-container {
-  margin-top: 60px;
+  margin: auto;
+  margin-top: $std_top_margin;
+  width: $std_width;
+}
+
+.profile-header {
+  margin-bottom: 20px;
+}
+
+.profile-username {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.profile-questions-header {
+  font-size: 16px;
+  margin-bottom: 4px;
 }
 
 /* KB-Button */
@@ -496,6 +517,12 @@ textarea {
 /* About page-container */
 .about-page-container {
   margin: auto;
-  margin-top: 60px;
+  margin-top: $std_top_margin;
   font-size: 24px;
+}
+
+/* Index Wrapper */
+.index-wrapper {
+  padding: 8px;
+  width: 95%;
 }

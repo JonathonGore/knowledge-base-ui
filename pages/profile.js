@@ -1,4 +1,5 @@
 import PageLayout from '../components/content/PageLayout.js';
+import Content from '../components/content/Content.js';
 import Config from '../config.js';
 import { getData } from '../util/util.js';
 import '../styles.scss';
@@ -15,6 +16,7 @@ class Profile extends React.Component {
     const url = Config.serverURL + '/profile';
     const success = (json) => {
       const data = JSON.parse(json);
+      console.log(data);
       this.setState({
         ...data
       });
@@ -27,13 +29,25 @@ class Profile extends React.Component {
     this.fetchData();
   }
 
-  buildContent() {
-    return (
-      <div className='profile-container'>
-        Profile
+  buildContent = () => (
+    <div className='profile-container'>
+      <div className='profile-header'>
+        <div className='profile-username'>
+          {this.state.username}
+        </div>
       </div>
-    );
-  }
+      {
+        this.state.id ? (
+          <div className='profile-questions'>
+            <div className='profile-questions-header'>
+              Top Questions
+            </div>
+            <Content user={this.state.id} />
+          </div>
+        ) : ''
+      }
+    </div>
+  );
 
   render() {
     return (

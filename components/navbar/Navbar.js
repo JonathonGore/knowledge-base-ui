@@ -4,45 +4,63 @@ import Link from 'next/link';
 import Search from './Search.js';
 import Logo from '../misc/Logo.js';
 import Config from '../../config.js';
+import { UsersDropdown, OrgsDropdown } from './Dropdowns.js';
 import { postData } from '../../util/util.js';
-import { Navbar, NavItem, MenuItem, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, NavItem, MenuItem, Nav } from 'react-bootstrap';
+
+const DEFAULT_ORG = {name: 'Public', link: '/questions'};
 
 class KBNavbar extends React.Component {
   constructor(props) {
     super(props);
     this.buildUserSection = this.buildUserSection.bind(this);
     this.logout = this.logout.bind(this);
+    this.onOrgSelect = this.onOrgSelect.bind(this);
 
+    // TODO: React-proptypes
     this.state = {
       isLoggedIn: props.isLoggedIn || false,
       username: props.username || '',
-      text: props.text || ''
+      text: props.text || '',
+      orgs: props.orgs || [DEFAULT_ORG],
+      org: 'Public',
     };
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.username === prevState.username) {
+    if (nextProps.username === prevState.username &&
+      nextProps.orgs.length === prevState.orgs) {
       return null;
     }
 
     return ({
       username: nextProps.username,
-      isLoggedIn: nextProps.isLoggedIn
+      isLoggedIn: nextProps.isLoggedIn,
+      orgs: nextProps.orgs,
     });
   }
 
   logout() {
     const url = Config.serverURL + '/logout';
-
     const success = () => {
       this.setState({isLoggedIn: false});
+      // TODO: need to push to a new page - probably the homepage
     };
 
-    const failure = () => {
-      console.log('unable to logout');
-    };
+    const failure = () => { console.log('unable to logout') };
 
     postData(url, {}, success, failure);
+  }
+
+  buildOrgsSection() {
+    if (!this.state.isLoggedIn) {
+      return (
+        // TODO: Change to have proper icon
+        <NavItem eventKey={3}>Public</NavItem>
+      );
+    }
+
+    return (<OrgsDropdown onClick={this.onOrgSelect} title={this.state.org} orgs={this.state.orgs}/>);
   }
 
   buildUserSection() {
@@ -53,14 +71,14 @@ class KBNavbar extends React.Component {
     }
 
     return (
-      <NavDropdown eventKey={3} title={this.state.username} id="basic-nav-dropdown">
-        <MenuItem eventKey={3.1} href={'/users/' + this.state.username}>Profile</MenuItem>
-        <MenuItem eventKey={3.2}>Settings</MenuItem>
-        <MenuItem eventKey={3.3}>Help</MenuItem>
-        <MenuItem divider />
-        <MenuItem eventKey={3.3} onClick={this.logout}>Logout</MenuItem>
-      </NavDropdown>
+      <UsersDropdown username={this.state.username} onLogout={this.logout} />
     );
+  }
+
+  onOrgSelect(org) {
+    this.setState({
+      org: org
+    });
   }
 
   render() {
@@ -78,6 +96,7 @@ class KBNavbar extends React.Component {
         </Nav>
         <Nav pullRight>
           <NavItem eventKey={4} href='/ask'>Ask Question</NavItem>
+          {this.buildOrgsSection()}
           {this.buildUserSection()}
         </Nav>
       </Navbar>

@@ -1,7 +1,8 @@
 import BasicLayoutLegacy from '../BasicLayoutLegacy.js';
 import MenuPanel from '../MenuPanel.js';
 import KBNavbar from '../navbar/Navbar.js';
-import { getCookie } from '../../util/util.js';
+import Config from '../../config.js';
+import { getCookie, getData } from '../../util/util.js';
 import "../../styles.scss";
 
 const COOKIE_NAME = 'kb-public';
@@ -9,16 +10,11 @@ const COOKIE_NAME = 'kb-public';
 class PageLayout extends React.Component {
 	constructor (props){
 		super(props);
-    this.toggleClass = this.toggleClass.bind(this);
-
-    this.displayedClass = "displayed";
-    this.collapsedClass = "collapsed";
 
     this.state = {
-      content: props.content ? props.content : "",
-      marginClass: this.collapsedClass,
 			username: '',
-			isLoggedIn: false
+			isLoggedIn: false,
+			orgs: [],
     };
 	}
 
@@ -27,16 +23,22 @@ class PageLayout extends React.Component {
 
 		this.setState({
 			username: uname,
-			isLoggedIn: uname !== ''
+			isLoggedIn: uname !== '',
 		});
-	}
 
-	toggleClass() {
-	  if (this.state.marginClass === this.displayedClass) {
-	    this.setState({marginClass: this.collapsedClass});
-	  } else {
-	    this.setState({marginClass: this.displayedClass});
-	  }
+		if (uname) {
+			const url = Config.serverURL + '/profile';
+			const onSuccess = (json) => {
+				console.log(json);
+				this.setState({
+					orgs: JSON.parse(json).organizations.map(org => (
+							{link: `/organizations/${org}`, name: org}
+					))
+				});
+			}
+
+			getData(url, onSuccess);
+		}
 	}
 
 	render() {
@@ -44,7 +46,8 @@ class PageLayout extends React.Component {
 			<BasicLayoutLegacy>
         <div className='main-container'>
           <div className={'full-width'} >
-						<KBNavbar username={this.state.username} isLoggedIn={this.state.isLoggedIn}/>
+						<KBNavbar orgs={this.state.orgs} username={this.state.username}
+							isLoggedIn={this.state.isLoggedIn}/>
             <div className='main-container-content'>
 							{this.props.content}
 						</div>
@@ -54,6 +57,5 @@ class PageLayout extends React.Component {
 		);
 	}
 }
-
 
 export default PageLayout;

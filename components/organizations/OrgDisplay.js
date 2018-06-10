@@ -10,8 +10,8 @@ const DATE_FORMAT = 'MMM Do YYYY';
 
 const Stats = (props) => (
   <div className='org-display-stats'>
-    <div className='org-display-members'>Members: {props.members}</div>
-    <div className='org-display-dob'>Created On: {moment(props.createdOn).format(DATE_FORMAT)}</div>
+    <span className='org-display-dob'>Organization Since: {moment(props.createdOn).format(DATE_FORMAT)}</span>
+    <span className='org-display-members'>Members: {props.members}</span>
   </div>
 );
 

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { DATE_FORMAT } from '../../constants/constants.js';
 
 export const Header = (props) => (
-  <div className='display-header'>
+  <div className={`display-header`}>
     <div className='display-tab'>{props.title}</div>
     <div className='display-stats'>{props.stats}</div>
     { !props.noButton ?

@@ -20,10 +20,7 @@ class Organizations extends React.Component {
   }
 
   onSubmit() {
-    this.setState({
-      create: false,
-    });
-
+    this.setState({create: false});
     this.fetchData();
     Router.push('/organizations');
   }
@@ -31,9 +28,8 @@ class Organizations extends React.Component {
   fetchData() {
     const url = Config.serverURL + '/organizations';
     const success = (json) => {
-      const data = JSON.parse(json);
       this.setState({
-        orgs: data
+        orgs: JSON.parse(json)
       });
     };
 
@@ -46,11 +42,12 @@ class Organizations extends React.Component {
 
   buildContent() {
     if (this.state.create) {
-      return <CreateObj type='organizations' buttonText='Create Organization' placeholder='Create organization...' onSubmit={this.onSubmit}/>;
+      return <CreateObj type='organizations' buttonText='Create Organization'
+        placeholder='Create organization...' onSubmit={this.onSubmit}/>;
     }
 
     return (
-      <div className='org-container'>
+      <div id='org-container' className='org-container'>
         <Header onClick={() => { Router.push('/organizations/create'); }}
           title='Organizations' buttonText='Create Organization'/>
         <TwoPaneSplit type='organizations' left={half(this.state.orgs)} right={half(this.state.orgs, false)} />

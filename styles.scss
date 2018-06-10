@@ -304,8 +304,17 @@ $std_width: 60%;
   margin-top: 50px;
 }
 
+.ask-header {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.ask-header-org {
+  font-weight: 500;
+}
+
 textarea {
-    resize: none;
+  resize: none;
 }
 
 /* Question Container */

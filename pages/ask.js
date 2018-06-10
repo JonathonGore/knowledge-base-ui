@@ -1,10 +1,11 @@
+import Config from '../config.js';
 import PageLayout from '../components/content/PageLayout.js';
 import Router from 'next/router';
 import DismissableAlert from '../components/alerts/DismissableAlert.js';
 import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 import { postData } from '../util/util.js';
+import { KB_ORG_SELECTION, KB_DEFAULT_ORG } from '../constants/constants.js';
 import '../styles.scss';
-import Config from '../config.js';
 
 const TEXT_AREA_ROWS = 10;
 
@@ -30,7 +31,12 @@ class Ask extends React.Component {
 
     this.state = {
       error: '',
+      org: '',
     };
+  }
+
+  componentDidMount() {
+      this.setState({org: localStorage.getItem(KB_ORG_SELECTION) || KB_DEFAULT_ORG});
   }
 
   updateKey(ref, key) {
@@ -46,7 +52,7 @@ class Ask extends React.Component {
   }
 
   submitQuestion(e) {
-    	e.preventDefault();
+    e.preventDefault();
 
     const url = Config.serverURL + '/questions';
     const data = {
@@ -60,11 +66,30 @@ class Ask extends React.Component {
     postData(url, data, onSuccess, onFailure);
   }
 
+  headerText() {
+    if (typeof localStorage === undefined || this.state.org === '') return '';
+
+    if (this.state.org === KB_DEFAULT_ORG) {
+      return (<div>'Asking question viewable to everyone.'</div>);
+    }
+
+    return (
+      <div>
+        Asking question viewable only to the
+        <span className='ask-header-org'>{' ' + this.state.org + ' '}</span>
+        organization.
+      </div>
+    );
+  }
+
   buildContent() {
     return (
       <div className='ask-container'>
         <div className='login-error-container'>
           {this.state.error}
+        </div>
+        <div className='ask-header'>
+          {this.headerText()}
         </div>
         <form onSubmit={this.submitQuestion}>
           <FieldGroup kbOnChange={this.updateKey} formKey='title' id='askTitle'

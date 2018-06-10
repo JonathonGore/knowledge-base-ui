@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import Link from 'next/link';
-import Router from 'next/router';
+import Router, { withRouter } from 'next/router';
 import Search from './Search.js';
 import Logo from '../misc/Logo.js';
 import Config from '../../config.js';
@@ -92,7 +92,7 @@ class KBNavbar extends React.Component {
     }
 
     this.setState({org: org});
-    Router.push('/questions');
+    window.location.reload();
   }
 
   render() {
@@ -118,4 +118,4 @@ class KBNavbar extends React.Component {
   }
 }
 
-export default KBNavbar;
+export default withRouter(KBNavbar);

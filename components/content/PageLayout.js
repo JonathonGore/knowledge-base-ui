@@ -10,6 +10,7 @@ const COOKIE_NAME = 'kb-public';
 class PageLayout extends React.Component {
   constructor (props){
     super(props);
+		this.logout = this.logout.bind(this);
 
     this.state = {
       username: '',
@@ -17,6 +18,10 @@ class PageLayout extends React.Component {
       orgs: [],
     };
   }
+
+	logout() {
+		this.setState({ isLoggedIn: false });
+	}
 
   componentDidMount() {
     const uname = getCookie(COOKIE_NAME);
@@ -44,7 +49,7 @@ class PageLayout extends React.Component {
         <div className='main-container'>
           <div className={'full-width'} >
             <KBNavbar orgs={this.state.orgs} username={this.state.username}
-              isLoggedIn={this.state.isLoggedIn}/>
+              isLoggedIn={this.state.isLoggedIn} onLogout={this.logout}/>
             <div className='main-container-content'>
               {this.props.content}
             </div>

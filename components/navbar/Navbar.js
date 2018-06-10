@@ -43,12 +43,16 @@ class KBNavbar extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({org: localStorage.getItem(KB_ORG_SELECTION)});
+    this.setState({org: localStorage.getItem(KB_ORG_SELECTION) || KB_DEFAULT_ORG});
   }
 
   logout() {
     const url = Config.serverURL + '/logout';
     const success = () => {
+      if (this.props.onLogout) {
+        this.props.onLogout(); // TODO: can remove if statement when we use prop-types
+      }
+
       this.setState({isLoggedIn: false});
       // TODO: need to push to a new page - probably the homepage
       localStorage.removeItem(KB_ORG_SELECTION);

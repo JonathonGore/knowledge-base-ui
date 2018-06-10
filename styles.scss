@@ -112,6 +112,16 @@ $std_width: 60%;
   margin-top: 8px;
 }
 
+.login-signup-link {
+  text-decoration: none;
+  color: $light_blue;
+}
+
+.login-signup-link:hover {
+  text-decoration: none;
+  color: $darker_blue;
+}
+
 /* Logo component */
 
 .logo-container {

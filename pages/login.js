@@ -2,21 +2,21 @@ import BasicLayout from '../components/BasicLayout.js';
 import Router from 'next/router';
 import DismissableAlert from '../components/alerts/DismissableAlert.js';
 import Logo from '../components/misc/Logo.js';
+import Link from 'next/link';
 import Config from '../config.js';
-import $ from 'jquery';
 import { postData } from '../util/util.js';
 import { Row, Form, FormGroup, FormControl, Button, Col } from 'react-bootstrap';
 import '../styles.scss';
 
-class Signup extends React.Component {
+const SIGNUP_TEXT = "Don't have an accout? Signup here."
 
+class Login extends React.Component {
   constructor (props){
     super(props);
     this.addError = this.addError.bind(this);
     this.prepareData = this.prepareData.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validUserPass = this.validUserPass.bind(this);
-    this.buildError = this.buildError.bind(this);
     this.username = '';
     this.password = '';
     this.state = { error: ''};
@@ -29,11 +29,10 @@ class Signup extends React.Component {
   }
 
   prepareData() {
-    var map = {};
-    map['username'] = this.username.value;
-    map['password'] = this.password.value;
-
-    return map;
+		return ({
+			username: this.username.value,
+			password: this.password.value
+		});
   }
 
   addError(error) {
@@ -92,6 +91,9 @@ class Signup extends React.Component {
 					          </Col>
 					        </Row>
             </Form>
+						<Link href={'/signup'}>
+							<a className='login-signup-link'>{SIGNUP_TEXT}</a>
+						</Link>
           </div>
         </div>
       </BasicLayout>
@@ -99,4 +101,4 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+export default Login;

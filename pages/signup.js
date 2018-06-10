@@ -5,14 +5,16 @@ import FontAwesome from 'react-fontawesome';
 import Link from 'next/link';
 import '../styles.scss';
 
+const HEADER = 'Make your knowledge work for you';
+const CONTENT = 'All of your companys knowledge sorted and fully searchable in one unified solution.';
+
 class Signup extends React.Component {
   constructor (props){
     super(props);
     this.addError = this.addError.bind(this);
     this.state = { error: '' };
-    this.aboutHeader = 'Make your knowledge work for you';
-    this.aboutText = 'All of your companys knowledge sorted and'
-			+ 'fully searchable in one unified solution.';
+    this.aboutHeader = HEADER;
+    this.aboutText = CONTENT;
   }
 
   componentDidMount(){
@@ -20,7 +22,7 @@ class Signup extends React.Component {
   }
 
   componentWillUnmount(){
-	    document.body.style.backgroundColor = null;
+    document.body.style.backgroundColor = null;
   }
 
   addError(error) {
@@ -30,25 +32,19 @@ class Signup extends React.Component {
   render() {
     return (
       <BasicLayout>
-        <div className="signup-page">
-          <div className="signup-header">
+        <div className='signup-page'>
+          <div className='signup-header'>
             <Logo size={40} inline />
-            <span className="sp-login-button">
-              <Link href="/login">
-                <a className="sp-login-link">Login</a>
+            <span className='sp-login-button'>
+              <Link href='/login'>
+                <a className='sp-login-link'>Login</a>
               </Link>
             </span>
           </div>
-          <div className="signup-form-container">
-            <div className="error-container">
-              {this.state.error}
-            </div>
-            <div className="signup-text-header">
-              {this.aboutHeader}
-            </div>
-            <div className="signup-text">
-              {this.aboutText}
-            </div>
+          <div className='signup-form-container'>
+            <div className='error-container'>{this.state.error}</div>
+            <div className='signup-text-header'>{this.aboutHeader}</div>
+            <div className='signup-text'>  {this.aboutText}</div>
             <SignupForm addError={this.addError} />
           </div>
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import PostPreview from './previews/PostPreview.js';
 import FontAwesome from 'react-fontawesome';
 import Config from '../../config.js';
+import { KB_ORG_SELECTION, KB_DEFAULT_ORG } from '../../constants/constants.js';
 import { getData } from '../../util/util.js';
 import '../../styles.scss';
 
@@ -17,6 +18,10 @@ class Content extends React.Component {
   }
 
   buildURL() {
+    if (localStorage && localStorage.getItem(KB_ORG_SELECTION) !== KB_DEFAULT_ORG) {
+      return Config.serverURL + '/organizations/' + localStorage.getItem(KB_ORG_SELECTION) + '/questions';
+    }
+
     if (this.props.user) {
       return Config.serverURL + '/questions?user=' + this.props.user;
     }
@@ -44,6 +49,7 @@ class Content extends React.Component {
   }
 }
 
+// TODO: This really doesnt need any state as of right now
 class ContentDisplay extends React.Component {
   constructor(props) {
     super(props);

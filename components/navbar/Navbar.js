@@ -1,15 +1,16 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import Link from 'next/link';
+import Router from 'next/router';
 import Search from './Search.js';
 import Logo from '../misc/Logo.js';
 import Config from '../../config.js';
+import { KB_ORG_SELECTION, KB_DEFAULT_ORG } from '../../constants/constants.js';
 import { UsersDropdown, OrgsDropdown } from './Dropdowns.js';
 import { postData } from '../../util/util.js';
 import { Navbar, NavItem, MenuItem, Nav } from 'react-bootstrap';
 
-const DEFAULT_ORG = {name: 'Public', link: '/questions'};
-const KB_ORG_SELECTION = 'kb-org-selection';
+const DEFAULT_ORG = {name: KB_DEFAULT_ORG};
 
 class KBNavbar extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class KBNavbar extends React.Component {
       username: props.username || '',
       text: props.text || '',
       orgs: props.orgs || [DEFAULT_ORG],
-      org: 'Public',
+      org: KB_DEFAULT_ORG,
     };
   }
 
@@ -42,9 +43,7 @@ class KBNavbar extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      org: localStorage.getItem(KB_ORG_SELECTION)
-    });
+    this.setState({org: localStorage.getItem(KB_ORG_SELECTION)});
   }
 
   logout() {
@@ -52,6 +51,7 @@ class KBNavbar extends React.Component {
     const success = () => {
       this.setState({isLoggedIn: false});
       // TODO: need to push to a new page - probably the homepage
+      localStorage.removeItem(KB_ORG_SELECTION);
     };
 
     const failure = () => { console.log('unable to logout'); };
@@ -87,9 +87,8 @@ class KBNavbar extends React.Component {
       localStorage.setItem(KB_ORG_SELECTION, org);
     }
 
-    this.setState({
-      org: org
-    });
+    this.setState({org: org});
+    Router.push('/questions');
   }
 
   render() {

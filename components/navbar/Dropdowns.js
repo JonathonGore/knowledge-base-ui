@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { MenuItem, NavDropdown } from 'react-bootstrap';
+import { KB_DEFAULT_ORG } from '../../constants/constants';
 
 export const UsersDropdown = (props) => (
   <NavDropdown eventKey={3} title={props.username} id='basic-nav-dropdown'>
@@ -24,7 +25,7 @@ UsersDropdown.defaultProps = {
 export const OrgsDropdown = (props) => (
   <NavDropdown eventKey={4} title={props.title} id='orgs-dropdown' >
     <MenuItem header>Organization</MenuItem>
-    <MenuItem key={'public'} onSelect={() => props.onClick('Public')}>{'Public'}</MenuItem>
+    <MenuItem key={'public'} onSelect={() => props.onClick(KB_DEFAULT_ORG)}>{KB_DEFAULT_ORG}</MenuItem>
     {
       props.orgs.map(org =>
         <MenuItem key={org.name} onSelect={() => props.onClick(org.name)}>{org.name}</MenuItem>
@@ -42,6 +43,6 @@ OrgsDropdown.propTypes = {
 };
 
 OrgsDropdown.defaultProps = {
-  title: 'Public',
-  orgs: [{name: 'Public', link: '/questions'}],
+  title: KB_DEFAULT_ORG,
+  orgs: [{name: KB_DEFAULT_ORG}],
 };

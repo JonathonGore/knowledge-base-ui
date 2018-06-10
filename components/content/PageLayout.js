@@ -29,11 +29,8 @@ class PageLayout extends React.Component {
     if (uname) {
       const url = Config.serverURL + '/profile';
       const onSuccess = (json) => {
-        console.log(json);
         this.setState({
-          orgs: JSON.parse(json).organizations.map(org => (
-            {link: `/organizations/${org}`, name: org}
-          ))
+          orgs: JSON.parse(json).organizations.map(org => ({name: org}))
         });
       };
 

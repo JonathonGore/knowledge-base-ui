@@ -1,11 +1,11 @@
 import BasicLayout from '../components/BasicLayout.js';
-import { Row, Form, FormGroup, FormControl, Button, ControlLabel, Col, Checkbox } from 'react-bootstrap';
-import FontAwesome from 'react-fontawesome';
 import Router from 'next/router';
 import DismissableAlert from '../components/alerts/DismissableAlert.js';
 import Logo from '../components/misc/Logo.js';
 import Config from '../config.js';
 import $ from 'jquery';
+import { postData } from '../util/util.js';
+import { Row, Form, FormGroup, FormControl, Button, Col } from 'react-bootstrap';
 import '../styles.scss';
 
 class Signup extends React.Component {
@@ -46,30 +46,21 @@ class Signup extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    var self = this;
-    var preparedData = self.prepareData();
+    const preparedData = this.prepareData();
 
-    if (!self.validUserPass(preparedData)) {
-      self.addError(self.buildError('please enter both a username and password to signup'));
+    if (!this.validUserPass(preparedData)) {
+      this.addError(this.buildError('please enter both a username and password to signup'));
       return;
     }
 
-    // Post loging request to backend
-    $.ajax({
-      type: 'POST',
-      url: Config.serverURL + '/login',
-      data: JSON.stringify(preparedData),
-      xhrFields: {
-        withCredentials: true
-      },
-      success: function(json) {
-        Router.push('/');
-      },
-      error: function (xhr) {
-        var data = JSON.parse(xhr.responseText);
-        self.addError(self.buildError(data['message']));
-      }
-    });
+		const url = Config.serverURL + '/login';
+		const onSuccess = () => { Router.push('/') };
+		const onError = (response) => {
+			const data = JSON.parse(response);
+			this.addError(this.buildError(data['message']));
+		};
+
+		postData(url, preparedData, onSuccess, onError);
   }
 
 

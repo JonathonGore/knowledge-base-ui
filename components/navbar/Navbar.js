@@ -93,7 +93,7 @@ class KBNavbar extends React.Component {
 
   render() {
     return (
-      <Navbar fixedTop>
+      <Navbar fluid fixedTop className='kb-navbar'>
         <Navbar.Header>
           <Navbar.Brand>
             <Logo color={'#777'} size={'inherit'} className={'kb-navbar-padding'}/>

@@ -1,10 +1,10 @@
-import React from 'react';
+import Config from '../../config.js';
+import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
 import PostPreview from './previews/PostPreview.js';
-import FontAwesome from 'react-fontawesome';
-import Config from '../../config.js';
-import { KB_ORG_SELECTION, KB_DEFAULT_ORG } from '../../constants/constants.js';
+import React from 'react';
 import { getData } from '../../util/util.js';
+import { KB_ORG_SELECTION, KB_DEFAULT_ORG } from '../../constants/constants.js';
 import '../../styles.scss';
 
 class Content extends React.Component {
@@ -19,21 +19,21 @@ class Content extends React.Component {
   }
 
   buildURL() {
-    if (localStorage && localStorage.getItem(KB_ORG_SELECTION) !== KB_DEFAULT_ORG) {
-      return Config.serverURL + '/organizations/' + localStorage.getItem(KB_ORG_SELECTION) + '/questions';
+    if (localStorage && localStorage.getItem(KB_ORG_SELECTION) &&
+      localStorage.getItem(KB_ORG_SELECTION) !== KB_DEFAULT_ORG) {
+      return `${Config.serverURL}/organizations/${localStorage.getItem(KB_ORG_SELECTION)}/questions`;
     }
 
     if (this.props.user) {
-      return Config.serverURL + '/questions?user=' + this.props.user;
+      return `${Config.serverURL}/questions?user=${this.props.user}`;
     }
 
-    return Config.serverURL + '/questions';
+    return `${Config.serverURL}/questions`;
   }
 
   requestPosts() {
     const onSuccess = (json) => {
-      const vals = JSON.parse(json);
-      this.setState({posts: vals});
+      this.setState({posts:  JSON.parse(json)});
     };
 
     getData(this.buildURL(), onSuccess);

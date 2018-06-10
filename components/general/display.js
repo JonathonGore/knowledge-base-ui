@@ -6,25 +6,29 @@ import { DATE_FORMAT } from '../../constants/constants.js';
 
 export const Header = (props) => (
   <div className={`display-header`}>
-    <div className='display-tab'>{props.title}</div>
-    <div className='display-stats'>{props.stats}</div>
-    { !props.noButton ?
-      (
-        <span className='display-btn-container'>
-          <Button text={props.buttonText} onClick={props.onClick}/>
-        </span>
-      ) : ''
-    }
+    <div>
+      <span className='display-tab'>{props.title}</span>
+      { !props.noButton ?
+        (
+          <span className='display-btn-container'>
+            <Button text={props.buttonText} onClick={props.onClick}/>
+          </span>
+        ) : ''
+      }
+    </div>
+    <div className='display-info'>{props.info}</div>
   </div>
 );
 
 Header.propTypes = {
+  info: PropTypes.node,
   title: PropTypes.string,
   buttonText: PropTypes.string,
   onClick: PropTypes.func
 };
 
 Header.defaultProps = {
+  info: '',
   title: 'Header',
   buttonText: 'Create',
   onClick: () => { console.log('Click'); }
@@ -32,19 +36,24 @@ Header.defaultProps = {
 
 export const TwoPaneSplit = (props) => {
   return (
-    <div className='two-pane-split'>
-      <Panel items={props.left} {...props} />
-      <Panel items={props.right} {...props} />
+    <div className='two-pane-split-container'>
+      <div className='split-pane-header'>{props.header}</div>
+      <div className='two-pane-split'>
+        <Panel items={props.left} {...props} />
+        <Panel items={props.right} {...props} />
+      </div>
     </div>
   );
 };
 
 TwoPaneSplit.propTypes = {
+  header: PropTypes.string,
   left: PropTypes.array,
   right: PropTypes.array,
 };
 
 TwoPaneSplit.defaultProps = {
+  header: '',
   left: [],
   right: [],
 };

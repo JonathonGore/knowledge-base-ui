@@ -7,6 +7,15 @@ import { withRouter } from 'next/router';
 import { getData, half } from '../util/util.js';
 import '../styles.scss';
 
+const ORGS_DESCRIPTION = 'Organizations allow you to organize questions in public or private for your company.';
+const POPULAR_ORGS = 'Popular Organizations:';
+
+const OrgsInfo = (props) => (
+  <div className='org-info'>
+    {ORGS_DESCRIPTION}
+  </div>
+);
+
 class Organizations extends React.Component {
   constructor(props) {
     super(props);
@@ -49,8 +58,8 @@ class Organizations extends React.Component {
     return (
       <div id='org-container' className='org-container'>
         <Header onClick={() => { Router.push('/organizations/create'); }}
-          title='Organizations' buttonText='Create Organization'/>
-        <TwoPaneSplit type='organizations' left={half(this.state.orgs)} right={half(this.state.orgs, false)} />
+          info={<OrgsInfo />} title='Organizations' buttonText='Create Organization'/>
+        <TwoPaneSplit header={POPULAR_ORGS} type='organizations' left={half(this.state.orgs)} right={half(this.state.orgs, false)} />
       </div>
     );
   }

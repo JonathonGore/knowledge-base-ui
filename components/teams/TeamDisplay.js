@@ -43,7 +43,7 @@ class TeamDisplay extends React.Component {
   render() {
     return (
       <div className='team-display'>
-        <Header stats={<Stats createdOn={this.state.createdOn} members={this.state.members}/>}
+        <Header info={<Stats createdOn={this.state.createdOn} members={this.state.members}/>}
           title={this.props.teamName} noButton/>
       </div>
     );

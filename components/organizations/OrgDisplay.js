@@ -42,7 +42,7 @@ class OrgDisplay extends React.Component {
     return (
       <div className='org-display'>
         <Header onClick={() => { Router.push('/organizations/' + this.props.name + '/create'); }}
-          stats={<Stats createdOn={this.props.createdOn} members={this.props.members}/>}
+          info={<Stats createdOn={this.props.createdOn} members={this.props.members}/>}
           title={this.props.name} buttonText={'Create Team'}/>
       </div>
     );

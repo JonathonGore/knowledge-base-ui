@@ -8,6 +8,7 @@ $darker_blue: #3E95F5;
 $light_gray: #E4E6E8;
 $dark_gray: #6A737C;
 $almost_black: #242729;
+$jet_black: #333;
 $collapsed_menu_width: 40px;
 
 /* Sizes */
@@ -389,7 +390,11 @@ textarea {
 .org-container {
   margin: auto;
   margin-top: 60px;
-  width: 60%;
+  width: 45%;
+}
+
+.org-info {
+  color: $dark_gray;
 }
 
 .org-header {
@@ -484,13 +489,26 @@ textarea {
 .display-tab {
   font-weight: 500;
   margin-left: -10px;
-  font-size: 24px;
+  font-size: 34px;
   padding: 8px;
+}
+
+.display-btn-container {
+  float: right;
+  padding: 8px 8px 0 0;
+}
+
+.two-pane-split-container {
+  margin-top: 20px;
+}
+
+.split-pane-header {
+  color: $jet_black;
+  font-size: 20px;
 }
 
 .two-pane-split {
   display: flex;
-  margin-top: 20px;
 }
 
 .display-preview-name {
@@ -502,9 +520,9 @@ textarea {
   padding: 8px 6px;
 }
 
-.display-stats {
+.display-info {
+  padding: 2px;
   font-size: 14px;
-  margin-top: -6px;
 }
 
 .display-panel {

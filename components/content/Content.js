@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PostPreview from './previews/PostPreview.js';
 import FontAwesome from 'react-fontawesome';
 import Config from '../../config.js';
@@ -30,12 +31,12 @@ class Content extends React.Component {
   }
 
   requestPosts() {
-    const onSucces = (json) => {
+    const onSuccess = (json) => {
       const vals = JSON.parse(json);
       this.setState({posts: vals});
     };
 
-    getData(this.buildURL(), onSucces);
+    getData(this.buildURL(), onSuccess);
   }
 
   componentDidMount() {
@@ -49,32 +50,25 @@ class Content extends React.Component {
   }
 }
 
-// TODO: This really doesnt need any state as of right now
-class ContentDisplay extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      posts: []
-    };
+const ContentDisplay = (props) => {
+  if (props.posts.length === 0) {
+    return (<div className='spinner-wrapper'><FontAwesome name='spinner' spin /></div>);
   }
 
-  componentWillReceiveProps(props) {
-    this.setState({...props});
-  }
-
-  render() {
-    if (this.state.posts.length === 0) {
-      return (<div className='spinner-wrapper'><FontAwesome name='spinner' spin /></div>);
-    }
-
-    const listItems = this.state.posts.map(post => (<PostPreview key={post.id} {...post} />));
-    return (
-      <div className='post-container'>
-        {listItems}
-      </div>
-    );
-  }
+  const listItems = props.posts.map(post => (<PostPreview key={post.id} {...post} />));
+  return (
+    <div className='post-container'>
+      {listItems}
+    </div>
+  );
 }
+
+ContentDisplay.propTypes = {
+  posts: PropTypes.array,
+};
+
+ContentDisplay.defaultProps = {
+  posts: [],
+};
 
 export default Content;

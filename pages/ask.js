@@ -19,8 +19,8 @@ function FieldGroup({ id, label, help, kbOnChange, formKey, ...props }) {
 }
 
 class Ask extends React.Component {
-	constructor (props){
-		super(props);
+  constructor (props){
+    super(props);
     this.submitQuestion = this.submitQuestion.bind(this);
     this.updateKey = this.updateKey.bind(this);
     this.buildError = this.buildError.bind(this);
@@ -31,7 +31,7 @@ class Ask extends React.Component {
     this.state = {
       error: '',
     };
-	}
+  }
 
   updateKey(ref, key) {
     this[key] = ref;
@@ -48,16 +48,16 @@ class Ask extends React.Component {
   submitQuestion(e) {
     	e.preventDefault();
 
-      const url = Config.serverURL + '/questions';
-      const data = {
-        title: this.title.value,
-        content: this.body.value
-      };
+    const url = Config.serverURL + '/questions';
+    const data = {
+      title: this.title.value,
+      content: this.body.value
+    };
 
-      const onSuccess = (str) => { Router.push('/questions/' + JSON.parse(str)['id']); };
-      const onFailure = (data) => { this.buildError(JSON.parse(data).message)};
+    const onSuccess = (str) => { Router.push('/questions/' + JSON.parse(str)['id']); };
+    const onFailure = (data) => { this.buildError(JSON.parse(data).message);};
 
-      postData(url, data, onSuccess, onFailure);
+    postData(url, data, onSuccess, onFailure);
   }
 
   buildContent() {
@@ -77,11 +77,11 @@ class Ask extends React.Component {
     );
   }
 
-	render() {
-		return (
+  render() {
+    return (
       <PageLayout content={this.buildContent()}/>
-		);
-	}
+    );
+  }
 }
 
 export default Ask;

@@ -65,14 +65,14 @@ class Teams extends React.Component {
 
   buildContent() {
     if (this.state.create) {
-        return (<CreateObj type={`organizations/${this.state.orgName}/teams`}
-          buttonText='Create Team' placeholder='Create team...' onSubmit={this.onSubmit}/>);
+      return (<CreateObj type={`organizations/${this.state.orgName}/teams`}
+        buttonText='Create Team' placeholder='Create team...' onSubmit={this.onSubmit}/>);
     }
 
     if (this.state.orgName && this.state.teamName) {
-        return (
-          <TeamDisplay teamName={this.state.teamName} orgName={this.state.orgName}/>
-        );
+      return (
+        <TeamDisplay teamName={this.state.teamName} orgName={this.state.orgName}/>
+      );
     }
 
     return (
@@ -87,7 +87,7 @@ class Teams extends React.Component {
     return (
       <PageLayout content={this.buildContent()} />
     );
-	}
+  }
 }
 
 export default withRouter(Teams);

@@ -1,4 +1,4 @@
-import BasicLayout from '../components/BasicLayout.js'
+import BasicLayout from '../components/BasicLayout.js';
 import { Row, Form, FormGroup, FormControl, Button, ControlLabel, Col, Checkbox } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import Router from 'next/router';
@@ -10,79 +10,79 @@ import '../styles.scss';
 
 class Signup extends React.Component {
 
-	constructor (props){
-		super(props);
-		this.addError = this.addError.bind(this);
-		this.prepareData = this.prepareData.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.validUserPass = this.validUserPass.bind(this);
-		this.buildError = this.buildError.bind(this);
-		this.username = "";
-		this.password = "";
-		this.state = { error: ""};
-	}
+  constructor (props){
+    super(props);
+    this.addError = this.addError.bind(this);
+    this.prepareData = this.prepareData.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.validUserPass = this.validUserPass.bind(this);
+    this.buildError = this.buildError.bind(this);
+    this.username = '';
+    this.password = '';
+    this.state = { error: ''};
+  }
 
-	buildError(message) {
-		return (
-			<DismissableAlert type='danger' title='Unable to login' message={message} />
-		);
-	}
+  buildError(message) {
+    return (
+      <DismissableAlert type='danger' title='Unable to login' message={message} />
+    );
+  }
 
-	prepareData() {
-		var map = {};
-		map['username'] = this.username.value;
-		map['password'] = this.password.value;
+  prepareData() {
+    var map = {};
+    map['username'] = this.username.value;
+    map['password'] = this.password.value;
 
-		return map;
-	}
+    return map;
+  }
 
-	addError(error) {
-		this.setState({error: error});
-	}
+  addError(error) {
+    this.setState({error: error});
+  }
 
-	validUserPass(obj) {
-		return !(obj['username'] === '' || obj['password'] === '');
-	}
+  validUserPass(obj) {
+    return !(obj['username'] === '' || obj['password'] === '');
+  }
 
-	handleSubmit(e) {
-		e.preventDefault();
-		var self = this;
-		var preparedData = self.prepareData();
+  handleSubmit(e) {
+    e.preventDefault();
+    var self = this;
+    var preparedData = self.prepareData();
 
-		if (!self.validUserPass(preparedData)) {
-			self.addError(self.buildError("please enter both a username and password to signup"));
-			return
-		}
+    if (!self.validUserPass(preparedData)) {
+      self.addError(self.buildError('please enter both a username and password to signup'));
+      return;
+    }
 
-		// Post loging request to backend
-		$.ajax({
-			type: "POST",
-			url: Config.serverURL + "/login",
-			data: JSON.stringify(preparedData),
-			xhrFields: {
-				withCredentials: true
-			},
-			success: function(json) {
-					Router.push('/');
-			},
-			error: function (xhr) {
-				var data = JSON.parse(xhr.responseText);
-				self.addError(self.buildError(data['message']));
-			}
-		});
-	}
+    // Post loging request to backend
+    $.ajax({
+      type: 'POST',
+      url: Config.serverURL + '/login',
+      data: JSON.stringify(preparedData),
+      xhrFields: {
+        withCredentials: true
+      },
+      success: function(json) {
+        Router.push('/');
+      },
+      error: function (xhr) {
+        var data = JSON.parse(xhr.responseText);
+        self.addError(self.buildError(data['message']));
+      }
+    });
+  }
 
 
-	render() {
-		return (
-			<BasicLayout>
-				<div className="login-page">
-					<div className="login-form-container">
-						<Logo color={'black'} size={44} inline />
-						<div className='login-error-container'>
-							{this.state.error}
-						</div>
-						<Form className='login-form' onSubmit={this.handleSubmit}>
+  render() {
+    return (
+      <BasicLayout>
+        <div className="login-page">
+          <div className="login-form-container">
+            <Logo color={'black'} size={44} inline />
+            <div className='login-error-container'>
+              {this.state.error}
+            </div>
+            <Form className='login-form' onSubmit={this.handleSubmit}>
 					        <Row className="signup-form-row">
 					          <Col sm={12} md={12} lg={12}>
 					            <FormControl className="signup-input" type="text" placeholder="Username" inputRef={ref => { this.username = ref; }}/>
@@ -100,12 +100,12 @@ class Signup extends React.Component {
 					            <Button className="signup-submit" type="submit">Log in</Button>
 					          </Col>
 					        </Row>
-						</Form>
-					</div>
-				</div>
-			</BasicLayout>
-		);
-	}
+            </Form>
+          </div>
+        </div>
+      </BasicLayout>
+    );
+  }
 }
 
 export default Signup;

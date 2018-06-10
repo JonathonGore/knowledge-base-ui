@@ -3,7 +3,7 @@ import Router from 'next/router';
 import QuestionDisplay from '../components/content/questions/QuestionDisplay';
 import { withRouter } from 'next/router';
 import Index from './index.js';
-import "../styles.scss";
+import '../styles.scss';
 
 class Questions extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class Questions extends React.Component {
     this.state = {
       id: props.router.query['id'] ? props.router.query['id'] : '',
       question: {}
-    }
+    };
   }
 
   buildContent() {
@@ -29,7 +29,7 @@ class Questions extends React.Component {
     return (
       <PageLayout content={this.buildContent()} />
     );
-	}
+  }
 }
 
 export default withRouter(Questions);

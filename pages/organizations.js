@@ -46,12 +46,12 @@ class Organizations extends React.Component {
 
   buildContent() {
     if (this.state.create) {
-        return <CreateObj type='organizations' buttonText='Create Organization' placeholder='Create organization...' onSubmit={this.onSubmit}/>;
+      return <CreateObj type='organizations' buttonText='Create Organization' placeholder='Create organization...' onSubmit={this.onSubmit}/>;
     }
 
     return (
       <div className='org-container'>
-        <Header onClick={() => { Router.push('/organizations/create') }}
+        <Header onClick={() => { Router.push('/organizations/create'); }}
           title='Organizations' buttonText='Create Organization'/>
         <TwoPaneSplit type='organizations' left={half(this.state.orgs)} right={half(this.state.orgs, false)} />
       </div>
@@ -62,7 +62,7 @@ class Organizations extends React.Component {
     return (
       <PageLayout content={this.buildContent()} />
     );
-	}
+  }
 }
 
 export default withRouter(Organizations);

@@ -41,7 +41,7 @@ class Logo extends React.Component {
     return (
       <div className={this.buildClassName()} style={this.buildStyle(this.state.hoverColor, this.state.color, this.state.size)}>
         <Link href="/">
-          <a className="sp-login-link">
+          <a className="logo-link">
             <FontAwesome name='database' />
             <span className="logo-text"> Knowledge-Base</span>
           </a>

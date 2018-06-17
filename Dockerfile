@@ -4,6 +4,10 @@ RUN git clone https://github.com/JonathonGore/knowledge-base-ui.git
 
 WORKDIR knowledge-base-ui
 
+RUN mv config.prod.js config.js
+
 RUN npm install
 
-CMD ["npm", "start"]
+RUN ./node_modules/.bin/next build
+
+CMD ["./node_modules/.bin/next", "start"]

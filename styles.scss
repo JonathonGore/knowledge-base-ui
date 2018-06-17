@@ -130,12 +130,12 @@ $std_width: 60%;
 }
 
 .logo-link {
-  color: white;
+  color: inherit;
   text-decoration: none;
 }
 
 .logo-link:hover {
-  color: white !important;
+  color: $jet_black;
   text-decoration: none !important;
 }
 

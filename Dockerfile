@@ -10,4 +10,4 @@ RUN npm install
 
 RUN ./node_modules/.bin/next build
 
-CMD ["./node_modules/.bin/next", "start"]
+CMD NODE_ENV=production node server.js

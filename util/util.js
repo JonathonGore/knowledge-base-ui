@@ -30,6 +30,7 @@ export const getData = (url, onSuccess, onFailure, withCredentials=true) => {
   $.ajax({
     type: 'GET',
     url: url,
+    dataType: "text",
     xhrFields: {
       withCredentials: withCredentials
     },
@@ -51,6 +52,7 @@ export const postData = (url, data, onSuccess, onFailure, withCredentials=true) 
     type: 'POST',
     url: url,
     data: JSON.stringify(data),
+    dataType: "text",
     xhrFields: {
       withCredentials: withCredentials
     },

@@ -1,7 +1,8 @@
 import Config from '../config.js';
+import DismissableAlert from '../components/alerts/DismissableAlert.js';
+import FontAwesome from 'react-fontawesome';
 import PageLayout from '../components/content/PageLayout.js';
 import Router from 'next/router';
-import DismissableAlert from '../components/alerts/DismissableAlert.js';
 import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 import { postData } from '../util/util.js';
 import { KB_ORG_SELECTION, KB_DEFAULT_ORG } from '../constants/constants.js';
@@ -54,7 +55,13 @@ class Ask extends React.Component {
   submitQuestion(e) {
     e.preventDefault();
 
-    const url = Config.serverURL + '/questions';
+    let url = '';
+    if (this.state.org === KB_DEFAULT_ORG) {
+      url = Config.serverURL + '/questions';
+    } else {
+      url = Config.serverURL + `/organizations/${this.state.org}/questions`;
+    }
+
     const data = {
       title: this.title.value,
       content: this.body.value
@@ -70,14 +77,18 @@ class Ask extends React.Component {
     if (typeof localStorage === undefined || this.state.org === '') return '';
 
     if (this.state.org === KB_DEFAULT_ORG) {
-      return (<div>'Asking question viewable to everyone.'</div>);
+      return (
+        <div className='ask-visibility-container'>
+          <FontAwesome name='globe'/>
+          <span className='ask-visibility-text'>Public</span>
+        </div>
+      );
     }
 
     return (
-      <div>
-        Asking question viewable only to the
-        <span className='ask-header-org'>{' ' + this.state.org + ' '}</span>
-        organization.
+      <div className='ask-visibility-container'>
+        <FontAwesome name='globe'/>
+        <span className='ask-visibility-text'>{this.state.org}</span>
       </div>
     );
   }

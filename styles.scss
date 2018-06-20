@@ -313,6 +313,20 @@ $std_width: 60%;
   font-weight: 500;
 }
 
+.ask-visibility-text {
+  margin-left: 4px;
+}
+
+.ask-visibility-container {
+  font-size: 18px;
+  color: $jet_black;
+}
+
+.ask-visibility-container:hover {
+  color: $light_blue;
+  cursor: default;
+}
+
 textarea {
   resize: none;
 }

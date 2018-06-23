@@ -1,5 +1,6 @@
 import PageLayout from '../components/content/PageLayout.js';
 import Config from '../config.js';
+import Content from '../components/content/Content.js';
 import CreateObj from '../components/general/create.js';
 import OrgDisplay from '../components/organizations/OrgDisplay';
 import TeamDisplay from '../components/teams/TeamDisplay';
@@ -34,10 +35,12 @@ class Teams extends React.Component {
   }
 
   fetchData() {
+    // Only fetch the data we are displaying an organization
     if (!this.state.org) {
       return;
     }
 
+    // Retrieve that data for the requested org (as specified in the url)
     const url = Config.serverURL + '/organizations/' + this.state.orgName;
     const orgSuccess = (json) => {
       const data = JSON.parse(json);
@@ -48,6 +51,7 @@ class Teams extends React.Component {
 
     getData(url, orgSuccess);
 
+    // Retrieve the list of teams belonging to the specified org
     const teamsURL = url + '/teams';
     const success = (json) => {
       const data = JSON.parse(json);
@@ -63,6 +67,7 @@ class Teams extends React.Component {
     this.fetchData();
   }
 
+  // Build content determines which type of display to use depending on the url
   buildContent() {
     if (this.state.create) {
       return (<CreateObj type={`organizations/${this.state.orgName}/teams`}
@@ -75,10 +80,15 @@ class Teams extends React.Component {
       );
     }
 
+    // TODO: We should limit the number of teams displayed for an org
     return (
       <div className='org-container'>
         <OrgDisplay createdOn={this.state.org['created-on']} members={this.state.org['member-count']} name={this.state.orgName}/>
         <TwoPaneSplit type={`organizations/${this.state.orgName}`} left={half(this.state.teams)} right={half(this.state.teams, false)} />
+        <div className='org-top-questions'>
+          <div className='org-questions-header'>Top Questions</div>
+          <Content org={this.state.orgName} />
+        </div>
       </div>
     );
   }

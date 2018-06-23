@@ -59,7 +59,7 @@ class Ask extends React.Component {
     if (this.state.org === KB_DEFAULT_ORG) {
       url = Config.serverURL + '/questions';
     } else {
-      url = Config.serverURL + `/organizations/${this.state.org}/questions`;
+      url = Config.serverURL + `/ organizations/${this.state.org}/questions`;
     }
 
     const data = {

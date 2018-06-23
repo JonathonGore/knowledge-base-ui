@@ -18,14 +18,15 @@ class Content extends React.Component {
     };
   }
 
+  // Builds the correct url for requesting questions depending on the given props
   buildURL() {
-    if (localStorage && localStorage.getItem(KB_ORG_SELECTION) &&
-      localStorage.getItem(KB_ORG_SELECTION) !== KB_DEFAULT_ORG) {
-      return `${Config.serverURL}/organizations/${localStorage.getItem(KB_ORG_SELECTION)}/questions`;
-    }
-
     if (this.props.user) {
       return `${Config.serverURL}/questions?user=${this.props.user}`;
+    } else if (this.props.org) {
+      return `${Config.serverURL}/organizations/${this.props.org}/questions`;
+    } else if (localStorage && localStorage.getItem(KB_ORG_SELECTION) &&
+      localStorage.getItem(KB_ORG_SELECTION) !== KB_DEFAULT_ORG) {
+      return `${Config.serverURL}/organizations/${localStorage.getItem(KB_ORG_SELECTION)}/questions`;
     }
 
     return `${Config.serverURL}/questions`;
@@ -49,6 +50,10 @@ class Content extends React.Component {
     );
   }
 }
+
+Content.propTypes = {
+  org: PropTypes.string,
+};
 
 const ContentDisplay = (props) => {
   if (props.posts.length === 0) {

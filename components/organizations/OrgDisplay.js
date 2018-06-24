@@ -1,9 +1,9 @@
 import Router from 'next/router';
 import Config from '../../config.js';
 import Button from '../misc/button.js';
-import { Header } from '../general/display';
 import moment from 'moment';
-import { getData } from '../../util/util.js';
+import { Header } from '../general/display';
+import { getData, getUsername } from '../../util/util.js';
 import '../../styles.scss';
 
 const DATE_FORMAT = 'MMM Do YYYY';
@@ -18,12 +18,29 @@ const Stats = (props) => (
 class OrgDisplay extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      settings: '',
+      admins: [],
+    };
+  }
+
+  buildSettings() {
+    // Only display the settings button if the logged in user is an admin
+    const username = getUsername();
+
+    if (username === '' || this.state.admins.length === 0 ||
+      !this.state.admins.includes(username)) {
+      return;
+    }
+
+    this.setState({
+      settings: <Button text='Settings' icon='cog'/>
+    });
   }
 
   onClick(e) {
     e.preventDefault();
-
-    console.log('Clicked org display');
   }
 
   componentDidMount() {
@@ -36,6 +53,19 @@ class OrgDisplay extends React.Component {
     };
 
     getData(url, updateState);
+
+    // Determine if the user is an admin
+    const adminsURL = url + '/members?admin=true';
+    const adminsSuccess = (json) => {
+      const data = JSON.parse(json);
+      this.setState({
+          admins: data
+      });
+
+      this.buildSettings();
+    };
+
+    getData(adminsURL, adminsSuccess);
   }
 
   render() {
@@ -43,7 +73,7 @@ class OrgDisplay extends React.Component {
       <div className='org-display'>
         <Header onClick={() => { Router.push('/organizations/' + this.props.name + '/create'); }}
           info={<Stats createdOn={this.props.createdOn} members={this.props.members}/>}
-          title={this.props.name} buttonText={'Create Team'}/>
+          title={this.props.name} buttonText={'Create Team'} settings={this.state.settings}/>
       </div>
     );
   }

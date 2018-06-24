@@ -2,10 +2,8 @@ import BasicLayoutLegacy from '../BasicLayoutLegacy.js';
 import MenuPanel from '../MenuPanel.js';
 import KBNavbar from '../navbar/Navbar.js';
 import Config from '../../config.js';
-import { getCookie, getData } from '../../util/util.js';
+import { getUsername, getData } from '../../util/util.js';
 import '../../styles.scss';
-
-const COOKIE_NAME = 'kb-public';
 
 class PageLayout extends React.Component {
   constructor (props){
@@ -24,7 +22,7 @@ class PageLayout extends React.Component {
 	}
 
   componentDidMount() {
-    const uname = getCookie(COOKIE_NAME);
+    const uname = getUsername();
 
     this.setState({
       username: uname,

@@ -15,6 +15,13 @@ export const Header = (props) => (
           </span>
         ) : ''
       }
+      {
+        props.settings ? (
+          <span className='display-settings-container'>
+            {props.settings}
+          </span>
+        ) : ''
+      }
     </div>
     <div className='display-info'>{props.info}</div>
   </div>
@@ -24,14 +31,16 @@ Header.propTypes = {
   info: PropTypes.node,
   title: PropTypes.string,
   buttonText: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  settings: PropTypes.node,
 };
 
 Header.defaultProps = {
   info: '',
   title: 'Header',
   buttonText: 'Create',
-  onClick: () => { console.log('Click'); }
+  onClick: () => { console.log('Click'); },
+  settings: '',
 };
 
 export const TwoPaneSplit = (props) => {

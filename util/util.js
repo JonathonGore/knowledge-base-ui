@@ -1,5 +1,7 @@
 import $ from 'jquery';
 
+const USERNAME_COOKIE = 'kb-public';
+
 // Computes either the first or second half of the array
 export const half = (arr, first=true) => {
   let i = 0;
@@ -25,6 +27,10 @@ export const getCookie = (name) => {
 
   return '';
 };
+
+export const getUsername = () => {
+  return getCookie(USERNAME_COOKIE);
+}
 
 export const getData = (url, onSuccess, onFailure, withCredentials=true) => {
   $.ajax({

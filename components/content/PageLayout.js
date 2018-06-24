@@ -49,7 +49,7 @@ class PageLayout extends React.Component {
             <KBNavbar orgs={this.state.orgs} username={this.state.username}
               isLoggedIn={this.state.isLoggedIn} onLogout={this.logout}/>
             <div className='main-container-content'>
-              {this.props.content}
+              {this.props.content || this.props.children}
             </div>
           </div>
         </div>

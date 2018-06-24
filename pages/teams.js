@@ -1,13 +1,15 @@
 import PageLayout from '../components/content/PageLayout.js';
+import Button from '../components/misc/button.js';
 import Config from '../config.js';
 import Content from '../components/content/Content.js';
 import CreateObj from '../components/general/create.js';
 import OrgDisplay from '../components/organizations/OrgDisplay';
 import TeamDisplay from '../components/teams/TeamDisplay';
+import Settings from '../components/organizations/Settings';
 import Router from 'next/router';
 import { Header, TwoPaneSplit } from '../components/general/display.js';
 import { withRouter } from 'next/router';
-import { getData, half } from '../util/util.js';
+import { getData, half, getUsername } from '../util/util.js';
 import '../styles.scss';
 
 class Teams extends React.Component {
@@ -17,8 +19,12 @@ class Teams extends React.Component {
     this.fetchData = this.fetchData.bind(this);
 
     this.state = {
+      admins: [],
       teams: [],
       org: {},
+      showSettings: false,
+      username: '',
+      settings: '',
       create: props.router.query['create'] || false,
       orgName: props.router.query['org'] || false,
       teamName: props.router.query['team'] || false,
@@ -34,6 +40,19 @@ class Teams extends React.Component {
     Router.push('/organizations/' + this.state.orgName);
   }
 
+  buildSettings() {
+    // Only display the settings button if the logged in user is an admin
+    if (this.state.username === '' || this.state.admins.length === 0 ||
+      !this.state.admins.includes(this.state.username)) {
+      return;
+    }
+
+    this.setState({
+      settings: <Button text='Settings' icon='cog'
+        onClick={() => this.setState({showSettings: !this.state.showSettings})}/>
+    });
+  }
+
   fetchData() {
     // Only fetch the data we are displaying an organization
     if (!this.state.org) {
@@ -47,6 +66,7 @@ class Teams extends React.Component {
       this.setState({
         org: data
       });
+      this.buildSettings();
     };
 
     getData(url, orgSuccess);
@@ -61,9 +81,25 @@ class Teams extends React.Component {
     };
 
     getData(teamsURL, success);
+
+    // Determine if the user is an admin
+    const adminsURL = url + '/members?admin=true';
+    const adminsSuccess = (json) => {
+      const data = JSON.parse(json);
+      this.setState({
+          admins: data
+      });
+      this.buildSettings();
+    };
+
+    getData(adminsURL, adminsSuccess);
   }
 
   componentDidMount() {
+    this.setState({
+      username: getUsername(),
+    });
+
     this.fetchData();
   }
 
@@ -83,19 +119,31 @@ class Teams extends React.Component {
     // TODO: We should limit the number of teams displayed for an org
     return (
       <div className='org-container'>
-        <OrgDisplay createdOn={this.state.org['created-on']} members={this.state.org['member-count']} name={this.state.orgName}/>
-        <TwoPaneSplit type={`organizations/${this.state.orgName}`} left={half(this.state.teams)} right={half(this.state.teams, false)} />
-        <div className='org-top-questions'>
-          <div className='org-questions-header'>Top Questions</div>
-          <Content org={this.state.orgName} />
-        </div>
+        <OrgDisplay settings={this.state.settings}
+          createdOn={this.state.org['created-on']} members={this.state.org['member-count']} name={this.state.orgName}/>
+          {
+            this.state.showSettings ? (
+              <Settings />
+            ) : (
+              <div>
+                <TwoPaneSplit type={`organizations/${this.state.orgName}`}
+                  left={half(this.state.teams)} right={half(this.state.teams, false)} />
+                <div className='org-top-questions'>
+                  <div className='org-questions-header'>Top Questions</div>
+                  <Content org={this.state.orgName} />
+                </div>
+              </div>
+            )
+          }
       </div>
     );
   }
 
   render() {
     return (
-      <PageLayout content={this.buildContent()} />
+      <PageLayout>
+        {this.buildContent()}
+      </PageLayout>
     );
   }
 }

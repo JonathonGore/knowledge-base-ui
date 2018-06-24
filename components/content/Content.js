@@ -3,6 +3,8 @@ import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
 import PostPreview from './previews/PostPreview.js';
 import React from 'react';
+import Router from 'next/router';
+import Button from '../misc/button.js';
 import { getData } from '../../util/util.js';
 import { KB_ORG_SELECTION, KB_DEFAULT_ORG } from '../../constants/constants.js';
 import '../../styles.scss';
@@ -14,6 +16,7 @@ class Content extends React.Component {
     this.buildURL = this.buildURL.bind(this);
 
     this.state = {
+      loading: true,
       posts: [],
     };
   }
@@ -34,7 +37,10 @@ class Content extends React.Component {
 
   requestPosts() {
     const onSuccess = (json) => {
-      this.setState({posts:  JSON.parse(json)});
+      this.setState({
+        posts: JSON.parse(json),
+        loading: false,
+      });
     };
 
     getData(this.buildURL(), onSuccess);
@@ -46,7 +52,7 @@ class Content extends React.Component {
 
   render() {
     return (
-      <ContentDisplay posts={this.state.posts}/>
+      <ContentDisplay loading={this.state.loading} posts={this.state.posts}/>
     );
   }
 }
@@ -56,8 +62,17 @@ Content.propTypes = {
 };
 
 const ContentDisplay = (props) => {
-  if (props.posts.length === 0) {
+  if (props.loading) {
     return (<div className='spinner-wrapper'><FontAwesome name='spinner' spin /></div>);
+  } else if (!props.loading && props.posts.length === 0) {
+    return (
+      <div className='no-questions-container'>
+        <div className='no-questions-text'>
+          No questions have been asked yet.
+        </div>
+        <Button onClick={() => (Router.push('/ask'))}text={'Ask the first question'}/>
+      </div>
+    );
   }
 
   const listItems = props.posts.map(post => (<PostPreview key={post.id} {...post} />));
@@ -69,10 +84,12 @@ const ContentDisplay = (props) => {
 }
 
 ContentDisplay.propTypes = {
+  loading: PropTypes.bool,
   posts: PropTypes.array,
 };
 
 ContentDisplay.defaultProps = {
+  loading: false,
   posts: [],
 };
 

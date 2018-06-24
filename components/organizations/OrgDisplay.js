@@ -1,4 +1,3 @@
-import Button from '../misc/button.js';
 import Config from '../../config.js';
 import DismissableAlert from '../alerts/DismissableAlert.js';
 import Router from 'next/router';
@@ -31,18 +30,6 @@ class OrgDisplay extends React.Component {
   addError(title, message) {
     this.setState({
       error: <DismissableAlert type='danger' title={title} message={message} />
-    });
-  }
-
-  buildSettings() {
-    // Only display the settings button if the logged in user is an admin
-    if (this.state.username === '' || this.state.admins.length === 0 ||
-      !this.state.admins.includes(this.state.username)) {
-      return;
-    }
-
-    this.setState({
-      settings: <Button text='Settings' icon='cog'/>
     });
   }
 
@@ -82,8 +69,6 @@ class OrgDisplay extends React.Component {
       this.setState({
           admins: data
       });
-
-      this.buildSettings();
     };
 
     getData(adminsURL, adminsSuccess);
@@ -97,7 +82,7 @@ class OrgDisplay extends React.Component {
         </div>
         <Header onClick={() => { this.createClicked() }}
           info={<Stats createdOn={this.props.createdOn} members={this.props.members}/>}
-          title={this.props.name} buttonText={'Create Team'} settings={this.state.settings}/>
+          title={this.props.name} buttonText={'Create Team'} settings={this.props.settings}/>
       </div>
     );
   }

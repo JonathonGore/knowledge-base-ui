@@ -16,7 +16,6 @@ class Profile extends React.Component {
     const url = Config.serverURL + '/profile';
     const success = (json) => {
       const data = JSON.parse(json);
-      console.log(data);
       this.setState({
         ...data
       });

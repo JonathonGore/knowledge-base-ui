@@ -1,6 +1,7 @@
-import Router from 'next/router';
-import Config from '../../config.js';
 import Button from '../misc/button.js';
+import Config from '../../config.js';
+import DismissableAlert from '../alerts/DismissableAlert.js';
+import Router from 'next/router';
 import moment from 'moment';
 import { Header } from '../general/display';
 import { getData, getUsername } from '../../util/util.js';
@@ -20,17 +21,23 @@ class OrgDisplay extends React.Component {
     super(props);
 
     this.state = {
-      settings: '',
       admins: [],
+      error: '',
+      settings: '',
+      username: '',
     };
+  }
+
+  addError(title, message) {
+    this.setState({
+      error: <DismissableAlert type='danger' title={title} message={message} />
+    });
   }
 
   buildSettings() {
     // Only display the settings button if the logged in user is an admin
-    const username = getUsername();
-
-    if (username === '' || this.state.admins.length === 0 ||
-      !this.state.admins.includes(username)) {
+    if (this.state.username === '' || this.state.admins.length === 0 ||
+      !this.state.admins.includes(this.state.username)) {
       return;
     }
 
@@ -39,11 +46,25 @@ class OrgDisplay extends React.Component {
     });
   }
 
-  onClick(e) {
-    e.preventDefault();
+  createClicked() {
+    if (this.state.username === '' || this.state.admins.length === 0) {
+      this.addError('Unable to create team.', 'Action unavailable at this time. Try again later.');
+      return;
+    }
+
+    if (!this.state.admins.includes(this.state.username)) {
+      this.addError('Unable to create team.', 'Must be member of organization to create team.');
+      return;
+    }
+
+     Router.push('/organizations/' + this.props.name + '/create');
   }
 
   componentDidMount() {
+    this.setState({
+      username: getUsername()
+    });
+
     const url = Config.serverURL + '/organizations/' + this.props.name;
     const updateState = (json) => {
       const data = JSON.parse(json);
@@ -71,7 +92,10 @@ class OrgDisplay extends React.Component {
   render() {
     return (
       <div className='org-display'>
-        <Header onClick={() => { Router.push('/organizations/' + this.props.name + '/create'); }}
+        <div className='login-error-container'>
+          {this.state.error}
+        </div>
+        <Header onClick={() => { this.createClicked() }}
           info={<Stats createdOn={this.props.createdOn} members={this.props.members}/>}
           title={this.props.name} buttonText={'Create Team'} settings={this.state.settings}/>
       </div>

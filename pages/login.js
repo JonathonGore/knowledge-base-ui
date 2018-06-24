@@ -17,9 +17,10 @@ class Login extends React.Component {
     this.prepareData = this.prepareData.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validUserPass = this.validUserPass.bind(this);
+    
     this.username = '';
     this.password = '';
-    this.state = { error: ''};
+    this.state = {error: ''};
   }
 
   buildError(message) {

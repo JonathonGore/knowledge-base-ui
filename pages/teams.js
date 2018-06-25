@@ -119,7 +119,8 @@ class Teams extends React.Component {
     // TODO: We should limit the number of teams displayed for an org
     return (
       <div className='org-container'>
-        <OrgDisplay settings={this.state.settings}
+        <OrgDisplay admins={this.state.admins} username={this.state.username}
+          settings={this.state.settings} org={this.state.org}
           createdOn={this.state.org['created-on']} members={this.state.org['member-count']} name={this.state.orgName}/>
           {
             this.state.showSettings ? (

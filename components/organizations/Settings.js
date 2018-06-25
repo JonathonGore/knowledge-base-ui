@@ -1,5 +1,6 @@
 import React from 'react';
 import AddMembers from '../general/AddMembers';
+import './styles.scss';
 
 class Settings extends React.Component {
   constructor(props) {

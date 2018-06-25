@@ -37,8 +37,8 @@ Header.propTypes = {
 
 Header.defaultProps = {
   info: '',
-  title: 'Header',
-  buttonText: 'Create',
+  title: '',
+  buttonText: '',
   onClick: () => { console.log('Click'); },
   settings: '',
 };

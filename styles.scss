@@ -424,25 +424,6 @@ textarea {
   font-size: 32px;
 }
 
-/* Org display */
-.org-display {
-  margin-top: 60px;
-}
-
-.org-display-members {
-  margin-left: 8px;
-}
-
-.org-display-stats {
-  color: $dark_gray;
-}
-
-.org-questions-header {
-  font-weight: 500;
-  font-size: 18px;
-  margin-bottom: 8px;
-}
-
 /* Team-Display */
 .team-display {
   margin-top: 60px;
@@ -622,9 +603,26 @@ textarea {
   color: $dark_gray;
 }
 
-/* Org Settings */
-.org-settings-header {
-  font-weight: 500;
-  font-size: 24px;
+/* Add Members */
+.add-members-container {
   margin-top: 8px;
+}
+
+.add-members-button {
+  margin-bottom: 2px;
+}
+
+.add-members-header {
+  font-size: 16px;
+}
+
+/* KB Input */
+.kb-text-input:focus {
+  outline-color: #f0f8ff;
+}
+
+.kb-text-input {
+  padding: 4px;
+  height: 32px;
+  margin-right: 8px;
 }

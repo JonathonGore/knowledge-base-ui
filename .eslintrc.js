@@ -26,6 +26,7 @@ module.exports = {
             "error",
             "unix"
         ],
+        "no-debugger": "error",
         "quotes": [
             "error",
             "single"
@@ -33,6 +34,12 @@ module.exports = {
         "semi": [
             "error",
             "always"
+        ],
+        "react/no-unused-state": [
+            "error"
+        ],
+        "react/no-will-update-set-state": [
+            "error"
         ]
     }
 };

@@ -1,5 +1,6 @@
 import Button from '../misc/button';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const ADD_MEMBER_TEXT = 'Add member:';
 
@@ -21,8 +22,9 @@ class AddMembers extends React.Component {
     return (
       <div className='add-members-container'>
         <div className='add-members-header'>{ADD_MEMBER_TEXT}</div>
-        <input type='text' onChange={(e) => this.setState({member: e.target.value})} placeholder='Member Name' />
-        <Button onClick={this.onClick} />
+        <input className='kb-text-input' type='text'
+          onChange={(e) => this.setState({member: e.target.value})} placeholder='Member Name' />
+        <Button className={'add-members-button'} text={'Add'} style={'primary'} onClick={this.onClick} />
       </div>
     );
   }
@@ -33,7 +35,7 @@ AddMembers.propTypes = {
 };
 
 AddMembers.defaultProps = {
-  onSubmit: (val) => { console.log(val); },
+  onSubmit: () => {},
 };
 
 export default AddMembers;

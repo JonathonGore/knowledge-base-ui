@@ -63,7 +63,7 @@ class OrgDisplay extends React.Component {
         </div>
         <Header onClick={() => { this.createClicked(); }}
           info={<Stats createdOn={this.props.org['created-on']} members={this.props.org['member-count']}/>}
-          title={this.props.name} buttonText={CREATE_TEAM_TEXT} settings={this.props.settings}/>
+          title={this.props.org.name} buttonText={CREATE_TEAM_TEXT} settings={this.props.settings}/>
       </div>
     );
   }

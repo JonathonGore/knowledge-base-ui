@@ -7,7 +7,8 @@ import OrgDisplay from '../components/organizations/OrgDisplay';
 import TeamDisplay from '../components/teams/TeamDisplay';
 import Settings from '../components/organizations/Settings';
 import Router from 'next/router';
-import { Header, TwoPaneSplit } from '../components/general/display.js';
+import React from 'react';
+import { TwoPaneSplit } from '../components/general/display.js';
 import { withRouter } from 'next/router';
 import { getData, half, getUsername } from '../util/util.js';
 import '../styles.scss';
@@ -24,7 +25,6 @@ class Teams extends React.Component {
       org: {},
       showSettings: false,
       username: '',
-      settings: '',
       create: props.router.query['create'] || false,
       orgName: props.router.query['org'] || false,
       teamName: props.router.query['team'] || false,
@@ -44,13 +44,14 @@ class Teams extends React.Component {
     // Only display the settings button if the logged in user is an admin
     if (this.state.username === '' || this.state.admins.length === 0 ||
       !this.state.admins.includes(this.state.username)) {
-      return;
+      return '';
     }
 
-    this.setState({
-      settings: <Button text='Settings' icon='cog'
+    return (
+      <Button text={this.state.showSettings ? 'Go back' : 'Settings'}
+        icon={this.state.showSettings ? '' : 'cog'}
         onClick={() => this.setState({showSettings: !this.state.showSettings})}/>
-    });
+    );
   }
 
   fetchData() {
@@ -66,7 +67,6 @@ class Teams extends React.Component {
       this.setState({
         org: data
       });
-      this.buildSettings();
     };
 
     getData(url, orgSuccess);
@@ -87,9 +87,8 @@ class Teams extends React.Component {
     const adminsSuccess = (json) => {
       const data = JSON.parse(json);
       this.setState({
-          admins: data
+        admins: data
       });
-      this.buildSettings();
     };
 
     getData(adminsURL, adminsSuccess);
@@ -120,22 +119,21 @@ class Teams extends React.Component {
     return (
       <div className='org-container'>
         <OrgDisplay admins={this.state.admins} username={this.state.username}
-          settings={this.state.settings} org={this.state.org}
-          createdOn={this.state.org['created-on']} members={this.state.org['member-count']} name={this.state.orgName}/>
-          {
-            this.state.showSettings ? (
-              <Settings />
-            ) : (
-              <div>
-                <TwoPaneSplit type={`organizations/${this.state.orgName}`}
-                  left={half(this.state.teams)} right={half(this.state.teams, false)} />
-                <div className='org-top-questions'>
-                  <div className='org-questions-header'>Top Questions</div>
-                  <Content org={this.state.orgName} />
-                </div>
+          settings={this.buildSettings()} org={this.state.org}/>
+        {
+          this.state.showSettings ? (
+            <Settings />
+          ) : (
+            <div>
+              <TwoPaneSplit type={`organizations/${this.state.orgName}`}
+                left={half(this.state.teams)} right={half(this.state.teams, false)} />
+              <div className='org-top-questions'>
+                <div className='org-questions-header'>Top Questions</div>
+                <Content org={this.state.orgName} />
               </div>
-            )
-          }
+            </div>
+          )
+        }
       </div>
     );
   }

@@ -81,7 +81,7 @@ const ContentDisplay = (props) => {
       {listItems}
     </div>
   );
-}
+};
 
 ContentDisplay.propTypes = {
   loading: PropTypes.bool,

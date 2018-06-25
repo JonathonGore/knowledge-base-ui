@@ -8,7 +8,7 @@ import '../../styles.scss';
 class PageLayout extends React.Component {
   constructor (props){
     super(props);
-		this.logout = this.logout.bind(this);
+    this.logout = this.logout.bind(this);
 
     this.state = {
       username: '',
@@ -17,9 +17,9 @@ class PageLayout extends React.Component {
     };
   }
 
-	logout() {
-		this.setState({ isLoggedIn: false });
-	}
+  logout() {
+    this.setState({ isLoggedIn: false });
+  }
 
   componentDidMount() {
     const uname = getUsername();

@@ -10,7 +10,7 @@ class AddMembers extends React.Component {
 
     this.state = {
       member: '',
-    }
+    };
   }
 
   onClick() {

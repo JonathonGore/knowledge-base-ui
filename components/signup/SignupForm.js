@@ -64,11 +64,11 @@ class SignupForm extends React.Component {
     const surl = Config.serverURL + '/users';
     const error = (text) => {
       this.state.addError(this.buildError(JSON.parse(text)['message']));
-    }
+    };
     const success = (json) => {
       const lurl = Config.serverURL + '/login';
-      postData(lurl, preparedData, () => { Router.push('/') }, error)
-    }
+      postData(lurl, preparedData, () => { Router.push('/'); }, error);
+    };
 
     postData(surl, preparedData, success, error, false);
   }

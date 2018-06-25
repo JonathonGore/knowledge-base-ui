@@ -10,7 +10,7 @@ import Router from 'next/router';
 import React from 'react';
 import { TwoPaneSplit } from '../components/general/display.js';
 import { withRouter } from 'next/router';
-import { getData, half, getUsername } from '../util/util.js';
+import { postData, getData, half, getUsername } from '../util/util.js';
 import '../styles.scss';
 
 class Teams extends React.Component {
@@ -18,6 +18,7 @@ class Teams extends React.Component {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
     this.fetchData = this.fetchData.bind(this);
+    this.addOrgMember = this.addOrgMember.bind(this);
 
     this.state = {
       admins: [],
@@ -102,6 +103,16 @@ class Teams extends React.Component {
     this.fetchData();
   }
 
+  addOrgMember(name) {
+    //
+    const url = Config.serverURL + '/organizations/' + this.state.orgName + '/members';
+    const data = {
+      username: name,
+      admin: false,
+    }
+    postData(url, data);
+  }
+
   // Build content determines which type of display to use depending on the url
   buildContent() {
     if (this.state.create) {
@@ -122,7 +133,7 @@ class Teams extends React.Component {
           settings={this.buildSettings()} org={this.state.org}/>
         {
           this.state.showSettings ? (
-            <Settings />
+            <Settings onSubmit={this.addOrgMember}/>
           ) : (
             <div>
               <TwoPaneSplit type={`organizations/${this.state.orgName}`}

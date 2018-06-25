@@ -11,7 +11,7 @@ class Settings extends React.Component {
     return (
       <div className='org-settings-container'>
         <div className='org-settings-header'>Settings</div>
-        <AddMembers />
+        <AddMembers onSubmit={this.props.onSubmit}/>
       </div>
     );
   }

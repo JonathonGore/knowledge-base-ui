@@ -29,10 +29,9 @@ class Organizations extends React.Component {
     };
   }
 
-  onSubmit() {
-    this.setState({create: false});
-    this.fetchData();
-    Router.push('/organizations');
+  onSubmit(name) {
+    // Once new org is created redirect user to the orgs page.
+    Router.push(`/organizations/${name}`);
   }
 
   fetchData() {

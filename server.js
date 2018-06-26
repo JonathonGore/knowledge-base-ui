@@ -18,7 +18,7 @@ app.prepare()
     });
 
     server.get('/organizations/:org', (req, res) => {
-      app.render(req, res, '/teams', { org: req.params.org });
+      app.render(req, res, '/teams', { create: false, org: req.params.org });
     });
 
     server.get('/organizations/:org/create', (req, res) => {

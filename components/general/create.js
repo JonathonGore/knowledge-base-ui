@@ -30,7 +30,7 @@ class CreateObj extends React.Component {
     const url = Config.serverURL + '/' + this.props.type;
     const data = { name: this.content.value };
     const onSuccess = () => {
-      this.props.onSubmit();
+      this.props.onSubmit(this.content.value);
     };
 
     const onFail = (data) => {

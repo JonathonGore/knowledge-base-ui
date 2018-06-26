@@ -19,6 +19,16 @@ export const half = (arr, first=true) => {
   return result;
 };
 
+export const singular = (text) => {
+  if (text.length === 0) {
+    return '';
+  } else if (text.charAt(text.length - 1) === 's') {
+    return text.substring(0, text.length - 1);
+  }
+
+  return text;
+}
+
 export const getCookie = (name) => {
   var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
   if (match) {

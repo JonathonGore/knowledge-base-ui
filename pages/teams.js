@@ -13,6 +13,8 @@ import { withRouter } from 'next/router';
 import { postData, getData, half, getUsername } from '../util/util.js';
 import '../styles.scss';
 
+const TEAM_SUBTEXT = 'Teams allow you to manage your knowledge groups within an organization.';
+
 class Teams extends React.Component {
   constructor(props) {
     super(props);
@@ -117,7 +119,8 @@ class Teams extends React.Component {
   buildContent() {
     if (this.state.create) {
       return (<CreateObj type={`organizations/${this.state.orgName}/teams`}
-        buttonText='Create Team' placeholder='Create team...' onSubmit={this.onSubmit}/>);
+        subtext={TEAM_SUBTEXT}
+        buttonText='Create Team' title='Create Team' onSubmit={this.onSubmit}/>);
     }
 
     if (this.state.orgName && this.state.teamName) {

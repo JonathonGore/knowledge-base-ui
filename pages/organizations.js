@@ -9,6 +9,7 @@ import '../styles.scss';
 
 const ORGS_DESCRIPTION = 'Organizations allow you to organize questions in public or private for your company.';
 const POPULAR_ORGS = 'Popular Organizations:';
+const ORG_SUBTEXT = 'Organizations allow you to manage your knowledge in one convenient location.';
 
 const OrgsInfo = (props) => (
   <div className='org-info'>
@@ -51,8 +52,8 @@ class Organizations extends React.Component {
 
   buildContent() {
     if (this.state.create) {
-      return <CreateObj type='organizations' buttonText='Create Organization'
-        placeholder='Create organization...' onSubmit={this.onSubmit}/>;
+      return <CreateObj title='Create Organization' type='organizations' buttonText='Create Organization'
+        onSubmit={this.onSubmit} subtext={ORG_SUBTEXT}/>;
     }
 
     return (

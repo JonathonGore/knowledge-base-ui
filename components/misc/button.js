@@ -18,12 +18,12 @@ class Button extends React.Component {
 
   render() {
     return (
-      <button className={`kb-btn ${this.state.style}`} onClick={this.props.onClick} type='button'>
+      <button className={`kb-btn ${this.state.style} ${this.props.className}`} onClick={this.props.onClick} type='button'>
         <span className='kb-btn-text'>
           {
             this.props.icon ? (
               <span className='btn-icon-container'>
-                <FontAwesome name={this.props.icon} className="menu-header-icon"/>
+                <FontAwesome name={this.props.icon} className='menu-header-icon'/>
               </span>
             ) : ''
           }

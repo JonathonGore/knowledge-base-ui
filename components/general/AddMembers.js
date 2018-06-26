@@ -24,7 +24,7 @@ class AddMembers extends React.Component {
         <div className='add-members-header'>{ADD_MEMBER_TEXT}</div>
         <input className='kb-text-input' type='text'
           onChange={(e) => this.setState({member: e.target.value})} placeholder='Member Name' />
-        <Button className={'add-members-button'} text={'Add'} style={'primary'} onClick={this.onClick} />
+        <Button className='add-members-button' text={'Add'} style={'primary'} onClick={this.onClick} />
       </div>
     );
   }

@@ -12,6 +12,7 @@ import '../../styles.scss';
 class Content extends React.Component {
   constructor (props){
     super(props);
+    this.onAskQuestion = this.onAskQuestion.bind(this);
     this.requestPosts = this.requestPosts.bind(this);
     this.buildURL = this.buildURL.bind(this);
 
@@ -19,6 +20,14 @@ class Content extends React.Component {
       loading: true,
       posts: [],
     };
+  }
+
+  onAskQuestion() {
+    if (this.props.org) {
+      localStorage.setItem(KB_ORG_SELECTION, this.props.org);
+    }
+
+    Router.push('/ask');
   }
 
   // Builds the correct url for requesting questions depending on the given props
@@ -52,7 +61,7 @@ class Content extends React.Component {
 
   render() {
     return (
-      <ContentDisplay loading={this.state.loading} posts={this.state.posts}/>
+      <ContentDisplay onClick={this.onAskQuestion} loading={this.state.loading} posts={this.state.posts}/>
     );
   }
 }
@@ -70,7 +79,7 @@ const ContentDisplay = (props) => {
         <div className='no-questions-text'>
           No questions have been asked yet.
         </div>
-        <Button onClick={() => (Router.push('/ask'))}text={'Ask the first question'}/>
+        <Button onClick={props.onClick}text={'Ask the first question'}/>
       </div>
     );
   }
@@ -85,6 +94,7 @@ const ContentDisplay = (props) => {
 
 ContentDisplay.propTypes = {
   loading: PropTypes.bool,
+  onClick: PropTypes.func,
   posts: PropTypes.array,
 };
 

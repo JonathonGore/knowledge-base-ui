@@ -1,6 +1,8 @@
 import Button from '../misc/button';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FormControl } from 'react-bootstrap';
+import './styles.scss';
 
 const ADD_MEMBER_TEXT = 'Add member:';
 
@@ -22,8 +24,8 @@ class AddMembers extends React.Component {
     return (
       <div className='add-members-container'>
         <div className='add-members-header'>{ADD_MEMBER_TEXT}</div>
-        <input className='kb-text-input' type='text'
-          onChange={(e) => this.setState({member: e.target.value})} placeholder='Member Name' />
+        <FormControl className='members-input' type='text' placeholder='Member Name'
+          onChange={(e) => this.setState({member: e.target.value})} />
         <Button className='add-members-button' text={'Add'} style={'primary'} onClick={this.onClick} />
       </div>
     );

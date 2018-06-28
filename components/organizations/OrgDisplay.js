@@ -58,6 +58,7 @@ class OrgDisplay extends React.Component {
   render() {
     return (
       <div className='org-display'>
+        {this.props.children}
         <div className='login-error-container'>
           {this.state.error}
         </div>

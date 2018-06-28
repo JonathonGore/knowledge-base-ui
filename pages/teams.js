@@ -3,6 +3,7 @@ import Button from '../components/misc/button.js';
 import Config from '../config.js';
 import Content from '../components/content/Content.js';
 import CreateObj from '../components/general/create.js';
+import DismissableAlert from '../components/alerts/DismissableAlert';
 import OrgDisplay from '../components/organizations/OrgDisplay';
 import TeamDisplay from '../components/teams/TeamDisplay';
 import Settings from '../components/organizations/Settings';
@@ -26,6 +27,7 @@ class Teams extends React.Component {
       admins: [],
       teams: [],
       org: {},
+      message: '',
       showSettings: false,
       username: '',
       create: props.router.query['create'] || false,
@@ -106,13 +108,32 @@ class Teams extends React.Component {
   }
 
   addOrgMember(name) {
-    //
     const url = Config.serverURL + '/organizations/' + this.state.orgName + '/members';
     const data = {
       username: name,
       admin: false,
     }
-    postData(url, data);
+
+    const success = () => {
+      this.setState({
+        message: (
+          <DismissableAlert title={`Successfully add ${name} to ${this.state.orgName}`}
+            type='success'/>
+        ),
+      });
+    };
+
+    const failure = (json) => {
+        const data = JSON.parse(json);
+        this.setState({
+          message: (
+            <DismissableAlert title={`Unable to add ${name} to ${this.state.orgName}`}
+              message={data.message} type='danger'/>
+          ),
+        });
+    };
+
+    postData(url, data, success, failure);
   }
 
   // Build content determines which type of display to use depending on the url
@@ -133,7 +154,11 @@ class Teams extends React.Component {
     return (
       <div className='org-container'>
         <OrgDisplay admins={this.state.admins} username={this.state.username}
-          settings={this.buildSettings()} org={this.state.org}/>
+          settings={this.buildSettings()} org={this.state.org}>
+          <div className='org-message-container'>
+            {this.state.message}
+          </div>
+        </OrgDisplay>
         {
           this.state.showSettings ? (
             <Settings onSubmit={this.addOrgMember}/>

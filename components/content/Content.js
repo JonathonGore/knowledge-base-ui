@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import PostPreview from './previews/PostPreview.js';
 import React from 'react';
 import Router from 'next/router';
-import Button from '../misc/button.js';
+import Button from '../misc/Button.js';
 import { getData } from '../../util/util.js';
 import { KB_ORG_SELECTION, KB_DEFAULT_ORG } from '../../constants/constants.js';
 import '../../styles.scss';
@@ -61,7 +61,9 @@ class Content extends React.Component {
 
   render() {
     return (
-      <ContentDisplay onClick={this.onAskQuestion} loading={this.state.loading} posts={this.state.posts}/>
+      <div className={this.props.className}>
+        <ContentDisplay onClick={this.onAskQuestion} loading={this.state.loading} posts={this.state.posts}/>
+      </div>
     );
   }
 }

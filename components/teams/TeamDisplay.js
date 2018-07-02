@@ -1,6 +1,6 @@
 import Router from 'next/router';
 import Config from '../../config.js';
-import Button from '../misc/button.js';
+import Button from '../misc/Button.js';
 import { Header } from '../general/display';
 import moment from 'moment';
 import { getData } from '../../util/util.js';

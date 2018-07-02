@@ -428,67 +428,6 @@ textarea {
   margin-bottom: 4px;
 }
 
-/* KB-Button */
-
-/* TODO variablize these colours */
-
-.btn-icon-container {
-  float: left;
-  margin-top: 4px;
-  margin-right: 4px;
-  font-size: 12px;
-  color: $jet_black;
-}
-
-.kb-default:hover {
-  color: $jet_black;
-  background-color: #e6e6e6;
-  border-color: #adadad;
-}
-
-.kb-default {
-  color: $jet_black;
-  background-color: #fff;
-  border-color: #ccc;
-}
-
-.kb-primary:hover {
-  color: #fff;
-  background-color: #286090;
-  border-color: #204d74;
-}
-
-.kb-primary {
-  color: #fff;
-  background-color: #337ab7;
-  border-color: #2e6da4;
-}
-
-.kb-btn:hover {
-  text-decoration: none;
-}
-
-.kb-btn {
-  display: inline-block;
-  padding: 6px 12px;
-  margin-bottom: 0;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.42857143;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-image: none;
-  border-radius: 4px;
-}
-
 /* General Display */
 .display-tab {
   font-weight: 500;

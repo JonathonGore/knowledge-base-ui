@@ -1,5 +1,5 @@
 import PageLayout from '../components/content/PageLayout.js';
-import Button from '../components/misc/button.js';
+import Button from '../components/misc/Button.js';
 import Config from '../config.js';
 import Content from '../components/content/Content.js';
 import CreateObj from '../components/general/create.js';

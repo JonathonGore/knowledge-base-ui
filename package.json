@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@zeit/next-sass": "^0.2.0",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.2",
     "isomorphic-unfetch": "^2.0.0",
     "jquery": "^3.3.1",

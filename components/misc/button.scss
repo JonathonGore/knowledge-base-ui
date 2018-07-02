@@ -1,0 +1,86 @@
+$jet_black: #333;
+$dark_gray: #adadad;
+$light_gray: #e6e6e6;
+$alt_background: #007bff;
+$alt_border: #007bff;
+$alt_hov_background: #0069d9;
+$alt_hov_border: #0062cc;
+$primary_hov_background: #286090;
+$primary_hov_border: #204d74;
+$primary_background: #337ab7;
+$primary_border: #2e6da4;
+$off_white: #fff;
+
+
+/* KB-Button */
+
+/* TODO variablize these colours */
+
+.btn-icon-container {
+  float: left;
+  margin-top: 4px;
+  margin-right: 4px;
+  font-size: 12px;
+  color: $jet_black;
+}
+
+.kb-default:hover {
+  color: $jet_black;
+  background-color: $light_gray;
+  border-color: $dark_gray;
+}
+
+.kb-default {
+  color: $jet_black;
+  background-color: $off_white;
+  border-color: $dark_gray;
+}
+
+.kb-alt-primary:hover {
+  color: white;
+  background-color: $alt_hov_background;
+  border-color: $alt_hov_border;
+}
+
+.kb-alt-primary {
+  color: white;
+  background-color: $alt_background;
+  border-color: $alt_border;
+}
+
+.kb-primary:hover {
+  color: #fff;
+  background-color: $primary_hov_background;
+  border-color: $primary_hov_border;
+}
+
+.kb-primary {
+  color: #fff;
+  background-color: $primary_background;
+  border-color: $primary_border;
+}
+
+.kb-btn:hover {
+  text-decoration: none;
+}
+
+.kb-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border-radius: 4px;
+}

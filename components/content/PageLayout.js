@@ -44,7 +44,7 @@ class PageLayout extends React.Component {
   render() {
     return (
       <BasicLayoutLegacy>
-        <div className='main-container'>
+        <div className={'main-container ' + this.props.className}>
           <div className={'full-width'} >
             <KBNavbar orgs={this.state.orgs} username={this.state.username}
               isLoggedIn={this.state.isLoggedIn} onLogout={this.logout}/>

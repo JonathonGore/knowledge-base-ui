@@ -1,3 +1,4 @@
+const cookieParser = require('cookie-parser');
 const express = require('express');
 const next = require('next');
 
@@ -5,9 +6,18 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+const isLoggedIn = (cookie) => (cookie !== undefined && cookie !== '');
+
 app.prepare()
   .then(() => {
     const server = express();
+
+    server.use(cookieParser());
+
+    server.get('/', (req, res) => {
+      const loggedIn = isLoggedIn(req.cookies['kb-public']);
+      app.render(req, res, '/', { loggedIn });
+    });
 
     server.get('/questions/:id', (req, res) => {
       app.render(req, res, '/questions', { id: req.params.id });

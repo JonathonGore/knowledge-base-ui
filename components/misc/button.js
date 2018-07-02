@@ -1,8 +1,10 @@
 import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
 import React from 'react';
+import './button.scss';
 
 const classTypes = {
+  'alt-primary': 'kb-alt-primary',
   'primary': 'kb-primary',
   'default': 'kb-default',
 };
@@ -27,7 +29,7 @@ class Button extends React.Component {
               </span>
             ) : ''
           }
-          {this.props.text}
+          {this.props.text || this.props.children}
         </span>
       </button>
     );
@@ -43,7 +45,6 @@ Button.propTypes = {
 
 Button.defaultProps = {
   icon: '',
-  text: 'Click me',
   style: 'default',
   onClick: () => { console.log('Clicked'); }
 };

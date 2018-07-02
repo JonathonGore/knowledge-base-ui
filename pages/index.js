@@ -1,15 +1,18 @@
 import Content from '../components/content/Content.js';
+import LandingPage from '../components/landing/LandingPage.js';
 import PageLayout from '../components/content/PageLayout.js';
+import PropTypes from 'prop-types';
+import { withRouter } from 'next/router';
 import '../styles.scss';
 
-const buildContent = (inner) => (
-  <div className='index-wrapper'>
-    {inner}
-  </div>
-);
-
 const Index = (props) => (
-  <PageLayout content={buildContent(<Content />)} />
+  props.router.query.loggedIn ? (
+    <PageLayout>
+      <Content className='index-wrapper' />
+    </PageLayout>
+  ) : (
+    <LandingPage />
+  )
 );
 
-export default Index;
+export default withRouter(Index);

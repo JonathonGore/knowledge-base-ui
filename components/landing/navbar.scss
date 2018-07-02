@@ -1,0 +1,79 @@
+$off_white: #f8f9fa;
+
+/* Landing page navbar */
+
+.landing-navbar a {
+  text-decoration: none;
+}
+
+.bg-light {
+    background-color: #f8f9fa!important;
+}
+
+.landing-navbar {
+  align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  line-height: 1.5;
+  padding: .5rem 1rem;
+  position: relative;
+  -ms-flex-wrap: wrap;
+  -ms-flex-align: center;
+  -ms-flex-pack: justify;
+}
+
+.landing-navbar-brand {
+  color: black;
+  display: inline-block;
+  padding-top: .3125rem;
+  padding-bottom: .3125rem;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+.landing-navbar > .landing-container {
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  -ms-flex-wrap: wrap;
+  -ms-flex-align: center;
+  -ms-flex-pack: justify;
+}
+
+.landing-container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (max-width: 1400px) {
+  .landing-container {
+      max-width: 1140px;
+  }
+}
+
+@media (max-width: 992px) {
+  .landing-container {
+      max-width: 960px;
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-container {
+      max-width: 720px;
+  }
+}
+
+@media (max-width: 576px) {
+  .landing-container {
+      max-width: 540px;
+  }
+}

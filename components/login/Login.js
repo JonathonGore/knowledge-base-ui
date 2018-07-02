@@ -3,12 +3,11 @@ import DismissableAlert from '../alerts/DismissableAlert.js';
 import Logo from '../misc/Logo.js';
 import LoginForm from './LoginForm';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 import React from 'react';
 import Router from 'next/router';
 import { postData } from '../../util/util.js';
 import './styles.scss';
-
-const SIGNUP_TEXT = 'Don\'t have an accout? Signup here.';
 
 class Login extends React.Component {
   constructor (props){
@@ -49,19 +48,25 @@ class Login extends React.Component {
   render() {
     return (
       <div className='login-page'>
-        <div className='login-form-container'>
-          <Logo color='black' size={44} inline />
-          <div className='login-error-container'>
-            {this.state.error}
-          </div>
-          <LoginForm onSubmit={this.handleSubmit}/>
-          <Link href={'/signup'}>
-            <a className='login-signup-link'>{SIGNUP_TEXT}</a>
-          </Link>
+        <Logo color='black' size={44} inline />
+        <div className='login-error-container'>
+          {this.state.error}
         </div>
+        <LoginForm onSubmit={this.handleSubmit}/>
+        <Link href={'/signup'}>
+          <a className='login-signup-link'>{this.props.signupText}</a>
+        </Link>
       </div>
     );
   }
 }
+
+Login.propTypes = {
+  signupText: PropTypes.string,
+};
+
+Login.defaultProps = {
+  signupText: 'Don\'t have an accout? Signup here.',
+};
 
 export default Login;

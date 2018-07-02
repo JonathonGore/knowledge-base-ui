@@ -1,0 +1,45 @@
+/* Colours */
+
+$light_blue: #3EA9F5;
+$darker_blue: #3E95F5;
+$light_purple: #D1A8ED;
+
+/* Login page */
+
+.login-form-container {
+  margin: auto;
+  margin-top: 80px;
+  width: 30%;
+}
+
+.login-signup-link {
+  text-decoration: none;
+  color: $light_blue;
+}
+
+.login-signup-link:hover {
+  text-decoration: none;
+  color: $darker_blue;
+}
+
+/* Login Form */
+
+.login-form {
+  margin-top: 8px;
+}
+
+.login-input {
+  margin-bottom: 4px;
+  height: 50px;
+  padding-left: 20px !important;
+}
+
+.login-input:focus {
+  box-shadow: none !important;
+}
+
+.login-submit {
+  width: 100%;
+  background: $light_purple;
+  color: white;
+}

@@ -7,6 +7,7 @@ module.exports = {
 		  "eslint:recommended",
 			"plugin:react/recommended"
     ],
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -27,6 +28,10 @@ module.exports = {
             "unix"
         ],
         "no-debugger": "error",
+        "jsx-quotes": [
+          "error",
+          "prefer-single"
+        ],
         "quotes": [
             "error",
             "single"

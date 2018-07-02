@@ -13,7 +13,7 @@ class CreateObj extends React.Component {
 
     this.state = {
       error: '',
-    }
+    };
   }
 
   buildError(message) {
@@ -34,8 +34,8 @@ class CreateObj extends React.Component {
     };
 
     const onFail = (data) => {
-      this.buildError(JSON.parse(data).message)
-    }
+      this.buildError(JSON.parse(data).message);
+    };
 
     postData(url, data, onSuccess, onFail);
   }
@@ -49,7 +49,7 @@ class CreateObj extends React.Component {
           </div>
           <div className='create-text'>{this.props.title}</div>
           <div className='create-subtext'>{this.props.subtext}</div>
-          <form className='create-input-form' onSubmit={(e) => {this.onSubmit(e)}}>
+          <form className='create-input-form' onSubmit={(e) => {this.onSubmit(e);}}>
             <FormControl type='text' placeholder='Name'
               inputRef={ref => { this.content = ref; }} />
             <Button className='btn-submit-text' bsStyle='primary' type='submit'>{this.props.buttonText}</Button>
@@ -71,6 +71,6 @@ CreateObj.propTypes = {
 CreateObj.defaultProps = {
   title: 'Name',
   subtext: '',
-}
+};
 
 export default CreateObj;

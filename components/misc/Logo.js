@@ -40,10 +40,10 @@ class Logo extends React.Component {
   render() {
     return (
       <div className={this.buildClassName()} style={this.buildStyle(this.state.hoverColor, this.state.color, this.state.size)}>
-        <Link href="/">
-          <a className="logo-link">
+        <Link href='/'>
+          <a className='logo-link'>
             <FontAwesome name='database' />
-            <span className="logo-text"> Knowledge-Base</span>
+            <span className='logo-text'> Knowledge-Base</span>
           </a>
         </Link>
       </div>

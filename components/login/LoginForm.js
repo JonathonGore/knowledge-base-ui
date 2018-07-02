@@ -10,7 +10,7 @@ const onSubmitWrapper = (e, onSubmit, username, password) => {
   e.preventDefault();
 
   onSubmit(username, password);
-}
+};
 
 const LoginForm = (props) => (
   <Form className='login-form' onSubmit={(e) => onSubmitWrapper(e, props.onSubmit, username.value, password.value)}>

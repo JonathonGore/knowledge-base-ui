@@ -25,10 +25,10 @@ class MenuPanel extends React.Component {
 
   buildCollapsedMenu() {
     return (
-      <span className="menu-panel-collapsed menu-panel">
-        <div className="menu-header">
-          <div onClick={this.toggleMenu} className="menu-collapse-btn">
-            <FontAwesome name='bars' className="menu-header-icon"/>
+      <span className='menu-panel-collapsed menu-panel'>
+        <div className='menu-header'>
+          <div onClick={this.toggleMenu} className='menu-collapse-btn'>
+            <FontAwesome name='bars' className='menu-header-icon'/>
           </div>
         </div>
       </span>
@@ -41,18 +41,18 @@ class MenuPanel extends React.Component {
     }
 
     return (
-      <span className="menu-panel-displayed menu-panel" >
-        <div className="menu-header">
-          <div onClick={this.toggleMenu} className="menu-collapse-btn">
-            <FontAwesome name='bars' className="menu-header-icon"/>
+      <span className='menu-panel-displayed menu-panel' >
+        <div className='menu-header'>
+          <div onClick={this.toggleMenu} className='menu-collapse-btn'>
+            <FontAwesome name='bars' className='menu-header-icon'/>
           </div>
         </div>
-        <div className="menu-panel-content">
+        <div className='menu-panel-content'>
           <Logo size={this.state.size}/>
-          <div className="menu-items">
-            <div className="menu-item"><FontAwesome name='home' /> Home</div>
-            <div className="menu-item"><FontAwesome name='user' /> Profile</div>
-            <div className="menu-item"><FontAwesome name='info-circle' /> About</div>
+          <div className='menu-items'>
+            <div className='menu-item'><FontAwesome name='home' /> Home</div>
+            <div className='menu-item'><FontAwesome name='user' /> Profile</div>
+            <div className='menu-item'><FontAwesome name='info-circle' /> About</div>
           </div>
         </div>
       </span>

@@ -1,16 +1,15 @@
 import Meta from '../Meta';
 import Navbar from './Navbar';
+import Section from './Section';
+
+const TEAM_TEXT =  `Increase your teams efficiency.`;
 
 const LandingPage = (props) => (
   <div>
     <Meta />
     <Navbar />
-    <style jsx global>{`
-    body {
-      font: 11px Geneva;
-      color: #fff;
-    }
-  `}</style>
+    <Section title={TEAM_TEXT} img='static/img/team.png' />
+    <Section title={TEAM_TEXT} img='static/img/team.png' />
   </div>
 );
 

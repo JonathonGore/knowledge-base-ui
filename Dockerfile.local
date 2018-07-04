@@ -1,0 +1,13 @@
+FROM node:10
+
+WORKDIR knowledge-base-ui
+
+ADD . .
+
+RUN mv config.prod.js config.js
+
+RUN npm install
+
+RUN ./node_modules/.bin/next build
+
+CMD NODE_ENV=production node server.js

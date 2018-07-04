@@ -1,28 +1,6 @@
 @import '../../fonts';
-
-.landing-container {
-}
+@import './landing.scss';
 
 section {
   height: 100vh;
-}
-
-.section-description-container {
-  padding-top: 60%;
-}
-
-.section-header {
-  font-family: Trueno;
-  font-weight: bold;
-  font-size: 2.25rem;
-}
-
-.section-text {
-  float: left;
-  width: 30%;
-}
-
-.section-img {
-  float: right;
-  width: 70%;
 }

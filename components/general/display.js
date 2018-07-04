@@ -1,6 +1,6 @@
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import Button from '../misc/button.js';
+import Button from '../misc/Button.js';
 import Link from 'next/link';
 import { DATE_FORMAT } from '../../constants/constants.js';
 

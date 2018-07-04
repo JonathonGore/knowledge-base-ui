@@ -1,4 +1,5 @@
 @import '../../fonts';
+@import './landing';
 
 $off_white: #f8f9fa;
 
@@ -59,36 +60,4 @@ $off_white: #f8f9fa;
   -ms-flex-wrap: wrap;
   -ms-flex-align: center;
   -ms-flex-pack: justify;
-}
-
-.landing-container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-@media (max-width: 1400px) {
-  .landing-container {
-      max-width: 1140px;
-  }
-}
-
-@media (max-width: 992px) {
-  .landing-container {
-      max-width: 960px;
-  }
-}
-
-@media (max-width: 768px) {
-  .landing-container {
-      max-width: 720px;
-  }
-}
-
-@media (max-width: 576px) {
-  .landing-container {
-      max-width: 540px;
-  }
 }

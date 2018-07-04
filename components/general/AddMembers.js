@@ -1,4 +1,4 @@
-import Button from '../misc/button';
+import Button from '../misc/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormControl } from 'react-bootstrap';

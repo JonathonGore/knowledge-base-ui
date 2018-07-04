@@ -35,7 +35,9 @@ class Login extends React.Component {
     }
 
     const url = Config.serverURL + '/login';
-    const onSuccess = () => { Router.push('/'); };
+    const onSuccess = () => {
+      window.location.replace('/'); // Use window location to force hard reload to avoid landing page
+    };
     const onError = (response) => {
       const data = JSON.parse(response);
       this.buildError(data['message']);

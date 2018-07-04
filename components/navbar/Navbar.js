@@ -54,8 +54,10 @@ class KBNavbar extends React.Component {
       }
 
       this.setState({isLoggedIn: false});
-      // TODO: need to push to a new page - probably the homepage
       localStorage.removeItem(KB_ORG_SELECTION);
+
+      // push back to our homepage
+      window.location.replace('/');
     };
 
     const failure = () => { console.log('unable to logout'); };

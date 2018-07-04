@@ -22,10 +22,16 @@ UsersDropdown.defaultProps = {
   onLogout: () => (console.error('no log out function provided')),
 };
 
+const CHOOSE_ORG = 'Select Organization';
+
 export const OrgsDropdown = (props) => (
-  <NavDropdown eventKey={4} title={props.title} id='orgs-dropdown' >
+  <NavDropdown eventKey={4} title={props.title || CHOOSE_ORG} id='orgs-dropdown' >
     <MenuItem header>Organization</MenuItem>
-    <MenuItem key={'public'} onSelect={() => props.onClick(KB_DEFAULT_ORG)}>{KB_DEFAULT_ORG}</MenuItem>
+    {
+      props.allowPublic ? (
+        <MenuItem key={'public'} onSelect={() => props.onClick(KB_DEFAULT_ORG)}>{KB_DEFAULT_ORG}</MenuItem>
+      ) : ''
+    }
     {
       props.orgs.map(org =>
         <MenuItem key={org.name} onSelect={() => props.onClick(org.name)}>{org.name}</MenuItem>
@@ -37,12 +43,13 @@ export const OrgsDropdown = (props) => (
 );
 
 OrgsDropdown.propTypes = {
+  allowPublic: PropTypes.bool,
   title: PropTypes.node,
   orgs: PropTypes.array,
   onClick: PropTypes.func,
 };
 
 OrgsDropdown.defaultProps = {
-  title: KB_DEFAULT_ORG,
-  orgs: [{name: KB_DEFAULT_ORG}],
+  title: CHOOSE_ORG,
+  orgs: [],
 };

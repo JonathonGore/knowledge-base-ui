@@ -1,7 +1,7 @@
 import BasicLayoutLegacy from '../BasicLayoutLegacy.js';
-import MenuPanel from '../MenuPanel.js';
-import KBNavbar from '../navbar/Navbar.js';
 import Config from '../../config.js';
+import KBNavbar from '../navbar/Navbar.js';
+import React from 'react';
 import { getUsername, getData } from '../../util/util.js';
 import '../../styles.scss';
 

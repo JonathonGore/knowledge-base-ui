@@ -1,14 +1,11 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
-import Link from 'next/link';
-import Router, { withRouter } from 'next/router';
-import Search from './Search.js';
 import Logo from '../misc/Logo.js';
 import Config from '../../config.js';
+import { withRouter } from 'next/router';
 import { KB_ORG_SELECTION, KB_DEFAULT_ORG } from '../../constants/constants.js';
 import { UsersDropdown, OrgsDropdown } from './Dropdowns.js';
 import { postData } from '../../util/util.js';
-import { Navbar, NavItem, MenuItem, Nav } from 'react-bootstrap';
+import { Navbar, NavItem, Nav } from 'react-bootstrap';
 
 const DEFAULT_ORG = {name: KB_DEFAULT_ORG};
 
@@ -23,9 +20,8 @@ class KBNavbar extends React.Component {
     this.state = {
       isLoggedIn: props.isLoggedIn || false,
       username: props.username || '',
-      text: props.text || '',
       orgs: props.orgs || [DEFAULT_ORG],
-      org: KB_DEFAULT_ORG,
+      org: '',
     };
   }
 
@@ -43,7 +39,8 @@ class KBNavbar extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({org: localStorage.getItem(KB_ORG_SELECTION) || KB_DEFAULT_ORG});
+    this.setState({org: localStorage.getItem(KB_ORG_SELECTION)
+      || (Config.ALLOW_PUBLIC && KB_DEFAULT_ORG)});
   }
 
   logout() {
@@ -57,7 +54,7 @@ class KBNavbar extends React.Component {
       localStorage.removeItem(KB_ORG_SELECTION);
 
       // push back to our homepage
-      window.location.replace('/');
+      window.location.replace('/login');
     };
 
     const failure = () => { console.log('unable to logout'); };
@@ -67,13 +64,21 @@ class KBNavbar extends React.Component {
 
   buildOrgsSection() {
     if (!this.state.isLoggedIn) {
-      return (
-        // TODO: Change to have proper icon
-        <NavItem eventKey={3}>Public</NavItem>
-      );
+      // Only show orgs selection drop down if the user is logged in
+      // and we allow public questions.
+      if (Config.ALLOW_PUBLIC) {
+        return (
+          // TODO: Change to have proper icon
+          <NavItem eventKey={3}>Public</NavItem>
+        );
+      }
+      return '';
     }
 
-    return (<OrgsDropdown onClick={this.onOrgSelect} title={this.state.org} orgs={this.state.orgs}/>);
+    return (
+      <OrgsDropdown allowPublic={Config.ALLOW_PUBLIC} onClick={this.onOrgSelect}
+        title={this.state.org} orgs={this.state.orgs}/>
+    );
   }
 
   buildUserSection() {

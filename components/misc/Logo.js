@@ -18,6 +18,11 @@ class Logo extends React.Component {
     };
   }
 
+  onClick = () => {
+    // Again used because of miss understanding of next will try to figure it out
+    window.location.replace('/');
+  }
+
   buildClassName() {
     var cname = 'logo-container ' + this.state.className;
 
@@ -40,12 +45,10 @@ class Logo extends React.Component {
   render() {
     return (
       <div className={this.buildClassName()} style={this.buildStyle(this.state.hoverColor, this.state.color, this.state.size)}>
-        <Link href='/'>
-          <a className='logo-link'>
+          <a onClick={this.onClick} className='logo-link'>
             <FontAwesome name='database' />
             <span className='logo-text'> Knowledge-Base</span>
           </a>
-        </Link>
       </div>
     );
   }

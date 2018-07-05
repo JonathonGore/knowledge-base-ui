@@ -19,6 +19,14 @@ app.prepare()
       app.render(req, res, '/', { loggedIn });
     });
 
+    server.get('/questions', (req, res) => {
+      const loggedIn = isLoggedIn(req.cookies['kb-public']);
+      if (!loggedIn) {
+        app.render(req, res, '/', { loggedIn });
+      }
+      app.render(req, res, '/questions',  { id: '', loggedIn });
+    });
+
     server.get('/questions/:id', (req, res) => {
       app.render(req, res, '/questions', { id: req.params.id });
     });

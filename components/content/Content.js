@@ -18,6 +18,7 @@ class Content extends React.Component {
 
     this.state = {
       loading: true,
+      noSelection: false,
       posts: [],
     };
   }
@@ -52,7 +53,17 @@ class Content extends React.Component {
       });
     };
 
-    getData(this.buildURL(), onSuccess);
+    const onFailure = (json) => {
+      // If we get a 404 and ALLOW_PUBLIC is off we need to display a warning
+      // that no org is selected.
+      if (json.status === 404 && !Config.ALLOW_PUBLIC) {
+        this.setState({
+          noSelection: true,
+        });
+      }
+    }
+
+    getData(this.buildURL(), onSuccess, onFailure);
   }
 
   componentDidMount() {
@@ -62,7 +73,7 @@ class Content extends React.Component {
   render() {
     return (
       <div className={this.props.className}>
-        <ContentDisplay onClick={this.onAskQuestion} loading={this.state.loading} posts={this.state.posts}/>
+        <ContentDisplay noSelection={this.state.noSelection} onClick={this.onAskQuestion} loading={this.state.loading} posts={this.state.posts}/>
       </div>
     );
   }
@@ -73,7 +84,15 @@ Content.propTypes = {
 };
 
 const ContentDisplay = (props) => {
-  if (props.loading) {
+  if (props.noSelection) {
+    return (
+      <div className='no-questions-container'>
+        <div className='no-questions-text'>
+          No organization selected. Select an organization from the dropdown.
+        </div>
+      </div>
+    )
+  } else if (props.loading) {
     return (<div className='spinner-wrapper'><FontAwesome name='spinner' spin /></div>);
   } else if (!props.loading && props.posts.length === 0) {
     return (

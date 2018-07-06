@@ -1,3 +1,5 @@
+@import './fonts';
+
 /* Variables */
 
 /* Colours */
@@ -492,6 +494,7 @@ textarea {
 
 /* Index Wrapper */
 .index-wrapper {
+  display: flex;
   padding: 8px;
   width: 95%;
   margin: auto;
@@ -499,8 +502,17 @@ textarea {
 
 /* Content component */
 .no-questions-text {
+  font-family: Trueno;
+  display: inline;
+  margin-right: 8px;
   margin-bottom: 4px;
-  font-size: 14px;
+  font-size: 16px;
+}
+
+.no-questions-container {
+  margin: auto;
+  margin-top: 20px;
+  display: inline-block;
 }
 
 .spinner-wrapper {

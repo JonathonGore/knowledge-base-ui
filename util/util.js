@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import axios from 'axios';
 
 const USERNAME_COOKIE = 'kb-public';
 
@@ -45,6 +46,14 @@ export const getCookie = (name) => {
 
 export const getUsername = () => {
   return getCookie(USERNAME_COOKIE);
+}
+
+export const getAsync = async (url, withCredentials=true) => {
+  return axios({
+    method: 'get',
+    url,
+    withCredentials,
+  });
 }
 
 export const getData = (url, onSuccess, onFailure, withCredentials=true) => {

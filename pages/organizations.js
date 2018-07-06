@@ -1,6 +1,6 @@
 import PageLayout from '../components/content/PageLayout.js';
 import CreateObj from '../components/general/create.js';
-import OrgPage from '../components/organizations/Organization.js';
+import OrgPage from '../components/organizations/Organizations.js';
 import React from 'react';
 import Router from 'next/router';
 import { withRouter } from 'next/router';

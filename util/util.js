@@ -4,6 +4,11 @@ const USERNAME_COOKIE = 'kb-public';
 
 // Computes either the first or second half of the array
 export const half = (arr, first=true) => {
+  if (!arr) {
+    // Return empty array for falsey values;
+    return [];
+  }
+
   let i = 0;
   let end = Math.ceil(arr.length / 2);
   if (!first) {

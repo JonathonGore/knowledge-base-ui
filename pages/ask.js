@@ -10,7 +10,7 @@ import '../styles.scss';
 
 const TEXT_AREA_ROWS = 10;
 
-function FieldGroup({ id, label, help, kbOnChange, formKey, ...props }) {
+const FieldGroup = ({ id, label, help, kbOnChange, formKey, ...props }) => {
   return (
     <FormGroup controlId={id}>
       <ControlLabel>{label}</ControlLabel>
@@ -115,7 +115,9 @@ class Ask extends React.Component {
 
   render() {
     return (
-      <PageLayout content={this.buildContent()}/>
+      <PageLayout>
+        {this.buildContent()}
+      </PageLayout>
     );
   }
 }

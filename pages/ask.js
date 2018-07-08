@@ -1,24 +1,16 @@
 import Config from '../config.js';
 import DismissableAlert from '../components/alerts/DismissableAlert.js';
+import FieldGroup from '../components/general/FieldGroup.js';
 import FontAwesome from 'react-fontawesome';
 import PageLayout from '../components/content/PageLayout.js';
+import React from 'react';
 import Router from 'next/router';
-import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { postData } from '../util/util.js';
 import { KB_ORG_SELECTION, KB_DEFAULT_ORG } from '../constants/constants.js';
 import '../styles.scss';
 
 const TEXT_AREA_ROWS = 10;
-
-const FieldGroup = ({ id, label, help, kbOnChange, formKey, ...props }) => {
-  return (
-    <FormGroup controlId={id}>
-      <ControlLabel>{label}</ControlLabel>
-      <FormControl {...props} inputRef={ref => { kbOnChange(ref, formKey); }} />
-      {help && <HelpBlock>{help}</HelpBlock>}
-    </FormGroup>
-  );
-}
 
 class Ask extends React.Component {
   constructor (props){
@@ -37,7 +29,7 @@ class Ask extends React.Component {
   }
 
   componentDidMount() {
-      this.setState({org: localStorage.getItem(KB_ORG_SELECTION) || KB_DEFAULT_ORG});
+    this.setState({org: localStorage.getItem(KB_ORG_SELECTION) || KB_DEFAULT_ORG});
   }
 
   updateKey(ref, key) {
@@ -78,7 +70,7 @@ class Ask extends React.Component {
 
     if (this.state.org === KB_DEFAULT_ORG) {
       return (
-        <div className='ask-visibility-container'>
+        <div onClick={() => { Router.push(`/`); }} className='ask-visibility-container'>
           <FontAwesome name='globe'/>
           <span className='ask-visibility-text'>Public</span>
         </div>
@@ -86,7 +78,8 @@ class Ask extends React.Component {
     }
 
     return (
-      <div className='ask-visibility-container'>
+      <div onClick={() => { Router.push(`/organizations/${this.state.org}`); }}
+        className='ask-visibility-container'>
         <FontAwesome name='globe'/>
         <span className='ask-visibility-text'>{this.state.org}</span>
       </div>

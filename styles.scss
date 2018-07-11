@@ -271,6 +271,7 @@ $std_width: 60%;
 
 /* Search-bar */
 .search-container {
+  margin-top: -3px;
 }
 
 .search-input {
@@ -325,9 +326,9 @@ textarea {
 }
 
 .question-title {
-  padding: 20px 0;
+  padding: 8px 0;
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 500;
   color: $almost_black;
   border-bottom: 1px solid $light_gray;
 }
@@ -347,8 +348,9 @@ textarea {
 }
 
 .question-answers-header {
+  padding: 8px 0;
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 500;
   color: $almost_black;
   border-bottom: 1px solid $light_gray;
   margin-top: 20px;

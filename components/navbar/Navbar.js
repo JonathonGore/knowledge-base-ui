@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from '../misc/Logo.js';
 import Config from '../../config.js';
+import Search from './Search.js';
 import { withRouter } from 'next/router';
 import { KB_ORG_SELECTION, KB_DEFAULT_ORG } from '../../constants/constants.js';
 import { UsersDropdown, OrgsDropdown } from './Dropdowns.js';
@@ -114,6 +115,9 @@ class KBNavbar extends React.Component {
           <NavItem eventKey={1} href='/questions'>Questions</NavItem>
           <NavItem eventKey={2} href='/organizations'>Organizations</NavItem>
           <NavItem eventKey={3} href='/about'>About</NavItem>
+          <NavItem>
+           <Search />
+          </NavItem>
         </Nav>
         <Nav pullRight>
           <NavItem eventKey={4} href='/ask'>Ask Question</NavItem>

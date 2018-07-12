@@ -17,7 +17,7 @@ class Content extends React.Component {
     this.buildURL = this.buildURL.bind(this);
 
     this.state = {
-      loading: true,
+      loading: this.props.posts ? false : true,
       noSelection: false,
       posts: [],
     };
@@ -67,13 +67,18 @@ class Content extends React.Component {
   }
 
   componentDidMount() {
-    this.requestPosts();
+    if (!this.props.posts) {
+      console.log('requesting posts')
+      console.log(this.props.posts);
+      this.requestPosts();
+    }
   }
 
   render() {
     return (
       <div className={this.props.className}>
-        <ContentDisplay noSelection={this.state.noSelection} onClick={this.onAskQuestion} loading={this.state.loading} posts={this.state.posts}/>
+        <ContentDisplay noQuestionsText={this.props.noQuestionsText} noSelection={this.state.noSelection} onClick={this.onAskQuestion}
+          loading={this.state.loading} posts={this.props.posts || this.state.posts}/>
       </div>
     );
   }
@@ -81,6 +86,8 @@ class Content extends React.Component {
 
 Content.propTypes = {
   org: PropTypes.string,
+  noQuestionsText: PropTypes.string,
+  posts: PropTypes.array,
 };
 
 const ContentDisplay = (props) => {
@@ -98,7 +105,7 @@ const ContentDisplay = (props) => {
     return (
       <div className='no-questions-container'>
         <div className='no-questions-text'>
-          No questions have been asked yet.
+          {props.noQuestionsText}
         </div>
         <Button onClick={props.onClick}text={'Ask the first question'}/>
       </div>
@@ -116,11 +123,13 @@ const ContentDisplay = (props) => {
 ContentDisplay.propTypes = {
   loading: PropTypes.bool,
   onClick: PropTypes.func,
+  noQuestionsText: PropTypes.string,
   posts: PropTypes.array,
 };
 
 ContentDisplay.defaultProps = {
   loading: false,
+  noQuestionsText: 'No questions have been asked yet.',
   posts: [],
 };
 

@@ -16,7 +16,11 @@ class Search extends React.Component {
 
   onKeyUp = (e) => {
     if (e.keyCode == 13) {
-      this.props.search(e.target.value);
+      if (this.props.search) {
+        this.props.search(e.target.value);
+      }
+
+      window.location = '/search?query=' + e.target.value;
     }
   }
 
@@ -38,7 +42,6 @@ Search.propTypes = {
 
 Search.defaultProps = {
   placeholder: 'Search',
-  search: (q) => { console.log(q); },
   query: '',
 }
 

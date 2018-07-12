@@ -270,7 +270,11 @@ $std_width: 60%;
 }
 
 /* Search-bar */
-.search-container {
+.kb-search-nav {
+  max-height: 50px;
+}
+
+.kb-search-nav > a {
   margin-top: -3px;
 }
 

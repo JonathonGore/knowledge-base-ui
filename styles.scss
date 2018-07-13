@@ -498,11 +498,33 @@ textarea {
   font-size: 24px;
 }
 
+/* Search page */
+.search-result-text {
+  font-size: 28px;
+}
+
+.search-result-info {
+  margin: 20px 0;
+}
+
+.search-result-count {
+  font-size: 18px;
+}
+
+.search-wrapper {
+  padding: 6px;
+  width: 95%;
+  margin: auto;
+}
+
+.search-results-wrapper {
+  display: flex;
+}
+
 /* Index Wrapper */
 .index-wrapper {
   display: flex;
   padding: 8px;
-  width: 95%;
   margin: auto;
 }
 

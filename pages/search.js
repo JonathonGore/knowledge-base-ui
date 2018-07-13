@@ -6,13 +6,9 @@ import { getAsync } from '../util/util.js';
 class Search extends React.Component {
   constructor (props) {
     super(props);
-    console.log('props:')
-    console.log(props);
   }
 
   static async getInitialProps({ req }) {
-    console.log('get initial props');
-    console.log(req.query);
     let query = '';
     if (req.query.query) {
         query = 'query=' + req.query.query;
@@ -20,7 +16,7 @@ class Search extends React.Component {
           query = query + '&organization=' + req.query.organization;
         }
     }
-    
+
     const url = Config.serverURL + '/search?' + query;
     try {
       const searchResponse = await getAsync(url);
@@ -34,10 +30,26 @@ class Search extends React.Component {
     return ({posts: []});
   }
 
+  getResultText = () => {
+    if (this.props.posts.length === 0) {
+      return 'No results found';
+    } else if (this.props.posts.length === 1) {
+      return `${this.props.posts.length} result`;
+    }
+
+    return `${this.props.posts.length} results`;
+  }
+
   render() {
     return (
       <PageLayout>
-        <Content posts={this.props.posts} />
+        <div className='search-wrapper'>
+          <div className='search-result-info'>
+            <div className='search-result-text'>Search Results</div>
+            <div className='search-result-count'>{this.getResultText()}</div>
+          </div>
+          <Content posts={this.props.posts} className='search-results-wrapper'/>
+        </div>
       </PageLayout>
     );
   }

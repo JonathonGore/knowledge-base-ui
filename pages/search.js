@@ -9,6 +9,8 @@ class Search extends React.Component {
   }
 
   static async getInitialProps({ req }) {
+    console.log(req.cookies)
+
     let query = '';
     if (req.query.query) {
         query = 'query=' + req.query.query;

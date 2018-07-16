@@ -48,11 +48,11 @@ export const getUsername = () => {
   return getCookie(USERNAME_COOKIE);
 }
 
-export const getAsync = async (url, withCredentials=true) => {
+export const getAsync = async (url, options={withCredentials: true}) => {
   return axios({
     method: 'get',
     url,
-    withCredentials,
+    ...options,
   });
 }
 

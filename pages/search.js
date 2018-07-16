@@ -9,9 +9,8 @@ class Search extends React.Component {
   }
 
   static async getInitialProps({ req }) {
-    console.log(req.cookies)
-
     let query = '';
+    // Check if there is a query paramter named 'query'
     if (req.query.query) {
         query = 'query=' + req.query.query;
         if(req.query.organization) {
@@ -21,7 +20,12 @@ class Search extends React.Component {
 
     const url = Config.serverURL + '/search?' + query;
     try {
-      const searchResponse = await getAsync(url);
+      const options =  {
+        headers: {
+          Cookie: `${Config.COOKIE_NAME}=${req.cookies[Config.COOKIE_NAME]}`,
+        },
+      }
+      const searchResponse = await getAsync(url, options);
       return ({
         posts: searchResponse.data,
       });

@@ -61,14 +61,14 @@ class Content extends React.Component {
           noSelection: true,
         });
       }
-    }
+    };
 
     getData(this.buildURL(), onSuccess, onFailure);
   }
 
   componentDidMount() {
     if (!this.props.posts) {
-      console.log('requesting posts')
+      console.log('requesting posts');
       console.log(this.props.posts);
       this.requestPosts();
     }
@@ -98,7 +98,7 @@ const ContentDisplay = (props) => {
           No organization selected. Select an organization from the dropdown.
         </div>
       </div>
-    )
+    );
   } else if (props.loading) {
     return (<div className='spinner-wrapper'><FontAwesome name='spinner' spin /></div>);
   } else if (!props.loading && props.posts.length === 0) {

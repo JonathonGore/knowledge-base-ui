@@ -116,7 +116,7 @@ class KBNavbar extends React.Component {
           <NavItem eventKey={2} href='/organizations'>Organizations</NavItem>
           <NavItem eventKey={3} href='/about'>About</NavItem>
           <NavItem className='kb-search-nav'>
-           <Search />
+            <Search />
           </NavItem>
         </Nav>
         <Nav pullRight>

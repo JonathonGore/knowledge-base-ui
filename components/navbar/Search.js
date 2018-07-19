@@ -38,11 +38,11 @@ Search.propTypes = {
   placeholder: PropTypes.string,
   search: PropTypes.func,
   query: PropTypes.string,
-}
+};
 
 Search.defaultProps = {
   placeholder: 'Search',
   query: '',
-}
+};
 
 export default Search;

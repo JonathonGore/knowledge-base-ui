@@ -16,7 +16,7 @@ const Description = (props) => (
 Description.propTypes = {
   headerText: PropTypes.string,
   content: PropTypes.string,
-}
+};
 
 const ImageSplit = (props) => (
   <div className='image-split-container'>
@@ -31,6 +31,6 @@ ImageSplit.propTypes = {
   content: PropTypes.string,
   img: PropTypes.string,
   title: PropTypes.string,
-}
+};
 
 export default ImageSplit;

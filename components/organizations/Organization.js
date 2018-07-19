@@ -4,6 +4,7 @@ import Content from '../content/Content.js';
 import DismissableAlert from '../alerts/DismissableAlert';
 import OrgDisplay from './OrgDisplay';
 import PropTypes from 'prop-types';
+import React from 'react';
 import Settings from './Settings';
 import { postData, half } from '../../util/util.js';
 import { TwoPaneSplit } from '../general/display.js';
@@ -17,7 +18,7 @@ class Organization extends React.Component {
     this.state = {
       message: '',
       showSettings: false,
-    }
+    };
   }
 
   // buildSettings conditionally constructs a settings button if the current user is an admin.
@@ -90,7 +91,7 @@ class Organization extends React.Component {
       </div>
     );
   }
-};
+}
 
 Organization.propTypes = {
   admins: PropTypes.array,
@@ -103,7 +104,7 @@ Organization.propTypes = {
 Organization.defaultProps = {
   admins: [],
   teams: [],
-  username: ''
+  username: '',
 };
 
 export default Organization;

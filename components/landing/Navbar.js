@@ -28,6 +28,6 @@ const Navbar = (props) => (
 NavLink.propTypes = {
   href: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-}
+};
 
 export default Navbar;

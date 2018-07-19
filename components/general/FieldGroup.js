@@ -14,6 +14,6 @@ FieldGroup.propTypes = {
   label: PropTypes.string,
   kbOnChange: PropTypes.func,
   formKey: PropTypes.string,
-}
+};
 
 export default FieldGroup;

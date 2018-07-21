@@ -70,7 +70,7 @@ class Ask extends React.Component {
 
     if (this.state.org === KB_DEFAULT_ORG) {
       return (
-        <div onClick={() => { Router.push(`/`); }} className='ask-visibility-container'>
+        <div onClick={() => { Router.push('/'); }} className='ask-visibility-container'>
           <FontAwesome name='globe'/>
           <span className='ask-visibility-text'>Public</span>
         </div>

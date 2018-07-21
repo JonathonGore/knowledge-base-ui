@@ -20,7 +20,7 @@ class Organizations extends React.Component {
         headers: {
           Cookie: `${Config.COOKIE_NAME}=${req.cookies[Config.COOKIE_NAME]}`,
         },
-      }
+      };
       const orgsResponse = await getAsync(url, options);
 
       return {

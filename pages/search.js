@@ -12,10 +12,10 @@ class Search extends React.Component {
     let query = '';
     // Check if there is a query paramter named 'query'
     if (req.query.query) {
-        query = 'query=' + req.query.query;
-        if(req.query.organization) {
-          query = query + '&organization=' + req.query.organization;
-        }
+      query = 'query=' + req.query.query;
+      if(req.query.organization) {
+        query = query + '&organization=' + req.query.organization;
+      }
     }
 
     const url = Config.serverURL + '/search?' + query;
@@ -24,7 +24,7 @@ class Search extends React.Component {
         headers: {
           Cookie: `${Config.COOKIE_NAME}=${req.cookies[Config.COOKIE_NAME]}`,
         },
-      }
+      };
       const searchResponse = await getAsync(url, options);
       return ({
         posts: searchResponse.data,

@@ -52,7 +52,7 @@ class Profile extends React.Component {
     return (
       <PageLayout content={this.buildContent()} />
     );
-	}
+  }
 }
 
 export default Profile;

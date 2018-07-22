@@ -3,8 +3,7 @@ import Router from 'next/router';
 import Config from '../../config.js';
 import DismissableAlert from '../alerts/DismissableAlert';
 import { postData } from '../../util/util.js';
-import { Form, FormGroup, FormControl, Button, Col, Row } from 'react-bootstrap';
-import $ from 'jquery';
+import { Form, FormControl, Button, Col, Row } from 'react-bootstrap';
 
 class SignupForm extends React.Component {
   constructor(props) {

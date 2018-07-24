@@ -1,22 +1,13 @@
 import Button from '../misc/Button.js';
 import Config from '../../config.js';
 import Content from '../content/Content.js';
-import moment from 'moment';
 import Router from 'next/router';
 import Settings from './Settings';
+import Stats from './Stats';
 import { postData, half } from '../../util/util.js';
 import { Header, TwoPaneSplit } from '../general/display.js';
 import { getData } from '../../util/util.js';
 import '../../styles.scss';
-
-const DATE_FORMAT = 'MMM Do YYYY';
-
-const Stats = (props) => (
-  <div className='team-display-stats'>
-    <span className='team-display-members'>Members: {props.members}</span>
-    <span className='team-display-dob'>Created On: {moment(props.createdOn).format(DATE_FORMAT)}</span>
-  </div>
-);
 
 class TeamDisplay extends React.Component {
   constructor(props) {
@@ -35,6 +26,7 @@ class TeamDisplay extends React.Component {
     const url = Config.serverURL + '/organizations/' + this.props.orgName + '/teams/' + this.props.teamName;
     const updateState = (json) => {
       const data = JSON.parse(json);
+      console.log(data);
       this.setState({
         ...data
       });

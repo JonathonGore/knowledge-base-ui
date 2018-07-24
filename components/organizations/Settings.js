@@ -1,5 +1,5 @@
-import React from 'react';
 import AddMembers from '../general/AddMembers';
+import React from 'react';
 import './styles.scss';
 
 class Settings extends React.Component {

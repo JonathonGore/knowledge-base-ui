@@ -111,7 +111,7 @@ class Teams extends React.Component {
 
     if (this.state.orgName && this.state.teamName) {
       return (
-        <TeamDisplay teamName={this.state.teamName} orgName={this.state.orgName}/>
+        <TeamDisplay team={this.props.team} teamName={this.state.teamName} orgName={this.state.orgName}/>
       );
     }
 

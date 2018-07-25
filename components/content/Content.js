@@ -68,8 +68,6 @@ class Content extends React.Component {
 
   componentDidMount() {
     if (!this.props.posts) {
-      console.log('requesting posts');
-      console.log(this.props.posts);
       this.requestPosts();
     }
   }

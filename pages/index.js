@@ -6,8 +6,6 @@ import { withRouter } from 'next/router';
 import '../styles.scss';
 
 const Index = (props) => {
-  console.log(props.router.query);
-
   return(props.router.query.loggedIn ? (
     <PageLayout>
       <Content className='index-wrapper' />

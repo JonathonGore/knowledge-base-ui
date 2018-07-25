@@ -58,7 +58,6 @@ class Teams extends React.Component {
   }
 
   static async getInitialProps({ req }) {
-    console.log(req);
     const username = req.cookies[Config.PUBLIC_COOKIE_NAME];
     const headers = {
         Cookie: `${Config.COOKIE_NAME}=${req.cookies[Config.COOKIE_NAME]}`,

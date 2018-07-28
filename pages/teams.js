@@ -30,14 +30,14 @@ class Teams extends React.Component {
         admins: admins.data,
         org: org.data,
         teams: teams.data,
-      }
+      };
     } catch (error) {
       console.error(`Received ${error} when requesting org data`);
     }
 
     return {
       username: options.username,
-    }
+    };
   }
 
   static async requestTeamData(org, team, options) {
@@ -47,7 +47,7 @@ class Teams extends React.Component {
       return {
         username: options.username,
         team: result.data,
-      }
+      };
     } catch (error) {
       console.error(`Received ${error} when requesting team`);
     }
@@ -60,7 +60,7 @@ class Teams extends React.Component {
   static async getInitialProps({ req }) {
     const username = req.cookies[Config.PUBLIC_COOKIE_NAME];
     const headers = {
-        Cookie: `${Config.COOKIE_NAME}=${req.cookies[Config.COOKIE_NAME]}`,
+      Cookie: `${Config.COOKIE_NAME}=${req.cookies[Config.COOKIE_NAME]}`,
     };
 
     const create = false;

@@ -22,6 +22,6 @@ class Settings extends React.Component {
 
 Settings.propTypes = {
   onSubmit: PropTypes.func,
-}
+};
 
 export default Settings;

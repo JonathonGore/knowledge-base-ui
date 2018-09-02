@@ -46,6 +46,7 @@ Button.propTypes = {
 Button.defaultProps = {
   icon: '',
   style: 'default',
+  text: 'click me',
   onClick: () => { console.log('Clicked'); }
 };
 

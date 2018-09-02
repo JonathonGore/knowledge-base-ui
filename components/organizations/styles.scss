@@ -1,7 +1,8 @@
 $dark_gray: #6A737C;
 
 /* Org Settings */
-.org-settings-header {
+.org-settings-header,
+.org-danger-zone-header {
   font-weight: 500;
   font-size: 24px;
   margin-top: 8px;
@@ -24,4 +25,27 @@ $dark_gray: #6A737C;
   font-weight: 500;
   font-size: 18px;
   margin-bottom: 8px;
+}
+
+/* Danger Zone */
+.org-danger-zone-header {
+  color: #cc0000;
+}
+
+.org-danger-button {
+  float: right;
+}
+
+.org-danger-boundary {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 8px;
+  border-radius: 4px;
+  border-color: #cc0000;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.org-danger-description {
+  font-size: 16px;
 }

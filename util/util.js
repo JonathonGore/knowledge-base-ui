@@ -77,6 +77,27 @@ export const getData = (url, onSuccess, onFailure, withCredentials=true) => {
   });
 };
 
+export const deleteData = (url, onSuccess, onFailure, withCredentials=true) => {
+  $.ajax({
+    type: 'DELETE',
+    url: url,
+    dataType: "text",
+    xhrFields: {
+      withCredentials: withCredentials
+    },
+    success: function(json) {
+      if (onSuccess) {
+        onSuccess(json);
+      }
+    },
+    error: function (xhr) {
+      if (onFailure) {
+        onFailure(xhr.responseText);
+      }
+    }
+  });
+}
+
 export const postData = (url, data, onSuccess, onFailure, withCredentials=true) => {
   $.ajax({
     type: 'POST',

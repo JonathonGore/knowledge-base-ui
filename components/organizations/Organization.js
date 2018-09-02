@@ -76,7 +76,7 @@ class Organization extends React.Component {
         </OrgDisplay>
         {
           this.state.showSettings ? (
-            <Settings onSubmit={this.addOrgMember}/>
+            <Settings org={this.props.orgName} onSubmit={this.addOrgMember}/>
           ) : (
             <div>
               <TwoPaneSplit header='Teams' type={`organizations/${this.props.orgName}`}

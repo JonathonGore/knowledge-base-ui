@@ -47,6 +47,7 @@ export const TwoPaneSplit = (props) => {
   return (
     <div className='two-pane-split-container'>
       <div className='split-pane-header'>{props.header}</div>
+      <div className='split-pane-description'>{props.description}</div>
       <div className='two-pane-split'>
         <Panel items={props.left} {...props} />
         <Panel items={props.right} {...props} />
@@ -56,12 +57,14 @@ export const TwoPaneSplit = (props) => {
 };
 
 TwoPaneSplit.propTypes = {
+  description: PropTypes.string,
   header: PropTypes.string,
   left: PropTypes.array,
   right: PropTypes.array,
 };
 
 TwoPaneSplit.defaultProps = {
+  description: '',
   header: '',
   left: [],
   right: [],

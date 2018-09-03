@@ -10,6 +10,8 @@ import { postData, half } from '../../util/util.js';
 import { TwoPaneSplit } from '../general/display.js';
 import '../../styles.scss';
 
+const noTeamsText = 'No teams have been created for this organization yet.'
+
 // Organization is responsible for display information about a SINGLE organization.
 class Organization extends React.Component {
   constructor(props) {
@@ -65,6 +67,19 @@ class Organization extends React.Component {
     postData(url, data, success, failure);
   }
 
+  buildTeamsList() {
+    let description = '';
+    if (this.props.teams.length === 0) {
+      description = noTeamsText;
+    }
+
+    return (
+        <TwoPaneSplit header='Teams' type={`organizations/${this.props.orgName}`}
+          left={half(this.props.teams)} right={half(this.props.teams, false)}
+          description={description} />
+    );
+  }
+
   render () {
     return (
       <div className='org-container'>
@@ -79,8 +94,7 @@ class Organization extends React.Component {
             <Settings org={this.props.orgName} onSubmit={this.addOrgMember}/>
           ) : (
             <div>
-              <TwoPaneSplit header='Teams' type={`organizations/${this.props.orgName}`}
-                left={half(this.props.teams)} right={half(this.props.teams, false)} />
+              {this.buildTeamsList()}
               <div className='org-top-questions'>
                 <div className='org-questions-header'>Top Questions</div>
                 <Content org={this.props.orgName} />
